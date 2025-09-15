@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding:20px;">
+
+  <h2>📘 Student Report</h2>
+  <h3 id="collegeName" style="color:#333; margin-bottom:10px;"></h3>
+
+  <!-- Top Controls -->
+  <div style="margin-bottom:15px;">
+    <select id="branchSel" style="padding:6px;">
+      <option value="CS">CS</option>
+      <option value="ECE">ECE</option>
+      <option value="ME">ME</option>
+    </select>
+
+    <select id="yearSel" style="padding:6px;">
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+    </select>
+
+    <select id="semSel" style="padding:6px;">
+      <option value="4">4</option>
+      <option value="3">3</option>
+      <option value="2">2</option>
+    </select>
+
+    <input type="text" id="searchBox" placeholder="Search by PIN or Name" style="padding:6px; width:320px;"/>
+
+    <select id="sortSel" style="padding:6px;">
+      <option value="pin">Sort: PIN</option>
+      <option value="name">Sort: Name</option>
+      <option value="attendance">Sort: Attendance</option>
+      <option value="risk">Sort: Risk</option>
+      <option value="class_avg">Sort: Performance</option>
+    </select>
+
+    <button id="btnExport" style="padding:6px;">Export CSV</button>
+    <button id="btnLoad" style="padding:6px;">Load</button>
+
+    <span id="countInfo" style="margin-left:18px; font-weight:bold;"></span>
+  </div>
+
+  <!-- Overview -->
+  <div id="overviewBox" style="background:#f9f9f9; padding:10px; margin-bottom:15px; border-radius:8px; border:1px solid #ddd;">
+    <b>📊 Batch Overview</b>
+    <div id="overviewContent">Loading...</div>
+  </div>
+
+  <!-- Student Table -->
+  <table border="1" width="100%" style="border-collapse:collapse;">
+    <thead style="background:#eee;">
+      <tr>
+        <th>#</th>
+        <th>PIN</th>
+        <th>Name</th>
+        <th>Attendance</th>
+        <th>Risk</th>
+        <th>Overall Score</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="studentRows"></tbody>
+  </table>
+
+</div>
+
+<!-- View Details Modal -->
+<div id="detailModal" style="display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
+  <div style="background:#fff; width:92%; max-width:1000px; margin:40px auto; padding:16px; border-radius:6px; position:relative;">
+    <button id="closeDetail" style="position:absolute; right:10px; top:10px;">Close</button>
+    <h3 id="detailTitle">Student Details</h3>
+    <div id="studentInfo" style="margin-bottom:8px; font-size:14px;"></div>
+
+    <div id="riskSummary" style="margin-bottom:10px;"></div>
+
+    <table id="detailTable" border="1" width="100%" style="border-collapse:collapse; margin-bottom:10px;">
+      <thead style="background:#f6f6f6;">
+        <tr><th>Sub Code</th><th>Sub Name</th><th>Mid1</th><th>Mid2</th><th>Internal</th><th>End Sem</th><th>Attendance</th><th>Score</th><th>Risk</th></tr>
+      </thead>
+      <tbody id="detailRows"></tbody>
+    </table>
+
+    <div id="feedbackBox" style="background:#fbfbfb;padding:10px;border-radius:6px;border:1px solid #eee;">
+      <h4>Personalized Feedback</h4>
+      <div id="feedbackText"></div>
+      <div style="margin-top:10px;"><a id="moreDetailsLink" href="#">More details & history</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const apiBase = "/api";
+fetch("/api/results/institution").then(r=>r.json()).then(d=>{
+  document.getElementById("collegeName").textContent = d.name || "";
+});
+
+async function loadData() {
+  const branch = document.getElementById("branchSel").value;
+  const year = document.getElementById("yearSel").value;
+  const sem = document.getElementById("semSel").value;
+  const q = encodeURIComponent(document.getElementById("searchBox").value || '');
+  const sort = document.getElementById("sortSel").value;
+
+  const url = `/api/results/search?branch=${branch}&year=${year}&semester=${sem}&q=${q}&sort=${sort}`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  // Overview
+  const overRes = await fetch(`/api/results/overview?branch=${branch}&year=${year}&semester=${sem}`);
+  const overview = await overRes.json();
+  document.getElementById("overviewContent").innerHTML =
+    `Total Students: <b>${overview.total_students}</b> |
+     High Risk: <span style="color:red;">${overview.risk_counts.high}</span> |
+     Medium Risk: <span style="color:orange;">${overview.risk_counts.medium}</span> |
+     Low Risk: <span style="color:green;">${overview.risk_counts.low}</span> |
+     Avg Attendance: ${overview.avg_attendance ? overview.avg_attendance.toFixed(1) + "%" : "NA"} |
+     Avg Performance: ${overview.avg_class_performance ? overview.avg_class_performance.toFixed(1) : "NA"}`;
+
+  document.getElementById("countInfo").textContent = `${data.total || 0} students`;
+
+  const tbody = document.getElementById("studentRows");
+  tbody.innerHTML = "";
+  let idx = 1;
+  (data.items || []).forEach(st => {
+    // defensive: ensure pin present and looks valid
+    if (!st.pin || st.pin.length < 6) return;
+    // skip if name contains college header
+    if (st.name && st.name.toLowerCase().includes("polytechnic")) return;
+
+    const tr = document.createElement("tr");
+    const attendanceText = st.attendance ? (Number(st.attendance).toFixed(1) + "%") : "-";
+    const riskColor = st.risk === "high" ? "red" : (st.risk === "medium" ? "orange" : (st.risk === "low" ? "green" : "black"));
+
+    tr.innerHTML = `
+      <td>${idx++}</td>
+      <td>${st.pin}</td>
+      <td>${st.name || "-"}</td>
+      <td>${attendanceText}</td>
+      <td style="color:${riskColor};">${st.risk || "-"}</td>
+      <td>${st.overall_score !== null && st.overall_score !== undefined ? st.overall_score : "-"}</td>
+      <td><button class="viewBtn" data-pin="${st.pin}">View</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // attach handlers
+  document.querySelectorAll(".viewBtn").forEach(b => {
+    b.addEventListener("click", (e) => {
+      const pin = e.currentTarget.dataset.pin;
+      openDetailModal(pin, document.getElementById("semSel").value);
+    });
+  });
+}
+
+async function openDetailModal(pin, sem) {
+  const url = `/api/results/search?pin=${encodeURIComponent(pin)}&semester=${encodeURIComponent(sem)}`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    alert("Student data not found.");
+    return;
+  }
+  const data = await res.json();
+  const student = data.student;
+  document.getElementById("detailTitle").textContent = `Student Details — ${student.name || ""}`;
+  document.getElementById("studentInfo").innerHTML = `<b>PIN:</b> ${student.pin} &nbsp; <b>Name:</b> ${student.name} &nbsp; <b>Branch:</b> ${student.branch} &nbsp; <b>Year:</b> ${student.year}`;
+
+  // populate subjects table
+  const rows = document.getElementById("detailRows");
+  rows.innerHTML = "";
+  let riskSubjects = [];
+  (data.subjects || []).forEach(sd => {
+    const score = sd.subject_score !== null && sd.subject_score !== undefined ? sd.subject_score : "-";
+    // determine risk for subject (prefer stored sd.risk, else compute from score)
+    let r = sd.risk;
+    if (!r && typeof sd.subject_score === "number") {
+      if (sd.subject_score < 50) r = "high";
+      else if (sd.subject_score < 70) r = "medium";
+      else r = "low";
+    }
+    if (r === "high") riskSubjects.push(sd.sub_code);
+
+    // attendance color
+    let attHtml = "-";
+    if (sd.attendance !== null && sd.attendance !== undefined) {
+      const a = Number(sd.attendance);
+      let color = "black";
+      if (a >= 75) color = "green";
+      else if (a >= 60) color = "orange";
+      else color = "red";
+      attHtml = `<span style="color:${color};">${a.toFixed(1)}%</span>`;
+    }
+
+    const riskColor = r === "high" ? "red" : (r === "medium" ? "orange" : (r === "low" ? "green" : "black"));
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${sd.sub_code}</td>
+      <td>${sd.sub_name || ""}</td>
+      <td>${sd.mid1 !== null && sd.mid1 !== undefined ? sd.mid1 : "-"}</td>
+      <td>${sd.mid2 !== null && sd.mid2 !== undefined ? sd.mid2 : "-"}</td>
+      <td>${sd.internal !== null && sd.internal !== undefined ? sd.internal : "-"}</td>
+      <td>${sd.end_sem !== null && sd.end_sem !== undefined ? sd.end_sem : "-"}</td>
+      <td>${attHtml}</td>
+      <td>${typeof score === "number" ? score.toFixed(2) : score}</td>
+      <td style="color:${riskColor};">${r || "-"}</td>
+    `;
+    rows.appendChild(tr);
+  });
+
+  // Risk summary
+  document.getElementById("riskSummary").innerHTML = `<b>Risk Subjects:</b> ${riskSubjects.length ? riskSubjects.join(", ") : "None"}`;
+
+  // Feedback generation (simple rule-based)
+  document.getElementById("feedbackText").innerHTML = generateFeedback(data);
+
+  // More details link
+  document.getElementById("moreDetailsLink").href = `/student-history?pin=${encodeURIComponent(student.pin)}`;
+
+  // show modal
+  document.getElementById("detailModal").style.display = "block";
+}
+document.getElementById("closeDetail").onclick = () => document.getElementById("detailModal").style.display = "none";
+
+function generateFeedback(data) {
+  // data: { student, semester, overall_score, subjects[] }
+  const s = data;
+  let overall = s.overall_score;
+  let lines = [];
+  if (overall === null || overall === undefined) {
+    lines.push("No overall score available. Student has incomplete exam data.");
+  } else {
+    if (overall < 50) lines.push(`Overall: ${overall.toFixed(1)} — High risk. Immediate remediation recommended.`);
+    else if (overall < 70) lines.push(`Overall: ${overall.toFixed(1)} — Moderate performance. Focused revision needed.`);
+    else lines.push(`Overall: ${overall.toFixed(1)} — Good performance. Keep it up.`);
+  }
+
+  // per-subject advice
+  const subAdvice = [];
+  (s.subjects || []).forEach(sub => {
+    const score = sub.subject_score;
+    if (typeof score !== "number") return;
+    if (score < 50) subAdvice.push(`${sub.sub_code}: Needs strong improvement (score ${score.toFixed(1)}).`);
+    else if (score < 70) subAdvice.push(`${sub.sub_code}: Slightly below target (score ${score.toFixed(1)}).`);
+  });
+  if (subAdvice.length) {
+    lines.push("<b>Subject-level suggestions:</b>");
+    lines = lines.concat(subAdvice);
+  } else {
+    lines.push("No urgent subject-level issues detected.");
+  }
+
+  // attendance / engagement note
+  const atts = (s.subjects || []).map(d => d.attendance).filter(a => a !== null && a !== undefined);
+  if (atts.length) {
+    const avgA = atts.reduce((a,b)=>a+b,0)/atts.length;
+    if (avgA < 60) lines.push(`<b>Attendance:</b> ${avgA.toFixed(1)}% — Low, advise to improve class participation.`);
+    else if (avgA < 75) lines.push(`<b>Attendance:</b> ${avgA.toFixed(1)}% — Adequate but can improve.`);
+    else lines.push(`<b>Attendance:</b> ${avgA.toFixed(1)}% — Good.`);
+  } else {
+    lines.push("Attendance data not available.");
+  }
+
+  return lines.map(l => `<div style="margin-bottom:6px;">${l}</div>`).join("");
+}
+
+// Export CSV
+document.getElementById("btnExport").onclick = () => {
+  const branch = document.getElementById("branchSel").value;
+  const year = document.getElementById("yearSel").value;
+  const sem = document.getElementById("semSel").value;
+  window.location = `/api/results/export?branch=${branch}&year=${year}&semester=${sem}`;
+};
+document.getElementById("btnLoad").onclick = loadData;
+document.getElementById("searchBox").oninput = () => setTimeout(loadData, 250);
+document.getElementById("sortSel").onchange = loadData;
+
+// initial load
+loadData();
+</script>
+{% endblock %}

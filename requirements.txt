@@ -5,5 +5,4 @@ Flask-Migrate
 pandas
 openpyxl
 python-dotenv
-PyMySQL
 Werkzeug
