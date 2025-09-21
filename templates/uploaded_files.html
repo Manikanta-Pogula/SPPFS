@@ -1,3 +1,5 @@
+<!-- C:\student-performance-system\templates\uploaded_files.html -->
+
 {% extends "base.html" %}
 {% block title %}Uploaded Files{% endblock %}
 
@@ -73,10 +75,14 @@ async function loadFiles() {
   const q = encodeURIComponent(searchBox.value || '');
   const et = encodeURIComponent(filterExam.value || '');
   const resp = await fetch(`${apiBase}/files?q=${q}&exam_type=${et}`);
+  if (!resp.ok) {
+    statusSpan.textContent = `Error loading files: ${resp.status}`;
+    return;
+  }
   const data = await resp.json();
   tbody.innerHTML = "";
   let i = 0;
-  for (const item of data.items) {
+  for (const item of (data.items || [])) {
     i++;
     const tr = document.createElement("tr");
     const uploadedOn = item.uploaded_on ? new Date(item.uploaded_on).toLocaleString() : '';
@@ -87,7 +93,8 @@ async function loadFiles() {
       <td>${escapeHtml(item.exam_type)}</td>
       <td>${escapeHtml(uploadedOn)}</td>
       <td>
-        <button class="viewBtn" data-id="${item.id}">View</button>
+        <a href="/api/files/${item.id}/view" target="_blank">View</a>
+
         <a href="${apiBase}/files/${item.id}/download" style="margin-left:6px;">Download</a>
         <button class="delBtn" data-id="${item.id}" style="margin-left:6px;">Delete</button>
       </td>
@@ -100,19 +107,22 @@ async function loadFiles() {
 
 function attachHandlers() {
   document.querySelectorAll(".viewBtn").forEach(btn => {
-    btn.onclick = () => openPreview(btn.dataset.id);
+    // open preview page in new tab
+    btn.onclick = () => { window.open(`/files/${btn.dataset.id}/view`, '_blank'); };
   });
   document.querySelectorAll(".delBtn").forEach(btn => {
     btn.onclick = () => askDelete(btn.dataset.id);
   });
 }
 
+
 function escapeHtml(s) {
-  if (!s) return '';
-  return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+  if (!s && s !== 0) return '';
+  return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 }
 
-/* Preview modal logic */
+/* Preview modal logic stays in file (we keep it for backward compatibility),
+   but view now opens new tab so users see a nice table. */
 const previewModal = document.getElementById("previewModal");
 const previewCols = document.getElementById("previewCols");
 const previewRows = document.getElementById("previewRows");
@@ -124,6 +134,7 @@ const deleteFileFromModal = document.getElementById("deleteFileFromModal");
 document.getElementById("closePreview").onclick = () => previewModal.style.display = "none";
 
 async function openPreview(id) {
+  // kept if you still want modal preview (not used by View button now)
   previewTitle.textContent = "Preview: " + id;
   previewMeta.textContent = "Loading...";
   previewCols.textContent = "";
@@ -132,16 +143,20 @@ async function openPreview(id) {
 
   const resp = await fetch(`${apiBase}/files/${id}/preview`);
   if (!resp.ok) {
-    const err = await resp.json();
-    previewMeta.textContent = "Error: " + (err.error || resp.statusText);
+    try {
+      const err = await resp.json();
+      previewMeta.textContent = "Error: " + (err.error || resp.statusText);
+    } catch(e) {
+      previewMeta.textContent = `Error fetching preview: ${resp.status}`;
+    }
     return;
   }
   const data = await resp.json();
-  previewMeta.textContent = `${data.meta.file_name} — uploaded_on: ${data.meta.uploaded_on}`;
-  previewCols.textContent = data.columns.join(", ");
+  previewMeta.textContent = `${data.meta?.file_name || ''} — uploaded_on: ${data.meta?.uploaded_on || ''}`;
+  previewCols.textContent = (data.columns || []).join(", ");
   previewRows.innerHTML = "<strong>First rows:</strong><br/>";
-  data.sample_rows.forEach((r, idx) => {
-    previewRows.innerHTML += `<div style="font-family:monospace; margin-bottom:6px;"><strong>#${idx+1}</strong> ${JSON.stringify(r)}</div>`;
+  (data.sample_rows || []).forEach((r, idx) => {
+    previewRows.innerHTML += `<div style="font-family:monospace; margin-bottom:6px;"><strong>#${idx+1}</strong> ${escapeHtml(JSON.stringify(r))}</div>`;
   });
   downloadLink.href = `${apiBase}/files/${id}/download`;
   deleteFileFromModal.onclick = () => askDelete(id, true);
@@ -167,7 +182,8 @@ confirmYes.onclick = async () => {
   if (!deleteTargetId) return;
   try {
     const resp = await fetch(`${apiBase}/files/${deleteTargetId}?remove_file=${deleteRemoveFile}`, { method: 'DELETE' });
-    const data = await resp.json();
+    let data;
+    try { data = await resp.json(); } catch(e){ data = { error: 'Server returned non-JSON' }; }
     if (resp.ok) {
       alert("Deleted " + deleteTargetId);
       previewModal.style.display = "none";
@@ -187,4 +203,6 @@ filterExam.onchange = loadFiles;
 /* initial load */
 loadFiles();
 </script>
+
+
 {% endblock %}

@@ -1,8 +1,10 @@
 # app/results/routes.py
 import re
-from flask import Blueprint, request, jsonify, current_app, send_file
+from flask import Blueprint, request, jsonify, send_file
 from io import StringIO
 import csv
+from collections import defaultdict
+from typing import Optional, Tuple
 
 from app import db
 from app.models import Student, Mark, Subject
@@ -10,8 +12,11 @@ from app.utils import compute_subject_score, compute_overall_score, map_risk, ge
 
 results_bp = Blueprint("results", __name__, url_prefix="/api/results")
 
-# PIN validation - flexible but rejects tiny/garbage pins like "189" or empty.
+# -------------------------
+# Helpers
+# -------------------------
 PIN_REGEX = re.compile(r'^\s*\d{2,}-[A-Za-z0-9]+-\d+\s*$', re.IGNORECASE)
+
 
 def _is_pin_valid(pin: str) -> bool:
     if not pin:
@@ -19,19 +24,50 @@ def _is_pin_valid(pin: str) -> bool:
     p = str(pin).strip()
     if PIN_REGEX.match(p):
         return True
-    # fallback: require at least 7 chars and a dash (e.g. 23189-CS-001)
     if len(p) >= 7 and '-' in p and any(ch.isdigit() for ch in p):
         return True
     return False
 
-# compute subject details & per-student overall for a semester
+
+def compute_grade_and_result(score: Optional[float]) -> Tuple[str, str]:
+    """
+    Compute grade (A+/A/B/C/D/F or N/A) and Pass/Fail string based on score (0-100).
+    Pass threshold: score >= 40.
+    If score is None -> grade "N/A", result "❌ Fail" (no data).
+    """
+    if score is None:
+        return "N/A", "❌ Fail"
+
+    if score >= 90:
+        grade = "A+"
+    elif score >= 80:
+        grade = "A"
+    elif score >= 70:
+        grade = "B"
+    elif score >= 60:
+        grade = "C"
+    elif score >= 50:
+        grade = "D"
+    else:
+        grade = "F"
+
+    result = "✅ Pass" if score >= 40 else "❌ Fail"
+    return grade, result
+
+
 def _compute_student_score_for_sem(student, semester):
+    """
+    Returns: (overall_score: Optional[float], subject_count: int, details: List[dict])
+    Each detail contains per-subject raw components, computed subject_score, risk, attendance,
+    and now also 'grade' and 'result'.
+    """
     marks = Mark.query.filter_by(student_id=student.id, semester=semester).all()
-    details = []
-    scores = []
+    details, scores = [], []
+
     for m in marks:
         subj = Subject.query.filter_by(sub_code=m.sub_code).first()
         sub_name = subj.sub_name if subj else ""
+
         ss = m.subject_score
         if ss is None:
             try:
@@ -45,8 +81,13 @@ def _compute_student_score_for_sem(student, semester):
                 ss = compute_subject_score(comps)
             except Exception:
                 ss = None
+
         if ss is not None:
             scores.append(ss)
+
+        # compute grade and pass/fail based on computed subject_score (0-100)
+        grade, result = compute_grade_and_result(ss)
+
         details.append({
             "sub_code": m.sub_code,
             "sub_name": sub_name,
@@ -57,15 +98,17 @@ def _compute_student_score_for_sem(student, semester):
             "total": m.total,
             "attendance": m.attendance,
             "subject_score": ss,
-            "risk": m.risk
+            "risk": m.risk,
+            "grade": grade,
+            "result": result
         })
-    overall = None
-    if scores:
-        overall = compute_overall_score(scores)
+
+    overall = compute_overall_score(scores) if scores else None
     return overall, len(details), details
 
+
 # -------------------------
-# 1) Search / listing endpoint
+# 1) Search / listing
 # -------------------------
 @results_bp.route("/search")
 def search_student():
@@ -75,7 +118,7 @@ def search_student():
     exam_year = request.args.get("year")
     semester = request.args.get("semester")
 
-    # single-student (by pin) -> return student + marks
+    # single student
     if pin:
         student = Student.query.filter_by(pin=pin).first()
         if not student:
@@ -83,7 +126,6 @@ def search_student():
 
         sem = int(semester) if semester and semester.isdigit() else None
         if sem is None:
-            # return marks grouped by semester
             marks_by_sem = {}
             for m in Mark.query.filter_by(student_id=student.id).order_by(Mark.semester).all():
                 key = str(m.semester)
@@ -105,19 +147,15 @@ def search_student():
                     "branch": student.branch,
                     "exam_year": student.exam_year
                 },
-                "marks_by_semester": marks_by_sem   
+                "marks_by_semester": marks_by_sem
             })
 
         overall, count, details = _compute_student_score_for_sem(student, sem)
 
-        # extract risk subjects (marks < 40 OR subject_score < 40)
         risk_subjects = [d["sub_name"] for d in details if d.get("subject_score") and d["subject_score"] < 40]
-
-        # average attendance if available
         atts = [d.get("attendance") for d in details if d.get("attendance") is not None]
         avg_attendance = (sum(atts) / len(atts)) if atts else None
 
-        # generate feedback
         feedback = generate_feedback(student.name, overall, risk_subjects, avg_attendance)
 
         return jsonify({
@@ -135,11 +173,10 @@ def search_student():
             "feedback": feedback
         })
 
-
     # batch listing
     page = int(request.args.get("page") or 1)
     per_page = int(request.args.get("per_page") or 50)
-    sort = (request.args.get("sort") or "pin").lower()      # pin | name | risk | class_avg | attendance
+    sort = (request.args.get("sort") or "pin").lower()
     order = (request.args.get("order") or "asc").lower()
 
     query = Student.query
@@ -147,36 +184,28 @@ def search_student():
         query = query.filter_by(branch=branch)
     if exam_year and exam_year.isdigit():
         query = query.filter_by(exam_year=int(exam_year))
-
     if q:
-        qlike = f"%{q}%"
-        query = query.filter(db.or_(Student.pin.ilike(qlike), Student.name.ilike(qlike)))
+        like = f"%{q}%"
+        query = query.filter(db.or_(Student.pin.ilike(like), Student.name.ilike(like)))
 
     pagination = query.order_by(Student.pin).paginate(page=page, per_page=per_page, error_out=False)
-
-    items = []
-    batch_scores = []
+    temp_rows, batch_scores = [], []
     sem = int(semester) if semester and semester.isdigit() else None
 
-    # Build rows, but filter out obviously-bad records (college header rows, tiny pins)
-    temp_rows = []
     for s in pagination.items:
-        # Skip obviously invalid pins and rows which look like college header
-        if not _is_pin_valid(s.pin):
+        if not _is_pin_valid(s.pin):  # skip invalid
             continue
         if s.name and 'polytechnic' in s.name.lower():
-            # treat college name separately, skip in student rows
             continue
 
-        overall = None
-        subj_count = 0
+        overall, subj_count, details = None, 0, []
         attendance_val = None
-        if sem is not None:
+        if sem:
             overall, subj_count, details = _compute_student_score_for_sem(s, sem)
-            # compute mean attendance for that student (across their subject rows where attendance present)
             atts = [d.get("attendance") for d in details if d.get("attendance") is not None]
             if atts:
                 attendance_val = sum(atts) / len(atts)
+
         temp_rows.append({
             "pin": s.pin,
             "name": s.name,
@@ -190,7 +219,7 @@ def search_student():
         if overall is not None:
             batch_scores.append(overall)
 
-    # Sorting
+    # sorting
     reverse = (order == "desc")
     if sort == "name":
         temp_rows.sort(key=lambda x: (x["name"] or "").lower(), reverse=reverse)
@@ -216,7 +245,7 @@ def search_student():
 
 
 # -------------------------
-# 2) Batch overview (20% panel)
+# 2) Batch overview
 # -------------------------
 @results_bp.route("/overview")
 def batch_overview():
@@ -227,44 +256,35 @@ def batch_overview():
     if not branch or not exam_year or not semester:
         return jsonify({"error": "branch, year and semester required"}), 400
 
-    year_i = int(exam_year)
-    sem_i = int(semester)
-
+    year_i, sem_i = int(exam_year), int(semester)
     students = Student.query.filter_by(branch=branch, exam_year=year_i).all()
-    total_students = len(students)
+
     risk_counts = {"high": 0, "medium": 0, "low": 0, "unknown": 0}
-    attendance_vals = []
-    overall_vals = []
+    overall_vals, attendance_vals = [], []
 
     for s in students:
-        # ignore college header rows or invalid pins if they exist in the table
         if not _is_pin_valid(s.pin):
             continue
-
         overall, _, details = _compute_student_score_for_sem(s, sem_i)
         if overall is None:
             risk_counts["unknown"] += 1
         else:
-            r = map_risk(overall)
-            risk_counts[(r or "unknown")] = risk_counts.get((r or "unknown"), 0) + 1
+            risk_counts[map_risk(overall) or "unknown"] += 1
             overall_vals.append(overall)
         atts = [d.get("attendance") for d in details if d.get("attendance") is not None]
         if atts:
             attendance_vals.append(sum(atts) / len(atts))
 
-    avg_attendance = (sum(attendance_vals) / len(attendance_vals)) if attendance_vals else None
-    avg_class_perf = (sum(overall_vals) / len(overall_vals)) if overall_vals else None
-
     return jsonify({
-        "total_students": total_students,
+        "total_students": len(students),
         "risk_counts": risk_counts,
-        "avg_attendance": avg_attendance,
-        "avg_class_performance": avg_class_perf
+        "avg_attendance": (sum(attendance_vals) / len(attendance_vals)) if attendance_vals else None,
+        "avg_class_performance": (sum(overall_vals) / len(overall_vals)) if overall_vals else None
     })
 
 
 # -------------------------
-# 3) Export CSV (simple)
+# 3) Export CSV
 # -------------------------
 @results_bp.route("/export")
 def export_csv():
@@ -292,15 +312,13 @@ def export_csv():
     for s in students:
         if not _is_pin_valid(s.pin):
             continue
-        overall = None
-        overall_att = None
+        overall, overall_att = None, None
         if sem_i:
             overall, _, details = _compute_student_score_for_sem(s, sem_i)
             atts = [d.get("attendance") for d in details if d.get("attendance") is not None]
             if atts:
                 overall_att = sum(atts) / len(atts)
-        risk = map_risk(overall) if overall is not None else ""
-        writer.writerow([s.pin, s.name, s.branch, s.exam_year, overall_att or "", overall or "", risk or ""])
+        writer.writerow([s.pin, s.name, s.branch, s.exam_year, overall_att or "", overall or "", map_risk(overall) or ""])
 
     out.seek(0)
     return send_file(
@@ -310,164 +328,28 @@ def export_csv():
         download_name=f"students_export_{branch}_{exam_year}_{semester}.csv"
     )
 
+
+# -------------------------
+# Institution
+# -------------------------
 @results_bp.route("/institution")
 def get_institution():
     from app.models import Institution
     inst = Institution.query.first()
-    if not inst:
-        return jsonify({"name": ""})
-    return jsonify({"name": inst.name})
+    return jsonify({"name": inst.name if inst else ""})
 
 
 # -------------------------
-# Graph endpoints (append to app/results/routes.py)
-# -------------------------
-from flask import request, jsonify
-from collections import defaultdict
-
-# @results_bp.route("/graphs/subject_averages")
-# def subject_averages_graph():
-#     """
-#     GET /api/results/graphs/subject_averages?branch=CS&year=2024&semester=4
-#     Returns per-subject average (%) across students in the batch.
-#     """
-#     branch = (request.args.get("branch") or "").strip()
-#     year = request.args.get("year")
-#     semester = request.args.get("semester")
-
-#     if not branch or not semester:
-#         return jsonify({"error": "branch and semester are required"}), 400
-
-#     try:
-#         sem_i = int(semester)
-#     except:
-#         return jsonify({"error": "semester must be an integer"}), 400
-
-#     # optional year filter (if provided)
-#     year_i = int(year) if year and year.isdigit() else None
-
-#     # get subjects for that branch+semester (and optionally year)
-#     q = Subject.query.filter_by(branch=branch, semester=sem_i)
-#     if year_i:
-#         q = q.filter_by(year=year_i)
-#     subjects = q.order_by(Subject.sub_code).all()
-
-#     out = []
-#     labels = []
-#     values = []
-#     counts = []
-
-#     for subj in subjects:
-#         # use exact sub_code stored in DB (subject.sub_code)
-#         marks_query = Mark.query.join(Student, Mark.student_id == Student.id).filter(
-#             Mark.sub_code == subj.sub_code,
-#             Mark.semester == sem_i,
-#             Student.branch == branch
-#         )
-#         if year_i:
-#             marks_query = marks_query.filter(Student.year == year_i)
-
-#         marks = marks_query.all()
-
-#         scores = []
-#         for m in marks:
-#             ss = m.subject_score
-#             if ss is None:
-#                 # attempt to compute from components (not expensive for moderate datasets)
-#                 try:
-#                     comps = {'attendance': m.attendance, 'mid1': m.mid1, 'mid2': m.mid2, 'internal': m.internal, 'end_sem': m.end_sem}
-#                     ss = compute_subject_score(comps)
-#                 except Exception:
-#                     ss = None
-#             if ss is not None:
-#                 scores.append(float(ss))
-
-#         avg = round(sum(scores) / len(scores), 2) if scores else None
-#         out.append({
-#             "sub_code": subj.sub_code,
-#             "sub_name": subj.sub_name or "",
-#             "average": avg,           # 0-100 scale
-#             "count_students": len(scores)
-#         })
-#         labels.append(subj.sub_code)
-#         values.append(avg if avg is not None else 0)
-#         counts.append(len(scores))
-
-#     return jsonify({
-#         "branch": branch,
-#         "year": year_i,
-#         "semester": sem_i,
-#         "subjects": out,
-#         "labels": labels,   # for chart x-axis
-#         "values": values,   # for chart y-axis (averages as numbers)
-#         "counts": counts
-#     }), 200   
-
-
-@results_bp.route("/graphs/risk_distribution")
-def risk_distribution_graph():
-    """
-    GET /api/results/graphs/risk_distribution?branch=CS&year=2024&semester=4
-    Returns counts & percentages for Low/Medium/High/Unknown risk categories in the batch.
-    """
-    branch = (request.args.get("branch") or "").strip()
-    year = request.args.get("year")
-    semester = request.args.get("semester")
-
-    if not branch or not semester:
-        return jsonify({"error": "branch and semester are required"}), 400
-
-    try:
-        sem_i = int(semester)
-    except:
-        return jsonify({"error": "semester must be an integer"}), 400
-
-    year_i = int(year) if year and year.isdigit() else None
-
-    students_q = Student.query.filter_by(branch=branch)
-    if year_i:
-        students_q = students_q.filter_by(year=year_i)
-    students = students_q.all()
-
-    counts = defaultdict(int)
-    total_considered = 0
-
-    for s in students:
-        # compute overall for this semester using existing helper
-        overall, _, _ = _compute_student_score_for_sem(s, sem_i)
-        if overall is None:
-            counts["unknown"] += 1
-        else:
-            r = map_risk(overall) or "unknown"
-            # ensure normalized keys
-            r_key = r.lower()
-            if r_key not in ("low", "medium", "high"):
-                r_key = "unknown"
-            counts[r_key] += 1
-        total_considered += 1
-
-    # compute percentages
-    pct = {}
-    for k in ("low", "medium", "high", "unknown"):
-        c = counts.get(k, 0)
-        pct[k] = round((c / total_considered * 100), 2) if total_considered else 0.0
-
-    return jsonify({
-        "branch": branch,
-        "year": year_i,
-        "semester": sem_i,
-        "total_students": total_considered,
-        "counts": {k: counts.get(k, 0) for k in ("low", "medium", "high", "unknown")},
-        "percentages": pct
-    }), 200
-
-
-
-# -------------------------
-# 4) Graph & Analytics Endpoints
+# Graph endpoints (updated)
 # -------------------------
 @results_bp.route("/graphs/subject_averages")
 def subject_averages_graph():
+    """
+    Returns JSON with:
+    - "cards": list of subject cards [{sub_code, sub_name, average, pass_rate, count}]
+    - "chart": { "labels": [...subject names/codes...], "values": [...averages...] }
+    Required query params: branch, year, semester
+    """
     branch = (request.args.get("branch") or "").strip()
     year = request.args.get("year")
     semester = request.args.get("semester")
@@ -475,33 +357,156 @@ def subject_averages_graph():
     if not branch or not year or not semester:
         return jsonify({"error": "branch, year, semester required"}), 400
 
-    try:
-        year_i = int(year)
-        sem_i = int(semester)
-    except ValueError:
-        return jsonify({"error": "year and semester must be integers"}), 400
-
-    # ✅ FIX: use exam_year (not year)
+    year_i, sem_i = int(year), int(semester)
+    # fetch students for batch
     students = Student.query.filter_by(branch=branch, exam_year=year_i).all()
 
-    subject_totals = {}
-    subject_counts = {}
+    # accumulate per-subject sums and pass counts
+    subject_sum = {}     # sub_code -> sum of subject_score (percent)
+    subject_count = {}   # sub_code -> number of students with score
+    subject_pass = {}    # sub_code -> number of students passing (subject_score >= 40)
+    subject_name_map = {}  # sub_code -> sub_name (from Subject table)
 
     for s in students:
         marks = Mark.query.filter_by(student_id=s.id, semester=sem_i).all()
         for m in marks:
-            if m.total is not None:
-                subject_totals[m.sub_code] = subject_totals.get(m.sub_code, 0) + m.total
-                subject_counts[m.sub_code] = subject_counts.get(m.sub_code, 0) + 1
+            sub_code = m.sub_code
+            # get or compute subject-level percent score (0-100)
+            score = m.subject_score
+            if score is None:
+                try:
+                    comps = {
+                        "attendance": m.attendance,
+                        "mid1": m.mid1,
+                        "mid2": m.mid2,
+                        "internal": m.internal,
+                        "end_sem": m.end_sem,
+                    }
+                    score = compute_subject_score(comps)
+                except Exception:
+                    score = None
 
-    subject_avgs = []
-    for sub_code, total in subject_totals.items():
-        avg = total / subject_counts[sub_code]
-        subj = Subject.query.filter_by(sub_code=sub_code).first()
-        subject_avgs.append({
+            if score is None:
+                continue  # skip students with no data for this subject
+
+            # accumulate
+            subject_sum[sub_code] = subject_sum.get(sub_code, 0.0) + float(score)
+            subject_count[sub_code] = subject_count.get(sub_code, 0) + 1
+            subject_pass[sub_code] = subject_pass.get(sub_code, 0) + (1 if float(score) >= 40.0 else 0)
+
+            if sub_code not in subject_name_map:
+                subj = Subject.query.filter_by(sub_code=sub_code).first()
+                subject_name_map[sub_code] = subj.sub_name if subj else sub_code
+
+    # build cards and chart arrays
+    cards = []
+    labels = []
+    values = []
+    for sub_code, total in subject_sum.items():
+        count = subject_count.get(sub_code, 0)
+        if count == 0:
+            continue
+        avg = round(total / count, 2)  # average percent
+        pass_count = subject_pass.get(sub_code, 0)
+        pass_rate = round((pass_count / count) * 100.0, 2) if count else 0.0
+
+        cards.append({
             "sub_code": sub_code,
-            "sub_name": subj.sub_name if subj else sub_code,
-            "average": avg
+            "sub_name": subject_name_map.get(sub_code, sub_code),
+            "average": avg,
+            "pass_rate": pass_rate,
+            "count": count
         })
+        labels.append(f"{subject_name_map.get(sub_code, sub_code)} ({sub_code})")
+        values.append(avg)
 
-    return jsonify({"items": subject_avgs})
+    # sort cards by average descending for nicer UI
+    cards.sort(key=lambda x: x["average"] if x["average"] is not None else -1, reverse=True)
+
+    return jsonify({
+        "branch": branch,
+        "year": year_i,
+        "semester": sem_i,
+        "cards": cards,
+        "chart": {
+            "labels": labels,
+            "values": values
+        }
+    })
+
+
+@results_bp.route("/graphs/risk_distribution")
+def risk_distribution_graph():
+    """
+    Returns a pie-chart-ready JSON for risk distribution for a batch:
+    - counts: dict with counts for low/medium/high/unknown
+    - labels: ordered list ['Low', 'Medium', 'High', 'Unknown']
+    - values: list of counts matching labels
+    - percentages: percentages per label (rounded 2 decimals)
+    Required query params: branch, year, semester
+    """
+    branch = (request.args.get("branch") or "").strip()
+    year = request.args.get("year")
+    semester = request.args.get("semester")
+
+    if not branch or not year or not semester:
+        return jsonify({"error": "branch, year, semester required"}), 400
+
+    year_i, sem_i = int(year), int(semester)
+    students = Student.query.filter_by(branch=branch, exam_year=year_i).all()
+
+    counts = {"low": 0, "medium": 0, "high": 0, "unknown": 0}
+    total = 0
+
+    for s in students:
+        # compute overall for the semester
+        overall, _, _ = _compute_student_score_for_sem(s, sem_i)
+        if overall is None:
+            counts["unknown"] += 1
+        else:
+            r = (map_risk(overall) or "unknown").lower()
+            if r not in counts:
+                counts[r] = counts.get(r, 0) + 1
+            else:
+                counts[r] += 1
+        total += 1
+
+    # prepare labels/values in consistent order
+    ordered = [("low", "Low"), ("medium", "Medium"), ("high", "High"), ("unknown", "Unknown")]
+    labels = [label for _, label in ordered]
+    values = [counts.get(key, 0) for key, _ in ordered]
+    percentages = [round((v / total * 100), 2) if total else 0.0 for v in values]
+
+    return jsonify({
+        "branch": branch,
+        "year": year_i,
+        "semester": sem_i,
+        "total_students": total,
+        "counts": counts,
+        "labels": labels,
+        "values": values,
+        "percentages": percentages
+    })
+
+
+
+@results_bp.route("/graphs/sgpa_trend")
+def sgpa_trend_graph():
+    pin = (request.args.get("pin") or "").strip()
+    if not pin:
+        return jsonify({"error": "pin required"}), 400
+
+    student = Student.query.filter_by(pin=pin).first()
+    if not student:
+        return jsonify({"error": "Student not found"}), 404
+
+    trend = []
+    semesters = sorted({m.semester for m in Mark.query.filter_by(student_id=student.id).all()})
+    for sem in semesters:
+        overall, _, _ = _compute_student_score_for_sem(student, sem)
+        trend.append({"semester": sem, "overall_score": overall})
+
+    return jsonify({
+        "student": {"pin": student.pin, "name": student.name, "branch": student.branch},
+        "trend": trend
+    })

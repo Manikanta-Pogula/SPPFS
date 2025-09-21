@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from config import Config
+from flask_cors import CORS
 
 # Extensions
 db = SQLAlchemy()
@@ -25,6 +26,8 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
+
+    CORS(app)
 
     # import models so db knows them
     from app import models
@@ -53,11 +56,11 @@ def create_app():
     from app.auth.routes import auth_bp
     from app.main.routes import main_bp
     from app.results.routes import results_bp
-    from app.files.routes import files_bp
+    from app.api.files import files_bp   # ✅ use the new API version only
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(results_bp)
-    app.register_blueprint(files_bp)
+    app.register_blueprint(files_bp)      # ✅ register once
 
     return app

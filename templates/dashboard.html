@@ -1,5 +1,39 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h2>Dashboard</h2>
-<p>Welcome to the faculty dashboard (protected).</p>
+  <h1>Faculty Dashboard</h1>
+  <p>Welcome back, Faculty</p>
+
+  <hr>
+
+  <!-- Menu sections only -->
+  <div>
+    <h3>Data Upload</h3>
+    <p>Upload CSV or manual entry</p>
+    <button>Open</button>
+  </div>
+
+  <div>
+    <h3>Student Report</h3>
+    <p>View & analyze student reports</p>
+    <button>Open</button>
+  </div>
+
+  <div>
+    <h3>Results Search</h3>
+    <p>Search results by PIN / batch</p>
+    <button>Open</button>
+  </div>
+
+  <div>
+    <h3>Graph Analysis</h3>
+    <p>View graphs and progress cards</p>
+    <button>Open</button>
+  </div>
+
+  <div>
+    <h3>Uploaded Files</h3>
+    <p>Manage uploaded files</p>
+    <button>Open</button>
+  </div>
 {% endblock %}

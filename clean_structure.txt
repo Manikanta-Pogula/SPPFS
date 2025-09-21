@@ -1,0 +1,3419 @@
+¦   .env
+¦   analyze_preview.py
+¦   app.db
+¦   app_py_backup.py
+¦   config.py
+¦   create_subjects_from_preview.py
+¦   extension.py
+¦   insert_subjects.py
+¦   models_py_backup.py
+¦   requirements.txt
+¦   routes_py_backup.py
+¦   seed.py
+¦   utils_root_backup.py
+¦   verify_marks.py
+¦   wsgi.py
++---app
+¦   ¦   models.py
+¦   ¦   utils.py
+¦   ¦   __init__.py
+¦   ¦   ¦   routes.py
+¦   ¦   ¦   routes.py
+¦   ¦   ¦   routes.py
+¦   ¦   ¦   routes.py
+¦   ¦       results.py
+¦   ¦   ¦   routes.py
++---frontend
+¦   ¦   index.html
+¦   ¦   ¦       baseline-browser-mapping
+¦   ¦   ¦       baseline-browser-mapping.cmd
+¦   ¦   ¦       baseline-browser-mapping.ps1
+¦   ¦   ¦   ¦   ¦   overlapping-plugins.js
+¦   ¦   ¦   ¦           overlapping-plugins.json
+¦   ¦   ¦   ¦               applyDecoratedDescriptor.js
+¦   ¦   ¦   ¦               applyDecoratedDescriptor.js.map
+¦   ¦   ¦   ¦               applyDecs.js
+¦   ¦   ¦   ¦               applyDecs.js.map
+¦   ¦   ¦   ¦               applyDecs2203.js
+¦   ¦   ¦   ¦               applyDecs2203.js.map
+¦   ¦   ¦   ¦               applyDecs2203R.js
+¦   ¦   ¦   ¦               applyDecs2203R.js.map
+¦   ¦   ¦   ¦               applyDecs2301.js
+¦   ¦   ¦   ¦               applyDecs2301.js.map
+¦   ¦   ¦   ¦               applyDecs2305.js
+¦   ¦   ¦   ¦               applyDecs2305.js.map
+¦   ¦   ¦   ¦               applyDecs2311.js
+¦   ¦   ¦   ¦               applyDecs2311.js.map
+¦   ¦   ¦   ¦               classApplyDescriptorDestructureSet.js
+¦   ¦   ¦   ¦               classApplyDescriptorDestructureSet.js.map
+¦   ¦   ¦   ¦               classApplyDescriptorGet.js
+¦   ¦   ¦   ¦               classApplyDescriptorGet.js.map
+¦   ¦   ¦   ¦               classApplyDescriptorSet.js
+¦   ¦   ¦   ¦               classApplyDescriptorSet.js.map
+¦   ¦   ¦   ¦               classCheckPrivateStaticAccess.js
+¦   ¦   ¦   ¦               classCheckPrivateStaticAccess.js.map
+¦   ¦   ¦   ¦               classCheckPrivateStaticFieldDescriptor.js
+¦   ¦   ¦   ¦               classCheckPrivateStaticFieldDescriptor.js.map
+¦   ¦   ¦   ¦               classStaticPrivateFieldDestructureSet.js
+¦   ¦   ¦   ¦               classStaticPrivateFieldDestructureSet.js.map
+¦   ¦   ¦   ¦               classStaticPrivateFieldSpecGet.js
+¦   ¦   ¦   ¦               classStaticPrivateFieldSpecGet.js.map
+¦   ¦   ¦   ¦               classStaticPrivateFieldSpecSet.js
+¦   ¦   ¦   ¦               classStaticPrivateFieldSpecSet.js.map
+¦   ¦   ¦   ¦               classStaticPrivateMethodGet.js
+¦   ¦   ¦   ¦               classStaticPrivateMethodGet.js.map
+¦   ¦   ¦   ¦               classStaticPrivateMethodSet.js
+¦   ¦   ¦   ¦               classStaticPrivateMethodSet.js.map
+¦   ¦   ¦   ¦   ¦   ¦   applyDecoratedDescriptor.js
+¦   ¦   ¦   ¦   ¦   ¦   applyDecs.js
+¦   ¦   ¦   ¦   ¦   ¦   applyDecs2203.js
+¦   ¦   ¦   ¦   ¦   ¦   applyDecs2203R.js
+¦   ¦   ¦   ¦   ¦   ¦   applyDecs2301.js
+¦   ¦   ¦   ¦   ¦   ¦   applyDecs2305.js
+¦   ¦   ¦   ¦   ¦   ¦   applyDecs2311.js
+¦   ¦   ¦   ¦   ¦   ¦   classApplyDescriptorDestructureSet.js
+¦   ¦   ¦   ¦   ¦   ¦   classApplyDescriptorGet.js
+¦   ¦   ¦   ¦   ¦   ¦   classApplyDescriptorSet.js
+¦   ¦   ¦   ¦   ¦   ¦   classCheckPrivateStaticAccess.js
+¦   ¦   ¦   ¦   ¦   ¦   classCheckPrivateStaticFieldDescriptor.js
+¦   ¦   ¦   ¦   ¦   ¦   classStaticPrivateFieldDestructureSet.js
+¦   ¦   ¦   ¦   ¦   ¦   classStaticPrivateFieldSpecGet.js
+¦   ¦   ¦   ¦   ¦   ¦   classStaticPrivateFieldSpecSet.js
+¦   ¦   ¦   ¦   ¦   ¦   classStaticPrivateMethodGet.js
+¦   ¦   ¦   ¦   ¦   ¦   classStaticPrivateMethodSet.js
+¦   ¦   ¦   ¦   ¦           applyDecoratedDescriptor.js
+¦   ¦   ¦   ¦   ¦           applyDecs.js
+¦   ¦   ¦   ¦   ¦           applyDecs2203.js
+¦   ¦   ¦   ¦   ¦           applyDecs2203R.js
+¦   ¦   ¦   ¦   ¦           applyDecs2301.js
+¦   ¦   ¦   ¦   ¦           applyDecs2305.js
+¦   ¦   ¦   ¦   ¦           applyDecs2311.js
+¦   ¦   ¦   ¦   ¦           classApplyDescriptorDestructureSet.js
+¦   ¦   ¦   ¦   ¦           classApplyDescriptorGet.js
+¦   ¦   ¦   ¦   ¦           classApplyDescriptorSet.js
+¦   ¦   ¦   ¦   ¦           classCheckPrivateStaticAccess.js
+¦   ¦   ¦   ¦   ¦           classCheckPrivateStaticFieldDescriptor.js
+¦   ¦   ¦   ¦   ¦           classStaticPrivateFieldDestructureSet.js
+¦   ¦   ¦   ¦   ¦           classStaticPrivateFieldSpecGet.js
+¦   ¦   ¦   ¦   ¦           classStaticPrivateFieldSpecSet.js
+¦   ¦   ¦   ¦   ¦           classStaticPrivateMethodGet.js
+¦   ¦   ¦   ¦   ¦           classStaticPrivateMethodSet.js
+¦   ¦   ¦           ¦   ¦   appendToMemberExpression.js
+¦   ¦   ¦           ¦   ¦   appendToMemberExpression.js.map
+¦   ¦   ¦   +---gen-mapping
+¦   ¦   ¦   ¦   ¦   ¦   gen-mapping.mjs
+¦   ¦   ¦   ¦   ¦   ¦   gen-mapping.mjs.map
+¦   ¦   ¦   ¦   ¦   ¦   gen-mapping.umd.js
+¦   ¦   ¦   ¦   ¦   ¦   gen-mapping.umd.js.map
+¦   ¦   ¦   ¦   ¦           gen-mapping.d.ts
+¦   ¦   ¦   ¦   ¦       gen-mapping.ts
+¦   ¦   ¦   ¦           gen-mapping.d.cts
+¦   ¦   ¦   ¦           gen-mapping.d.cts.map
+¦   ¦   ¦   ¦           gen-mapping.d.mts
+¦   ¦   ¦   ¦           gen-mapping.d.mts.map
+¦   ¦   ¦   +---remapping
+¦   ¦   ¦   ¦   ¦       remapping.mjs
+¦   ¦   ¦   ¦   ¦       remapping.mjs.map
+¦   ¦   ¦   ¦   ¦       remapping.umd.js
+¦   ¦   ¦   ¦   ¦       remapping.umd.js.map
+¦   ¦   ¦   ¦   ¦       remapping.ts
+¦   ¦   ¦   ¦           remapping.d.cts
+¦   ¦   ¦   ¦           remapping.d.cts.map
+¦   ¦   ¦   ¦           remapping.d.mts
+¦   ¦   ¦   ¦           remapping.d.mts.map
+¦   ¦   ¦   +---trace-mapping
+¦   ¦   ¦       ¦       trace-mapping.mjs
+¦   ¦   ¦       ¦       trace-mapping.mjs.map
+¦   ¦   ¦       ¦       trace-mapping.umd.js
+¦   ¦   ¦       ¦       trace-mapping.umd.js.map
+¦   ¦   ¦       ¦       trace-mapping.ts
+¦   ¦   ¦               trace-mapping.d.cts
+¦   ¦   ¦               trace-mapping.d.cts.map
+¦   ¦   ¦               trace-mapping.d.mts
+¦   ¦   ¦               trace-mapping.d.mts.map
+¦   ¦   ¦   ¦   ¦   static.browser.d.ts
+¦   ¦   ¦   ¦   ¦   static.d.ts
+¦   ¦   ¦   ¦   ¦   static.edge.d.ts
+¦   ¦   ¦   ¦   ¦   static.node.d.ts
+¦   ¦   ¦               appearance.js
+¦   ¦   +---baseline-browser-mapping
+¦   ¦   ¦   ¦   ¦       css-appearance.js
+¦   ¦   ¦   ¦   ¦       css-snappoints.js
+¦   ¦   ¦   ¦   ¦       offline-apps.js
+¦   ¦   ¦   ¦   ¦       wasm-nontrapping-fptoint.js
+¦   ¦   ¦   ¦   ¦       web-app-manifest.js
+¦   ¦   ¦           templates.js
+¦   ¦   ¦   ¦   ¦       apply.js
+¦   ¦   ¦   ¦   ¦       apply.js
+¦   ¦   ¦   ¦   ¦       apply.js
+¦   ¦   ¦   ¦   ¦       apply.js
+¦   ¦   ¦   ¦       function-apply.js
+¦   ¦   ¦   ¦       promise-statics-incorrect-iteration.js
+¦   ¦   ¦   ¦       typed-array-constructors-require-wrappers.js
+¦   ¦   ¦   ¦       well-known-symbol-wrapped.js
+¦   ¦   ¦   ¦       es.reflect.apply.js
+¦   ¦   ¦   ¦   ¦       apply.js
+¦   ¦   ¦       ¦       appearance.js
+¦   ¦   ¦           API.html
+¦   ¦   ¦       ¦   AppendPlugin.js
+¦   ¦   ¦   ¦       templateSettings.d.ts
+¦   ¦   ¦   ¦       templateSettings.js
+¦   ¦   ¦   ¦   ¦   ¦   apply-disable-directives.js
+¦   ¦   ¦   ¦   ¦   ¦   no-empty-static-block.js
+¦   ¦   ¦   ¦   ¦   ¦   no-new-wrappers.js
+¦   ¦   ¦   ¦           applyUnfilter.d.ts
+¦   ¦   ¦   ¦           applyUnfilter.js
+¦   ¦   ¦   ¦           applyUnfilter.js.map
+¦   ¦   ¦   ¦           applyUnfilter.js
+¦   ¦   ¦   ¦           applyUnfilter.js.map
+¦   ¦   ¦               applyUnfilter.ts
+¦   ¦   ¦   ¦       flatted.py
+¦   ¦   ¦   ¦   static.browser.js
+¦   ¦   ¦   ¦   static.edge.js
+¦   ¦   ¦   ¦   static.js
+¦   ¦   ¦   ¦   static.node.js
+¦   ¦   ¦   ¦   static.react-server.js
+¦   ¦   ¦               hoistStatics.ts
+¦   ¦   ¦   ¦   ¦       RechartsWrapper.js
+¦   ¦   ¦   ¦   ¦       RechartsWrapper.js
+¦   ¦   ¦   ¦   ¦       RechartsWrapper.d.ts
+¦   ¦   ¦           report.html
+¦   ¦   ¦       ¦   applyMiddleware.ts
+¦   ¦   ¦           mapping-list.js
+¦   ¦   ¦       ¦       ¦       appearance.js
+¦       ¦   App.css
+¦       ¦   App.jsx
+¦       ¦   index.html
+¦   ¦   env.py
+¦   ¦   ¦   6d4c9a7387d8_add_students_subjects_marks_.py
+¦   ¦   ¦   7ab2590aa8d0_add_institution_table.py
+¦   ¦   ¦   84f8591d02bb_add_institution_table.py
+¦   ¦   ¦   d956cc2b8979_create_users_table.py
++---static
++---templates
+¦   ¦   base.html
+¦   ¦   dashboard.html
+¦   ¦   index.html
+¦   ¦   login.html
+¦   ¦   register.html
+¦   ¦   student_results.html
+¦   ¦   uploaded_files.html
+¦   ¦       ¦   six.py
+¦   ¦       ¦   typing_extensions.py
+¦   ¦       ¦   ¦   command.py
+¦   ¦       ¦   ¦   config.py
+¦   ¦       ¦   ¦   context.py
+¦   ¦       ¦   ¦   environment.py
+¦   ¦       ¦   ¦   migration.py
+¦   ¦       ¦   ¦   op.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   compare.py
+¦   ¦       ¦   ¦   ¦   render.py
+¦   ¦       ¦   ¦   ¦   rewriter.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   impl.py
+¦   ¦       ¦   ¦   ¦   mssql.py
+¦   ¦       ¦   ¦   ¦   mysql.py
+¦   ¦       ¦   ¦   ¦   oracle.py
+¦   ¦       ¦   ¦   ¦   postgresql.py
+¦   ¦       ¦   ¦   ¦   sqlite.py
+¦   ¦       ¦   ¦   ¦   _autogen.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   batch.py
+¦   ¦       ¦   ¦   ¦   ops.py
+¦   ¦       ¦   ¦   ¦   schemaobj.py
+¦   ¦       ¦   ¦   ¦   toimpl.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   environment.py
+¦   ¦       ¦   ¦   ¦   migration.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   revision.py
+¦   ¦       ¦   ¦   ¦   write_hooks.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   +---templates
+¦   ¦       ¦   ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦       ¦   env.py
+¦   ¦       ¦   ¦   ¦   assertions.py
+¦   ¦       ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦   ¦   fixtures.py
+¦   ¦       ¦   ¦   ¦   requirements.py
+¦   ¦       ¦   ¦   ¦   schemacompare.py
+¦   ¦       ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   warnings.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   bootstrap.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_autogen_comments.py
+¦   ¦       ¦   ¦   ¦   ¦   test_autogen_computed.py
+¦   ¦       ¦   ¦   ¦   ¦   test_autogen_diffs.py
+¦   ¦       ¦   ¦   ¦   ¦   test_autogen_fks.py
+¦   ¦       ¦   ¦   ¦   ¦   test_autogen_identity.py
+¦   ¦       ¦   ¦   ¦   ¦   test_environment.py
+¦   ¦       ¦   ¦   ¦   ¦   test_op.py
+¦   ¦       ¦   ¦   ¦   ¦   _autogen_fixtures.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   compat.py
+¦   ¦       ¦   ¦   ¦   editor.py
+¦   ¦       ¦   ¦   ¦   exc.py
+¦   ¦       ¦   ¦   ¦   langhelpers.py
+¦   ¦       ¦   ¦   ¦   messaging.py
+¦   ¦       ¦   ¦   ¦   pyfiles.py
+¦   ¦       ¦   ¦   ¦   sqla_compat.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   base.py
+¦   ¦       ¦   ¦   _utilities.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   base.py
+¦   ¦       ¦   ¦   dynamodb.py
+¦   ¦       ¦   ¦   file.py
+¦   ¦       ¦   ¦   memcached.py
+¦   ¦       ¦   ¦   mongodb.py
+¦   ¦       ¦   ¦   redis.py
+¦   ¦       ¦   ¦   serializers.py
+¦   ¦       ¦   ¦   simple.py
+¦   ¦       ¦   ¦   uwsgi.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   api.py
+¦   ¦       ¦   ¦   backend_ctypes.py
+¦   ¦       ¦   ¦   cffi_opcode.py
+¦   ¦       ¦   ¦   commontypes.py
+¦   ¦       ¦   ¦   cparser.py
+¦   ¦       ¦   ¦   error.py
+¦   ¦       ¦   ¦   ffiplatform.py
+¦   ¦       ¦   ¦   lock.py
+¦   ¦       ¦   ¦   model.py
+¦   ¦       ¦   ¦   pkgconfig.py
+¦   ¦       ¦   ¦   recompiler.py
+¦   ¦       ¦   ¦   setuptools_ext.py
+¦   ¦       ¦   ¦   vengine_cpy.py
+¦   ¦       ¦   ¦   vengine_gen.py
+¦   ¦       ¦   ¦   verifier.py
+¦   ¦       ¦   ¦   _imp_emulation.py
+¦   ¦       ¦   ¦   _shimmed_dist_utils.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   core.py
+¦   ¦       ¦   ¦   decorators.py
+¦   ¦       ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   formatting.py
+¦   ¦       ¦   ¦   globals.py
+¦   ¦       ¦   ¦   parser.py
+¦   ¦       ¦   ¦   shell_completion.py
+¦   ¦       ¦   ¦   termui.py
+¦   ¦       ¦   ¦   testing.py
+¦   ¦       ¦   ¦   types.py
+¦   ¦       ¦   ¦   utils.py
+¦   ¦       ¦   ¦   _compat.py
+¦   ¦       ¦   ¦   _termui_impl.py
+¦   ¦       ¦   ¦   _textwrap.py
+¦   ¦       ¦   ¦   _winconsole.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ansi.py
+¦   ¦       ¦   ¦   ansitowin32.py
+¦   ¦       ¦   ¦   initialise.py
+¦   ¦       ¦   ¦   win32.py
+¦   ¦       ¦   ¦   winterm.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ansitowin32_test.py
+¦   ¦       ¦   ¦   ¦   ansi_test.py
+¦   ¦       ¦   ¦   ¦   initialise_test.py
+¦   ¦       ¦   ¦   ¦   isatty_test.py
+¦   ¦       ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   winterm_test.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   fernet.py
+¦   ¦       ¦   ¦   utils.py
+¦   ¦       ¦   ¦   __about__.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _oid.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   backend.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   binding.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _conditional.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   algorithms.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   cmac.py
+¦   ¦       ¦   ¦   ¦   ¦   constant_time.py
+¦   ¦       ¦   ¦   ¦   ¦   hashes.py
+¦   ¦       ¦   ¦   ¦   ¦   hmac.py
+¦   ¦       ¦   ¦   ¦   ¦   keywrap.py
+¦   ¦       ¦   ¦   ¦   ¦   padding.py
+¦   ¦       ¦   ¦   ¦   ¦   poly1305.py
+¦   ¦       ¦   ¦   ¦   ¦   _asymmetric.py
+¦   ¦       ¦   ¦   ¦   ¦   _cipheralgorithm.py
+¦   ¦       ¦   ¦   ¦   ¦   _serialization.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   dh.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   dsa.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ec.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ed25519.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ed448.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   padding.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   rsa.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   types.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   x25519.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   x448.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   aead.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   algorithms.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   modes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   argon2.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   concatkdf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   hkdf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   kbkdf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   pbkdf2.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   scrypt.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   x963kdf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   pkcs12.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   pkcs7.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ssh.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   hotp.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   totp.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   certificate_transparency.py
+¦   ¦       ¦   ¦   ¦   extensions.py
+¦   ¦       ¦   ¦   ¦   general_name.py
+¦   ¦       ¦   ¦   ¦   name.py
+¦   ¦       ¦   ¦   ¦   ocsp.py
+¦   ¦       ¦   ¦   ¦   oid.py
+¦   ¦       ¦   ¦   ¦   verification.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   easter.py
+¦   ¦       ¦   ¦   relativedelta.py
+¦   ¦       ¦   ¦   rrule.py
+¦   ¦       ¦   ¦   tzwin.py
+¦   ¦       ¦   ¦   utils.py
+¦   ¦       ¦   ¦   _common.py
+¦   ¦       ¦   ¦   _version.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   isoparser.py
+¦   ¦       ¦   ¦   ¦   _parser.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   tz.py
+¦   ¦       ¦   ¦   ¦   win.py
+¦   ¦       ¦   ¦   ¦   _common.py
+¦   ¦       ¦   ¦   ¦   _factories.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   rebuild.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   cli.py
+¦   ¦       ¦   ¦   ipython.py
+¦   ¦       ¦   ¦   main.py
+¦   ¦       ¦   ¦   parser.py
+¦   ¦       ¦   ¦   variables.py
+¦   ¦       ¦   ¦   version.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   incremental_tree.py
+¦   ¦       ¦   ¦   xmlfile.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   app.py
+¦   ¦       ¦   ¦   blueprints.py
+¦   ¦       ¦   ¦   cli.py
+¦   ¦       ¦   ¦   config.py
+¦   ¦       ¦   ¦   ctx.py
+¦   ¦       ¦   ¦   debughelpers.py
+¦   ¦       ¦   ¦   globals.py
+¦   ¦       ¦   ¦   helpers.py
+¦   ¦       ¦   ¦   logging.py
+¦   ¦       ¦   ¦   scaffold.py
+¦   ¦       ¦   ¦   sessions.py
+¦   ¦       ¦   ¦   signals.py
+¦   ¦       ¦   ¦   templating.py
+¦   ¦       ¦   ¦   testing.py
+¦   ¦       ¦   ¦   typing.py
+¦   ¦       ¦   ¦   views.py
+¦   ¦       ¦   ¦   wrappers.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   provider.py
+¦   ¦       ¦   ¦   ¦   tag.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦           app.cpython-313.pyc
+¦   ¦       ¦           wrappers.cpython-313.pyc
+¦   ¦       ¦   ¦   jinja2ext.py
+¦   ¦       ¦   ¦   utils.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   filesystemcache.py
+¦   ¦       ¦   ¦   ¦   memcache.py
+¦   ¦       ¦   ¦   ¦   nullcache.py
+¦   ¦       ¦   ¦   ¦   rediscache.py
+¦   ¦       ¦   ¦   ¦   simplecache.py
+¦   ¦       ¦   ¦   ¦   uwsgicache.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   googlecloudstoragecache.py
+¦   ¦       ¦   ¦   ¦   uwsgicache.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   core.py
+¦   ¦       ¦   ¦   decorator.py
+¦   ¦       ¦   ¦   extension.py
+¦   ¦       ¦   ¦   version.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   config.py
+¦   ¦       ¦   ¦   login_manager.py
+¦   ¦       ¦   ¦   mixins.py
+¦   ¦       ¦   ¦   signals.py
+¦   ¦       ¦   ¦   test_client.py
+¦   ¦       ¦   ¦   utils.py
+¦   ¦       ¦   ¦   __about__.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   cli.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   +---templates
+¦   ¦       ¦   ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦   ¦   ¦   env.py
+¦   ¦       ¦   ¦       ¦   env.py
+¦   ¦       ¦   ¦   cli.py
+¦   ¦       ¦   ¦   extension.py
+¦   ¦       ¦   ¦   model.py
+¦   ¦       ¦   ¦   pagination.py
+¦   ¦       ¦   ¦   query.py
+¦   ¦       ¦   ¦   record_queries.py
+¦   ¦       ¦   ¦   session.py
+¦   ¦       ¦   ¦   table.py
+¦   ¦       ¦   ¦   track_modifications.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   fail_clearing_run_switches.py
+¦   ¦       ¦   ¦   ¦   fail_cpp_exception.py
+¦   ¦       ¦   ¦   ¦   fail_initialstub_already_started.py
+¦   ¦       ¦   ¦   ¦   fail_slp_switch.py
+¦   ¦       ¦   ¦   ¦   fail_switch_three_greenlets.py
+¦   ¦       ¦   ¦   ¦   fail_switch_three_greenlets2.py
+¦   ¦       ¦   ¦   ¦   fail_switch_two_greenlets.py
+¦   ¦       ¦   ¦   ¦   leakcheck.py
+¦   ¦       ¦   ¦   ¦   test_contextvars.py
+¦   ¦       ¦   ¦   ¦   test_cpp.py
+¦   ¦       ¦   ¦   ¦   test_extension_interface.py
+¦   ¦       ¦   ¦   ¦   test_gc.py
+¦   ¦       ¦   ¦   ¦   test_generator.py
+¦   ¦       ¦   ¦   ¦   test_generator_nested.py
+¦   ¦       ¦   ¦   ¦   test_greenlet.py
+¦   ¦       ¦   ¦   ¦   test_greenlet_trash.py
+¦   ¦       ¦   ¦   ¦   test_leaks.py
+¦   ¦       ¦   ¦   ¦   test_stack_saved.py
+¦   ¦       ¦   ¦   ¦   test_throw.py
+¦   ¦       ¦   ¦   ¦   test_tracing.py
+¦   ¦       ¦   ¦   ¦   test_version.py
+¦   ¦       ¦   ¦   ¦   test_weakref.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   encoding.py
+¦   ¦       ¦   ¦   exc.py
+¦   ¦       ¦   ¦   serializer.py
+¦   ¦       ¦   ¦   signer.py
+¦   ¦       ¦   ¦   timed.py
+¦   ¦       ¦   ¦   url_safe.py
+¦   ¦       ¦   ¦   _json.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   async_utils.py
+¦   ¦       ¦   ¦   bccache.py
+¦   ¦       ¦   ¦   compiler.py
+¦   ¦       ¦   ¦   constants.py
+¦   ¦       ¦   ¦   debug.py
+¦   ¦       ¦   ¦   defaults.py
+¦   ¦       ¦   ¦   environment.py
+¦   ¦       ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   ext.py
+¦   ¦       ¦   ¦   filters.py
+¦   ¦       ¦   ¦   idtracking.py
+¦   ¦       ¦   ¦   lexer.py
+¦   ¦       ¦   ¦   loaders.py
+¦   ¦       ¦   ¦   meta.py
+¦   ¦       ¦   ¦   nativetypes.py
+¦   ¦       ¦   ¦   nodes.py
+¦   ¦       ¦   ¦   optimizer.py
+¦   ¦       ¦   ¦   parser.py
+¦   ¦       ¦   ¦   runtime.py
+¦   ¦       ¦   ¦   sandbox.py
+¦   ¦       ¦   ¦   tests.py
+¦   ¦       ¦   ¦   utils.py
+¦   ¦       ¦   ¦   visitor.py
+¦   ¦       ¦   ¦   _identifier.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ast.py
+¦   ¦       ¦   ¦   cache.py
+¦   ¦       ¦   ¦   cmd.py
+¦   ¦       ¦   ¦   codegen.py
+¦   ¦       ¦   ¦   compat.py
+¦   ¦       ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   filters.py
+¦   ¦       ¦   ¦   lexer.py
+¦   ¦       ¦   ¦   lookup.py
+¦   ¦       ¦   ¦   parsetree.py
+¦   ¦       ¦   ¦   pygen.py
+¦   ¦       ¦   ¦   pyparser.py
+¦   ¦       ¦   ¦   runtime.py
+¦   ¦       ¦   ¦   template.py
+¦   ¦       ¦   ¦   util.py
+¦   ¦       ¦   ¦   _ast_util.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   autohandler.py
+¦   ¦       ¦   ¦   ¦   babelplugin.py
+¦   ¦       ¦   ¦   ¦   beaker_cache.py
+¦   ¦       ¦   ¦   ¦   extract.py
+¦   ¦       ¦   ¦   ¦   linguaplugin.py
+¦   ¦       ¦   ¦   ¦   preprocessors.py
+¦   ¦       ¦   ¦   ¦   pygmentplugin.py
+¦   ¦       ¦   ¦   ¦   turbogears.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   assertions.py
+¦   ¦       ¦   ¦   ¦   config.py
+¦   ¦       ¦   ¦   ¦   exclusions.py
+¦   ¦       ¦   ¦   ¦   fixtures.py
+¦   ¦       ¦   ¦   ¦   helpers.py
+¦   ¦       ¦   ¦   ¦   _config.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   _native.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   dtypes.py
+¦   ¦       ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   matlib.py
+¦   ¦       ¦   ¦   version.py
+¦   ¦       ¦   ¦   _array_api_info.py
+¦   ¦       ¦   ¦   _configtool.py
+¦   ¦       ¦   ¦   _distributor_init.py
+¦   ¦       ¦   ¦   _expired_attrs_2_0.py
+¦   ¦       ¦   ¦   _globals.py
+¦   ¦       ¦   ¦   _pytesttester.py
+¦   ¦       ¦   ¦   __config__.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   arrayprint.py
+¦   ¦       ¦   ¦   ¦   defchararray.py
+¦   ¦       ¦   ¦   ¦   einsumfunc.py
+¦   ¦       ¦   ¦   ¦   fromnumeric.py
+¦   ¦       ¦   ¦   ¦   function_base.py
+¦   ¦       ¦   ¦   ¦   getlimits.py
+¦   ¦       ¦   ¦   ¦   multiarray.py
+¦   ¦       ¦   ¦   ¦   numeric.py
+¦   ¦       ¦   ¦   ¦   numerictypes.py
+¦   ¦       ¦   ¦   ¦   overrides.py
+¦   ¦       ¦   ¦   ¦   records.py
+¦   ¦       ¦   ¦   ¦   shape_base.py
+¦   ¦       ¦   ¦   ¦   umath.py
+¦   ¦       ¦   ¦   ¦   _dtype.py
+¦   ¦       ¦   ¦   ¦   _dtype_ctypes.py
+¦   ¦       ¦   ¦   ¦   _internal.py
+¦   ¦       ¦   ¦   ¦   _multiarray_umath.py
+¦   ¦       ¦   ¦   ¦   _utils.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _ctypeslib.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ufuncs.py
+¦   ¦       ¦   ¦   ¦   auxfuncs.py
+¦   ¦       ¦   ¦   ¦   capi_maps.py
+¦   ¦       ¦   ¦   ¦   cb_rules.py
+¦   ¦       ¦   ¦   ¦   cfuncs.py
+¦   ¦       ¦   ¦   ¦   common_rules.py
+¦   ¦       ¦   ¦   ¦   crackfortran.py
+¦   ¦       ¦   ¦   ¦   diagnose.py
+¦   ¦       ¦   ¦   ¦   f2py2e.py
+¦   ¦       ¦   ¦   ¦   f90mod_rules.py
+¦   ¦       ¦   ¦   ¦   func2subr.py
+¦   ¦       ¦   ¦   ¦   rules.py
+¦   ¦       ¦   ¦   ¦   symbolic.py
+¦   ¦       ¦   ¦   ¦   use_rules.py
+¦   ¦       ¦   ¦   ¦   _isocbind.py
+¦   ¦       ¦   ¦   ¦   _src_pyf.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   __version__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_abstract_interface.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array_from_pyobj.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assumed_shape.py
+¦   ¦       ¦   ¦   ¦   ¦   test_block_docstring.py
+¦   ¦       ¦   ¦   ¦   ¦   test_callback.py
+¦   ¦       ¦   ¦   ¦   ¦   test_character.py
+¦   ¦       ¦   ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_crackfortran.py
+¦   ¦       ¦   ¦   ¦   ¦   test_data.py
+¦   ¦       ¦   ¦   ¦   ¦   test_docs.py
+¦   ¦       ¦   ¦   ¦   ¦   test_f2cmap.py
+¦   ¦       ¦   ¦   ¦   ¦   test_f2py2e.py
+¦   ¦       ¦   ¦   ¦   ¦   test_isoc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_kind.py
+¦   ¦       ¦   ¦   ¦   ¦   test_mixed.py
+¦   ¦       ¦   ¦   ¦   ¦   test_modules.py
+¦   ¦       ¦   ¦   ¦   ¦   test_parameter.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pyf_src.py
+¦   ¦       ¦   ¦   ¦   ¦   test_quoted_character.py
+¦   ¦       ¦   ¦   ¦   ¦   test_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   test_return_character.py
+¦   ¦       ¦   ¦   ¦   ¦   test_return_complex.py
+¦   ¦       ¦   ¦   ¦   ¦   test_return_integer.py
+¦   ¦       ¦   ¦   ¦   ¦   test_return_logical.py
+¦   ¦       ¦   ¦   ¦   ¦   test_return_real.py
+¦   ¦       ¦   ¦   ¦   ¦   test_routines.py
+¦   ¦       ¦   ¦   ¦   ¦   test_semicolon_split.py
+¦   ¦       ¦   ¦   ¦   ¦   test_size.py
+¦   ¦       ¦   ¦   ¦   ¦   test_string.py
+¦   ¦       ¦   ¦   ¦   ¦   test_symbolic.py
+¦   ¦       ¦   ¦   ¦   ¦   test_value_attrspec.py
+¦   ¦       ¦   ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   _backend.py
+¦   ¦       ¦   ¦   ¦   ¦   _distutils.py
+¦   ¦       ¦   ¦   ¦   ¦   _meson.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   helper.py
+¦   ¦       ¦   ¦   ¦   _helper.py
+¦   ¦       ¦   ¦   ¦   _pocketfft.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_helper.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pocketfft.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   array_utils.py
+¦   ¦       ¦   ¦   ¦   format.py
+¦   ¦       ¦   ¦   ¦   introspect.py
+¦   ¦       ¦   ¦   ¦   mixins.py
+¦   ¦       ¦   ¦   ¦   npyio.py
+¦   ¦       ¦   ¦   ¦   recfunctions.py
+¦   ¦       ¦   ¦   ¦   scimath.py
+¦   ¦       ¦   ¦   ¦   stride_tricks.py
+¦   ¦       ¦   ¦   ¦   user_array.py
+¦   ¦       ¦   ¦   ¦   _arraypad_impl.py
+¦   ¦       ¦   ¦   ¦   _arraysetops_impl.py
+¦   ¦       ¦   ¦   ¦   _arrayterator_impl.py
+¦   ¦       ¦   ¦   ¦   _array_utils_impl.py
+¦   ¦       ¦   ¦   ¦   _datasource.py
+¦   ¦       ¦   ¦   ¦   _format_impl.py
+¦   ¦       ¦   ¦   ¦   _function_base_impl.py
+¦   ¦       ¦   ¦   ¦   _histograms_impl.py
+¦   ¦       ¦   ¦   ¦   _index_tricks_impl.py
+¦   ¦       ¦   ¦   ¦   _iotools.py
+¦   ¦       ¦   ¦   ¦   _nanfunctions_impl.py
+¦   ¦       ¦   ¦   ¦   _npyio_impl.py
+¦   ¦       ¦   ¦   ¦   _polynomial_impl.py
+¦   ¦       ¦   ¦   ¦   _scimath_impl.py
+¦   ¦       ¦   ¦   ¦   _shape_base_impl.py
+¦   ¦       ¦   ¦   ¦   _stride_tricks_impl.py
+¦   ¦       ¦   ¦   ¦   _twodim_base_impl.py
+¦   ¦       ¦   ¦   ¦   _type_check_impl.py
+¦   ¦       ¦   ¦   ¦   _ufunclike_impl.py
+¦   ¦       ¦   ¦   ¦   _user_array_impl.py
+¦   ¦       ¦   ¦   ¦   _utils_impl.py
+¦   ¦       ¦   ¦   ¦   _version.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arraypad.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arraysetops.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arrayterator.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   test_format.py
+¦   ¦       ¦   ¦   ¦   ¦   test_function_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_histograms.py
+¦   ¦       ¦   ¦   ¦   ¦   test_index_tricks.py
+¦   ¦       ¦   ¦   ¦   ¦   test_io.py
+¦   ¦       ¦   ¦   ¦   ¦   test_loadtxt.py
+¦   ¦       ¦   ¦   ¦   ¦   test_mixins.py
+¦   ¦       ¦   ¦   ¦   ¦   test_nanfunctions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_packbits.py
+¦   ¦       ¦   ¦   ¦   ¦   test_polynomial.py
+¦   ¦       ¦   ¦   ¦   ¦   test_recfunctions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   test_shape_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_stride_tricks.py
+¦   ¦       ¦   ¦   ¦   ¦   test_twodim_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_type_check.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ufunclike.py
+¦   ¦       ¦   ¦   ¦   ¦   test_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   test__datasource.py
+¦   ¦       ¦   ¦   ¦   ¦   test__iotools.py
+¦   ¦       ¦   ¦   ¦   ¦   test__version.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   linalg.py
+¦   ¦       ¦   ¦   ¦   _linalg.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_deprecations.py
+¦   ¦       ¦   ¦   ¦   ¦   test_linalg.py
+¦   ¦       ¦   ¦   ¦   ¦   test_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   core.py
+¦   ¦       ¦   ¦   ¦   extras.py
+¦   ¦       ¦   ¦   ¦   mrecords.py
+¦   ¦       ¦   ¦   ¦   testutils.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arrayobject.py
+¦   ¦       ¦   ¦   ¦   ¦   test_core.py
+¦   ¦       ¦   ¦   ¦   ¦   test_deprecations.py
+¦   ¦       ¦   ¦   ¦   ¦   test_extras.py
+¦   ¦       ¦   ¦   ¦   ¦   test_mrecords.py
+¦   ¦       ¦   ¦   ¦   ¦   test_old_ma.py
+¦   ¦       ¦   ¦   ¦   ¦   test_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   test_subclassing.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   defmatrix.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_defmatrix.py
+¦   ¦       ¦   ¦   ¦   ¦   test_interaction.py
+¦   ¦       ¦   ¦   ¦   ¦   test_masked_matrix.py
+¦   ¦       ¦   ¦   ¦   ¦   test_matrix_linalg.py
+¦   ¦       ¦   ¦   ¦   ¦   test_multiarray.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   test_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   chebyshev.py
+¦   ¦       ¦   ¦   ¦   hermite.py
+¦   ¦       ¦   ¦   ¦   hermite_e.py
+¦   ¦       ¦   ¦   ¦   laguerre.py
+¦   ¦       ¦   ¦   ¦   legendre.py
+¦   ¦       ¦   ¦   ¦   polynomial.py
+¦   ¦       ¦   ¦   ¦   polyutils.py
+¦   ¦       ¦   ¦   ¦   _polybase.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_chebyshev.py
+¦   ¦       ¦   ¦   ¦   ¦   test_classes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_hermite.py
+¦   ¦       ¦   ¦   ¦   ¦   test_hermite_e.py
+¦   ¦       ¦   ¦   ¦   ¦   test_laguerre.py
+¦   ¦       ¦   ¦   ¦   ¦   test_legendre.py
+¦   ¦       ¦   ¦   ¦   ¦   test_polynomial.py
+¦   ¦       ¦   ¦   ¦   ¦   test_polyutils.py
+¦   ¦       ¦   ¦   ¦   ¦   test_printing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_symbol.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _pickle.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_direct.py
+¦   ¦       ¦   ¦   ¦   ¦   test_extending.py
+¦   ¦       ¦   ¦   ¦   ¦   test_generator_mt19937.py
+¦   ¦       ¦   ¦   ¦   ¦   test_generator_mt19937_regressions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_random.py
+¦   ¦       ¦   ¦   ¦   ¦   test_randomstate.py
+¦   ¦       ¦   ¦   ¦   ¦   test_randomstate_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   test_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   test_seed_sequence.py
+¦   ¦       ¦   ¦   ¦   ¦   test_smoke.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   extending.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   parse.py
+¦   ¦       ¦   ¦   ¦       ¦   extending.py
+¦   ¦       ¦   ¦   ¦       ¦   extending_distributions.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   overrides.py
+¦   ¦       ¦   ¦   ¦   print_coercion_tables.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   extbuild.py
+¦   ¦       ¦   ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   test_configtool.py
+¦   ¦       ¦   ¦   ¦   test_ctypeslib.py
+¦   ¦       ¦   ¦   ¦   test_lazyloading.py
+¦   ¦       ¦   ¦   ¦   test_matlib.py
+¦   ¦       ¦   ¦   ¦   test_numpy_config.py
+¦   ¦       ¦   ¦   ¦   test_numpy_version.py
+¦   ¦       ¦   ¦   ¦   test_public_api.py
+¦   ¦       ¦   ¦   ¦   test_reloading.py
+¦   ¦       ¦   ¦   ¦   test_scripts.py
+¦   ¦       ¦   ¦   ¦   test_warnings.py
+¦   ¦       ¦   ¦   ¦   test__all__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   mypy_plugin.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_isfile.py
+¦   ¦       ¦   ¦   ¦   ¦   test_runtime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_typing.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦       ufunc_config.pyi
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   arrayprint.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   arrayterator.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   array_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   array_like.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   bitwise_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   comparisons.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   dtype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   einsumfunc.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   flatiter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   fromnumeric.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   index_tricks.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   lib_user_array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   lib_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   lib_version.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   literal.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   ma.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   mod.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   modules.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   multiarray.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   ndarray_conversion.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   ndarray_misc.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   ndarray_shape_manipulation.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   nditer.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   numerictypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   random.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   recfunctions.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   scalars.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   shape.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   simple.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   simple_py3.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   ufunclike.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   ufuncs.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   ufunc_config.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   warnings_and_errors.py
+¦   ¦       ¦   ¦   ¦   ¦           ufunc_config.pyi
+¦   ¦       ¦   ¦   ¦   arrayprint.py
+¦   ¦       ¦   ¦   ¦   cversions.py
+¦   ¦       ¦   ¦   ¦   defchararray.py
+¦   ¦       ¦   ¦   ¦   einsumfunc.py
+¦   ¦       ¦   ¦   ¦   fromnumeric.py
+¦   ¦       ¦   ¦   ¦   function_base.py
+¦   ¦       ¦   ¦   ¦   getlimits.py
+¦   ¦       ¦   ¦   ¦   memmap.py
+¦   ¦       ¦   ¦   ¦   multiarray.py
+¦   ¦       ¦   ¦   ¦   numeric.py
+¦   ¦       ¦   ¦   ¦   numerictypes.py
+¦   ¦       ¦   ¦   ¦   overrides.py
+¦   ¦       ¦   ¦   ¦   printoptions.py
+¦   ¦       ¦   ¦   ¦   records.py
+¦   ¦       ¦   ¦   ¦   shape_base.py
+¦   ¦       ¦   ¦   ¦   strings.py
+¦   ¦       ¦   ¦   ¦   umath.py
+¦   ¦       ¦   ¦   ¦   _add_newdocs.py
+¦   ¦       ¦   ¦   ¦   _add_newdocs_scalars.py
+¦   ¦       ¦   ¦   ¦   _asarray.py
+¦   ¦       ¦   ¦   ¦   _dtype.py
+¦   ¦       ¦   ¦   ¦   _dtype_ctypes.py
+¦   ¦       ¦   ¦   ¦   _exceptions.py
+¦   ¦       ¦   ¦   ¦   _internal.py
+¦   ¦       ¦   ¦   ¦   _machar.py
+¦   ¦       ¦   ¦   ¦   _methods.py
+¦   ¦       ¦   ¦   ¦   _string_helpers.py
+¦   ¦       ¦   ¦   ¦   _type_aliases.py
+¦   ¦       ¦   ¦   ¦   _ufunc_config.py
+¦   ¦       ¦   ¦   ¦   _ufunc_config.pyi
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_abc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_argparse.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arraymethod.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arrayobject.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arrayprint.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array_api_info.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array_coercion.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array_interface.py
+¦   ¦       ¦   ¦   ¦   ¦   test_casting_floatingpoint_errors.py
+¦   ¦       ¦   ¦   ¦   ¦   test_casting_unittests.py
+¦   ¦       ¦   ¦   ¦   ¦   test_conversion_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cpu_dispatcher.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cpu_features.py
+¦   ¦       ¦   ¦   ¦   ¦   test_custom_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cython.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_defchararray.py
+¦   ¦       ¦   ¦   ¦   ¦   test_deprecations.py
+¦   ¦       ¦   ¦   ¦   ¦   test_dlpack.py
+¦   ¦       ¦   ¦   ¦   ¦   test_dtype.py
+¦   ¦       ¦   ¦   ¦   ¦   test_einsum.py
+¦   ¦       ¦   ¦   ¦   ¦   test_errstate.py
+¦   ¦       ¦   ¦   ¦   ¦   test_extint128.py
+¦   ¦       ¦   ¦   ¦   ¦   test_function_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_getlimits.py
+¦   ¦       ¦   ¦   ¦   ¦   test_half.py
+¦   ¦       ¦   ¦   ¦   ¦   test_hashtable.py
+¦   ¦       ¦   ¦   ¦   ¦   test_indexerrors.py
+¦   ¦       ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_item_selection.py
+¦   ¦       ¦   ¦   ¦   ¦   test_limited_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_longdouble.py
+¦   ¦       ¦   ¦   ¦   ¦   test_machar.py
+¦   ¦       ¦   ¦   ¦   ¦   test_memmap.py
+¦   ¦       ¦   ¦   ¦   ¦   test_mem_overlap.py
+¦   ¦       ¦   ¦   ¦   ¦   test_mem_policy.py
+¦   ¦       ¦   ¦   ¦   ¦   test_multiarray.py
+¦   ¦       ¦   ¦   ¦   ¦   test_multithreading.py
+¦   ¦       ¦   ¦   ¦   ¦   test_nditer.py
+¦   ¦       ¦   ¦   ¦   ¦   test_nep50_promotions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numerictypes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_overrides.py
+¦   ¦       ¦   ¦   ¦   ¦   test_print.py
+¦   ¦       ¦   ¦   ¦   ¦   test_protocols.py
+¦   ¦       ¦   ¦   ¦   ¦   test_records.py
+¦   ¦       ¦   ¦   ¦   ¦   test_regression.py
+¦   ¦       ¦   ¦   ¦   ¦   test_scalarbuffer.py
+¦   ¦       ¦   ¦   ¦   ¦   test_scalarinherit.py
+¦   ¦       ¦   ¦   ¦   ¦   test_scalarmath.py
+¦   ¦       ¦   ¦   ¦   ¦   test_scalarprint.py
+¦   ¦       ¦   ¦   ¦   ¦   test_scalar_ctors.py
+¦   ¦       ¦   ¦   ¦   ¦   test_scalar_methods.py
+¦   ¦       ¦   ¦   ¦   ¦   test_shape_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_simd.py
+¦   ¦       ¦   ¦   ¦   ¦   test_simd_module.py
+¦   ¦       ¦   ¦   ¦   ¦   test_stringdtype.py
+¦   ¦       ¦   ¦   ¦   ¦   test_strings.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ufunc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_umath.py
+¦   ¦       ¦   ¦   ¦   ¦   test_umath_accuracy.py
+¦   ¦       ¦   ¦   ¦   ¦   test_umath_complex.py
+¦   ¦       ¦   ¦   ¦   ¦   test_unicode.py
+¦   ¦       ¦   ¦   ¦   ¦   test__exceptions.py
+¦   ¦       ¦   ¦   ¦   ¦   _locales.py
+¦   ¦       ¦   ¦   ¦   ¦   _natype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   setup.py
+¦   ¦       ¦   ¦   ¦   ¦       ¦   setup.py
+¦   ¦       ¦   ¦   ¦   hook-numpy.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   pyinstaller-smoke.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pyinstaller.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _add_docstring.py
+¦   ¦       ¦   ¦   ¦   _array_like.py
+¦   ¦       ¦   ¦   ¦   _char_codes.py
+¦   ¦       ¦   ¦   ¦   _dtype_like.py
+¦   ¦       ¦   ¦   ¦   _extended_precision.py
+¦   ¦       ¦   ¦   ¦   _nbit.py
+¦   ¦       ¦   ¦   ¦   _nbit_base.py
+¦   ¦       ¦   ¦   ¦   _nested_sequence.py
+¦   ¦       ¦   ¦   ¦   _scalars.py
+¦   ¦       ¦   ¦   ¦   _shape.py
+¦   ¦       ¦   ¦   ¦   _ufunc.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _convertions.py
+¦   ¦       ¦   ¦   ¦   _inspect.py
+¦   ¦       ¦   ¦   ¦   _pep440.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   _constants.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   cell.py
+¦   ¦       ¦   ¦   ¦   read_only.py
+¦   ¦       ¦   ¦   ¦   rich_text.py
+¦   ¦       ¦   ¦   ¦   text.py
+¦   ¦       ¦   ¦   ¦   _writer.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   area_chart.py
+¦   ¦       ¦   ¦   ¦   axis.py
+¦   ¦       ¦   ¦   ¦   bar_chart.py
+¦   ¦       ¦   ¦   ¦   bubble_chart.py
+¦   ¦       ¦   ¦   ¦   chartspace.py
+¦   ¦       ¦   ¦   ¦   data_source.py
+¦   ¦       ¦   ¦   ¦   descriptors.py
+¦   ¦       ¦   ¦   ¦   error_bar.py
+¦   ¦       ¦   ¦   ¦   label.py
+¦   ¦       ¦   ¦   ¦   layout.py
+¦   ¦       ¦   ¦   ¦   legend.py
+¦   ¦       ¦   ¦   ¦   line_chart.py
+¦   ¦       ¦   ¦   ¦   marker.py
+¦   ¦       ¦   ¦   ¦   picture.py
+¦   ¦       ¦   ¦   ¦   pie_chart.py
+¦   ¦       ¦   ¦   ¦   pivot.py
+¦   ¦       ¦   ¦   ¦   plotarea.py
+¦   ¦       ¦   ¦   ¦   print_settings.py
+¦   ¦       ¦   ¦   ¦   radar_chart.py
+¦   ¦       ¦   ¦   ¦   reader.py
+¦   ¦       ¦   ¦   ¦   reference.py
+¦   ¦       ¦   ¦   ¦   scatter_chart.py
+¦   ¦       ¦   ¦   ¦   series.py
+¦   ¦       ¦   ¦   ¦   series_factory.py
+¦   ¦       ¦   ¦   ¦   shapes.py
+¦   ¦       ¦   ¦   ¦   stock_chart.py
+¦   ¦       ¦   ¦   ¦   surface_chart.py
+¦   ¦       ¦   ¦   ¦   text.py
+¦   ¦       ¦   ¦   ¦   title.py
+¦   ¦       ¦   ¦   ¦   trendline.py
+¦   ¦       ¦   ¦   ¦   updown_bars.py
+¦   ¦       ¦   ¦   ¦   _3d.py
+¦   ¦       ¦   ¦   ¦   _chart.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   chartsheet.py
+¦   ¦       ¦   ¦   ¦   custom.py
+¦   ¦       ¦   ¦   ¦   properties.py
+¦   ¦       ¦   ¦   ¦   protection.py
+¦   ¦       ¦   ¦   ¦   publish.py
+¦   ¦       ¦   ¦   ¦   relation.py
+¦   ¦       ¦   ¦   ¦   views.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   author.py
+¦   ¦       ¦   ¦   ¦   comments.py
+¦   ¦       ¦   ¦   ¦   comment_sheet.py
+¦   ¦       ¦   ¦   ¦   shape_writer.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   abc.py
+¦   ¦       ¦   ¦   ¦   numbers.py
+¦   ¦       ¦   ¦   ¦   product.py
+¦   ¦       ¦   ¦   ¦   singleton.py
+¦   ¦       ¦   ¦   ¦   strings.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   container.py
+¦   ¦       ¦   ¦   ¦   excel.py
+¦   ¦       ¦   ¦   ¦   namespace.py
+¦   ¦       ¦   ¦   ¦   nested.py
+¦   ¦       ¦   ¦   ¦   sequence.py
+¦   ¦       ¦   ¦   ¦   serialisable.py
+¦   ¦       ¦   ¦   ¦   slots.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   colors.py
+¦   ¦       ¦   ¦   ¦   connector.py
+¦   ¦       ¦   ¦   ¦   drawing.py
+¦   ¦       ¦   ¦   ¦   effect.py
+¦   ¦       ¦   ¦   ¦   fill.py
+¦   ¦       ¦   ¦   ¦   geometry.py
+¦   ¦       ¦   ¦   ¦   graphic.py
+¦   ¦       ¦   ¦   ¦   image.py
+¦   ¦       ¦   ¦   ¦   line.py
+¦   ¦       ¦   ¦   ¦   picture.py
+¦   ¦       ¦   ¦   ¦   properties.py
+¦   ¦       ¦   ¦   ¦   relation.py
+¦   ¦       ¦   ¦   ¦   spreadsheet_drawing.py
+¦   ¦       ¦   ¦   ¦   text.py
+¦   ¦       ¦   ¦   ¦   xdr.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   formatting.py
+¦   ¦       ¦   ¦   ¦   rule.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   tokenizer.py
+¦   ¦       ¦   ¦   ¦   translate.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   core.py
+¦   ¦       ¦   ¦   ¦   custom.py
+¦   ¦       ¦   ¦   ¦   extended.py
+¦   ¦       ¦   ¦   ¦   interface.py
+¦   ¦       ¦   ¦   ¦   manifest.py
+¦   ¦       ¦   ¦   ¦   relationship.py
+¦   ¦       ¦   ¦   ¦   workbook.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   cache.py
+¦   ¦       ¦   ¦   ¦   fields.py
+¦   ¦       ¦   ¦   ¦   record.py
+¦   ¦       ¦   ¦   ¦   table.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   drawings.py
+¦   ¦       ¦   ¦   ¦   excel.py
+¦   ¦       ¦   ¦   ¦   strings.py
+¦   ¦       ¦   ¦   ¦   workbook.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   alignment.py
+¦   ¦       ¦   ¦   ¦   borders.py
+¦   ¦       ¦   ¦   ¦   builtins.py
+¦   ¦       ¦   ¦   ¦   cell_style.py
+¦   ¦       ¦   ¦   ¦   colors.py
+¦   ¦       ¦   ¦   ¦   differential.py
+¦   ¦       ¦   ¦   ¦   fills.py
+¦   ¦       ¦   ¦   ¦   fonts.py
+¦   ¦       ¦   ¦   ¦   named_styles.py
+¦   ¦       ¦   ¦   ¦   numbers.py
+¦   ¦       ¦   ¦   ¦   protection.py
+¦   ¦       ¦   ¦   ¦   proxy.py
+¦   ¦       ¦   ¦   ¦   styleable.py
+¦   ¦       ¦   ¦   ¦   stylesheet.py
+¦   ¦       ¦   ¦   ¦   table.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   bound_dictionary.py
+¦   ¦       ¦   ¦   ¦   cell.py
+¦   ¦       ¦   ¦   ¦   dataframe.py
+¦   ¦       ¦   ¦   ¦   datetime.py
+¦   ¦       ¦   ¦   ¦   escape.py
+¦   ¦       ¦   ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   ¦   formulas.py
+¦   ¦       ¦   ¦   ¦   indexed_list.py
+¦   ¦       ¦   ¦   ¦   inference.py
+¦   ¦       ¦   ¦   ¦   protection.py
+¦   ¦       ¦   ¦   ¦   units.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   child.py
+¦   ¦       ¦   ¦   ¦   defined_name.py
+¦   ¦       ¦   ¦   ¦   external_reference.py
+¦   ¦       ¦   ¦   ¦   function_group.py
+¦   ¦       ¦   ¦   ¦   properties.py
+¦   ¦       ¦   ¦   ¦   protection.py
+¦   ¦       ¦   ¦   ¦   smart_tags.py
+¦   ¦       ¦   ¦   ¦   views.py
+¦   ¦       ¦   ¦   ¦   web.py
+¦   ¦       ¦   ¦   ¦   workbook.py
+¦   ¦       ¦   ¦   ¦   _writer.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   external.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   cell_range.py
+¦   ¦       ¦   ¦   ¦   cell_watch.py
+¦   ¦       ¦   ¦   ¦   controls.py
+¦   ¦       ¦   ¦   ¦   copier.py
+¦   ¦       ¦   ¦   ¦   custom.py
+¦   ¦       ¦   ¦   ¦   datavalidation.py
+¦   ¦       ¦   ¦   ¦   dimensions.py
+¦   ¦       ¦   ¦   ¦   drawing.py
+¦   ¦       ¦   ¦   ¦   errors.py
+¦   ¦       ¦   ¦   ¦   filters.py
+¦   ¦       ¦   ¦   ¦   formula.py
+¦   ¦       ¦   ¦   ¦   header_footer.py
+¦   ¦       ¦   ¦   ¦   hyperlink.py
+¦   ¦       ¦   ¦   ¦   merge.py
+¦   ¦       ¦   ¦   ¦   ole.py
+¦   ¦       ¦   ¦   ¦   page.py
+¦   ¦       ¦   ¦   ¦   pagebreak.py
+¦   ¦       ¦   ¦   ¦   picture.py
+¦   ¦       ¦   ¦   ¦   print_settings.py
+¦   ¦       ¦   ¦   ¦   properties.py
+¦   ¦       ¦   ¦   ¦   protection.py
+¦   ¦       ¦   ¦   ¦   related.py
+¦   ¦       ¦   ¦   ¦   scenario.py
+¦   ¦       ¦   ¦   ¦   smart_tag.py
+¦   ¦       ¦   ¦   ¦   table.py
+¦   ¦       ¦   ¦   ¦   views.py
+¦   ¦       ¦   ¦   ¦   worksheet.py
+¦   ¦       ¦   ¦   ¦   _reader.py
+¦   ¦       ¦   ¦   ¦   _read_only.py
+¦   ¦       ¦   ¦   ¦   _writer.py
+¦   ¦       ¦   ¦   ¦   _write_only.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   excel.py
+¦   ¦       ¦   ¦   ¦   theme.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   constants.py
+¦   ¦       ¦   ¦   ¦   functions.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   testing.py
+¦   ¦       ¦   ¦   _typing.py
+¦   ¦       ¦   ¦   _version.py
+¦   ¦       ¦   ¦   _version_meson.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   compressors.py
+¦   ¦       ¦   ¦   ¦   pickle_compat.py
+¦   ¦       ¦   ¦   ¦   pyarrow.py
+¦   ¦       ¦   ¦   ¦   _constants.py
+¦   ¦       ¦   ¦   ¦   _optional.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   function.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   accessor.py
+¦   ¦       ¦   ¦   ¦   algorithms.py
+¦   ¦       ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   apply.py
+¦   ¦       ¦   ¦   ¦   arraylike.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   config_init.py
+¦   ¦       ¦   ¦   ¦   construction.py
+¦   ¦       ¦   ¦   ¦   flags.py
+¦   ¦       ¦   ¦   ¦   frame.py
+¦   ¦       ¦   ¦   ¦   generic.py
+¦   ¦       ¦   ¦   ¦   indexing.py
+¦   ¦       ¦   ¦   ¦   missing.py
+¦   ¦       ¦   ¦   ¦   nanops.py
+¦   ¦       ¦   ¦   ¦   resample.py
+¦   ¦       ¦   ¦   ¦   roperator.py
+¦   ¦       ¦   ¦   ¦   sample.py
+¦   ¦       ¦   ¦   ¦   series.py
+¦   ¦       ¦   ¦   ¦   shared_docs.py
+¦   ¦       ¦   ¦   ¦   sorting.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   boolean.py
+¦   ¦       ¦   ¦   ¦   ¦   categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   datetimelike.py
+¦   ¦       ¦   ¦   ¦   ¦   datetimes.py
+¦   ¦       ¦   ¦   ¦   ¦   floating.py
+¦   ¦       ¦   ¦   ¦   ¦   integer.py
+¦   ¦       ¦   ¦   ¦   ¦   interval.py
+¦   ¦       ¦   ¦   ¦   ¦   masked.py
+¦   ¦       ¦   ¦   ¦   ¦   numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   numpy_.py
+¦   ¦       ¦   ¦   ¦   ¦   period.py
+¦   ¦       ¦   ¦   ¦   ¦   string_.py
+¦   ¦       ¦   ¦   ¦   ¦   string_arrow.py
+¦   ¦       ¦   ¦   ¦   ¦   timedeltas.py
+¦   ¦       ¦   ¦   ¦   ¦   _arrow_string_mixins.py
+¦   ¦       ¦   ¦   ¦   ¦   _mixins.py
+¦   ¦       ¦   ¦   ¦   ¦   _ranges.py
+¦   ¦       ¦   ¦   ¦   ¦   _utils.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   accessors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   extension_types.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _arrow_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   scipy_sparse.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   datetimelike_accumulations.py
+¦   ¦       ¦   ¦   ¦   ¦   masked_accumulations.py
+¦   ¦       ¦   ¦   ¦   ¦   masked_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   putmask.py
+¦   ¦       ¦   ¦   ¦   ¦   quantile.py
+¦   ¦       ¦   ¦   ¦   ¦   replace.py
+¦   ¦       ¦   ¦   ¦   ¦   take.py
+¦   ¦       ¦   ¦   ¦   ¦   transforms.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   align.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   check.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   engines.py
+¦   ¦       ¦   ¦   ¦   ¦   eval.py
+¦   ¦       ¦   ¦   ¦   ¦   expr.py
+¦   ¦       ¦   ¦   ¦   ¦   expressions.py
+¦   ¦       ¦   ¦   ¦   ¦   ops.py
+¦   ¦       ¦   ¦   ¦   ¦   parsing.py
+¦   ¦       ¦   ¦   ¦   ¦   pytables.py
+¦   ¦       ¦   ¦   ¦   ¦   scope.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   astype.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   cast.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   concat.py
+¦   ¦       ¦   ¦   ¦   ¦   dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   generic.py
+¦   ¦       ¦   ¦   ¦   ¦   inference.py
+¦   ¦       ¦   ¦   ¦   ¦   missing.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   generic.py
+¦   ¦       ¦   ¦   ¦   ¦   groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   grouper.py
+¦   ¦       ¦   ¦   ¦   ¦   indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   numba_.py
+¦   ¦       ¦   ¦   ¦   ¦   ops.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   objects.py
+¦   ¦       ¦   ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   accessors.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   category.py
+¦   ¦       ¦   ¦   ¦   ¦   datetimelike.py
+¦   ¦       ¦   ¦   ¦   ¦   datetimes.py
+¦   ¦       ¦   ¦   ¦   ¦   extension.py
+¦   ¦       ¦   ¦   ¦   ¦   frozen.py
+¦   ¦       ¦   ¦   ¦   ¦   interval.py
+¦   ¦       ¦   ¦   ¦   ¦   multi.py
+¦   ¦       ¦   ¦   ¦   ¦   period.py
+¦   ¦       ¦   ¦   ¦   ¦   range.py
+¦   ¦       ¦   ¦   ¦   ¦   timedeltas.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   buffer.py
+¦   ¦       ¦   ¦   ¦   ¦   column.py
+¦   ¦       ¦   ¦   ¦   ¦   dataframe.py
+¦   ¦       ¦   ¦   ¦   ¦   dataframe_protocol.py
+¦   ¦       ¦   ¦   ¦   ¦   from_dataframe.py
+¦   ¦       ¦   ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   array_manager.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   blocks.py
+¦   ¦       ¦   ¦   ¦   ¦   concat.py
+¦   ¦       ¦   ¦   ¦   ¦   construction.py
+¦   ¦       ¦   ¦   ¦   ¦   managers.py
+¦   ¦       ¦   ¦   ¦   ¦   ops.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   describe.py
+¦   ¦       ¦   ¦   ¦   ¦   selectn.py
+¦   ¦       ¦   ¦   ¦   ¦   to_dict.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   array_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   dispatch.py
+¦   ¦       ¦   ¦   ¦   ¦   docstrings.py
+¦   ¦       ¦   ¦   ¦   ¦   invalid.py
+¦   ¦       ¦   ¦   ¦   ¦   mask_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   missing.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   concat.py
+¦   ¦       ¦   ¦   ¦   ¦   encoding.py
+¦   ¦       ¦   ¦   ¦   ¦   melt.py
+¦   ¦       ¦   ¦   ¦   ¦   merge.py
+¦   ¦       ¦   ¦   ¦   ¦   pivot.py
+¦   ¦       ¦   ¦   ¦   ¦   reshape.py
+¦   ¦       ¦   ¦   ¦   ¦   tile.py
+¦   ¦       ¦   ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   object_array.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   datetimes.py
+¦   ¦       ¦   ¦   ¦   ¦   numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   timedeltas.py
+¦   ¦       ¦   ¦   ¦   ¦   times.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   hashing.py
+¦   ¦       ¦   ¦   ¦   ¦   numba_.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   doc.py
+¦   ¦       ¦   ¦   ¦   ¦   ewm.py
+¦   ¦       ¦   ¦   ¦   ¦   expanding.py
+¦   ¦       ¦   ¦   ¦   ¦   numba_.py
+¦   ¦       ¦   ¦   ¦   ¦   online.py
+¦   ¦       ¦   ¦   ¦   ¦   rolling.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   executor.py
+¦   ¦       ¦   ¦   ¦   ¦   extensions.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   mean_.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   min_max_.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   shared.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   sum_.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   var_.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦           apply.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   clipboards.py
+¦   ¦       ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   feather_format.py
+¦   ¦       ¦   ¦   ¦   gbq.py
+¦   ¦       ¦   ¦   ¦   html.py
+¦   ¦       ¦   ¦   ¦   orc.py
+¦   ¦       ¦   ¦   ¦   parquet.py
+¦   ¦       ¦   ¦   ¦   pickle.py
+¦   ¦       ¦   ¦   ¦   pytables.py
+¦   ¦       ¦   ¦   ¦   spss.py
+¦   ¦       ¦   ¦   ¦   sql.py
+¦   ¦       ¦   ¦   ¦   stata.py
+¦   ¦       ¦   ¦   ¦   xml.py
+¦   ¦       ¦   ¦   ¦   _util.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   _base.py
+¦   ¦       ¦   ¦   ¦   ¦   _calamine.py
+¦   ¦       ¦   ¦   ¦   ¦   _odfreader.py
+¦   ¦       ¦   ¦   ¦   ¦   _odswriter.py
+¦   ¦       ¦   ¦   ¦   ¦   _openpyxl.py
+¦   ¦       ¦   ¦   ¦   ¦   _pyxlsb.py
+¦   ¦       ¦   ¦   ¦   ¦   _util.py
+¦   ¦       ¦   ¦   ¦   ¦   _xlrd.py
+¦   ¦       ¦   ¦   ¦   ¦   _xlsxwriter.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   console.py
+¦   ¦       ¦   ¦   ¦   ¦   css.py
+¦   ¦       ¦   ¦   ¦   ¦   csvs.py
+¦   ¦       ¦   ¦   ¦   ¦   excel.py
+¦   ¦       ¦   ¦   ¦   ¦   format.py
+¦   ¦       ¦   ¦   ¦   ¦   html.py
+¦   ¦       ¦   ¦   ¦   ¦   info.py
+¦   ¦       ¦   ¦   ¦   ¦   printing.py
+¦   ¦       ¦   ¦   ¦   ¦   string.py
+¦   ¦       ¦   ¦   ¦   ¦   style.py
+¦   ¦       ¦   ¦   ¦   ¦   style_render.py
+¦   ¦       ¦   ¦   ¦   ¦   xml.py
+¦   ¦       ¦   ¦   ¦   ¦   _color_data.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   +---templates
+¦   ¦       ¦   ¦   ¦   ¦   _json.py
+¦   ¦       ¦   ¦   ¦   ¦   _normalize.py
+¦   ¦       ¦   ¦   ¦   ¦   _table_schema.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   arrow_parser_wrapper.py
+¦   ¦       ¦   ¦   ¦   ¦   base_parser.py
+¦   ¦       ¦   ¦   ¦   ¦   c_parser_wrapper.py
+¦   ¦       ¦   ¦   ¦   ¦   python_parser.py
+¦   ¦       ¦   ¦   ¦   ¦   readers.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦           arrow_parser_wrapper.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦           c_parser_wrapper.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   sas7bdat.py
+¦   ¦       ¦   ¦   ¦   ¦   sasreader.py
+¦   ¦       ¦   ¦   ¦   ¦   sas_constants.py
+¦   ¦       ¦   ¦   ¦   ¦   sas_xport.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _core.py
+¦   ¦       ¦   ¦   ¦   _misc.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   boxplot.py
+¦   ¦       ¦   ¦   ¦   ¦   converter.py
+¦   ¦       ¦   ¦   ¦   ¦   core.py
+¦   ¦       ¦   ¦   ¦   ¦   groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   hist.py
+¦   ¦       ¦   ¦   ¦   ¦   misc.py
+¦   ¦       ¦   ¦   ¦   ¦   style.py
+¦   ¦       ¦   ¦   ¦   ¦   timeseries.py
+¦   ¦       ¦   ¦   ¦   ¦   tools.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   test_aggregation.py
+¦   ¦       ¦   ¦   ¦   test_algos.py
+¦   ¦       ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   test_downstream.py
+¦   ¦       ¦   ¦   ¦   test_errors.py
+¦   ¦       ¦   ¦   ¦   test_expressions.py
+¦   ¦       ¦   ¦   ¦   test_flags.py
+¦   ¦       ¦   ¦   ¦   test_multilevel.py
+¦   ¦       ¦   ¦   ¦   test_nanops.py
+¦   ¦       ¦   ¦   ¦   test_optional_dependency.py
+¦   ¦       ¦   ¦   ¦   test_register_accessor.py
+¦   ¦       ¦   ¦   ¦   test_sorting.py
+¦   ¦       ¦   ¦   ¦   test_take.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_types.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   +---apply
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_frame_apply.py
+¦   ¦       ¦   ¦   ¦   ¦   test_frame_apply_relabeling.py
+¦   ¦       ¦   ¦   ¦   ¦   test_frame_transform.py
+¦   ¦       ¦   ¦   ¦   ¦   test_invalid_arg.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numba.py
+¦   ¦       ¦   ¦   ¦   ¦   test_series_apply.py
+¦   ¦       ¦   ¦   ¦   ¦   test_series_apply_relabeling.py
+¦   ¦       ¦   ¦   ¦   ¦   test_series_transform.py
+¦   ¦       ¦   ¦   ¦   ¦   test_str.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦           test_frame_apply.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦           test_frame_apply_relabeling.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦           test_series_apply.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦           test_series_apply_relabeling.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   test_categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetime64.py
+¦   ¦       ¦   ¦   ¦   ¦   test_interval.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   test_object.py
+¦   ¦       ¦   ¦   ¦   ¦   test_period.py
+¦   ¦       ¦   ¦   ¦   ¦   test_timedelta64.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   masked_shared.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetimelike.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetimes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ndarray_backed.py
+¦   ¦       ¦   ¦   ¦   ¦   test_period.py
+¦   ¦       ¦   ¦   ¦   ¦   test_timedeltas.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_comparison.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_construction.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_function.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_logical.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reduction.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_repr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_algos.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_analytics.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_map.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_missing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_operators.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_replace.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_repr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sorting.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_subclass.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_take.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_warnings.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_cumulative.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_comparison.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_concat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_construction.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_contains.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_function.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_repr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_numpy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_comparison.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_concat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_construction.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_function.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reduction.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_repr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval_pyarrow.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_overlaps.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arrow_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_function.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_numpy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arrow_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetics.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_combine_concat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dtype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_libsparse.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_unary.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_concat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_string.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_string_arrow.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_cumulative.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   test_conversion.py
+¦   ¦       ¦   ¦   ¦   ¦   test_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   test_misc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_transpose.py
+¦   ¦       ¦   ¦   ¦   ¦   test_unique.py
+¦   ¦       ¦   ¦   ¦   ¦   test_value_counts.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   test_eval.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_config.py
+¦   ¦       ¦   ¦   ¦   ¦   test_localization.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_extract_array.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array.py
+¦   ¦       ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   test_chained_assignment_deprecation.py
+¦   ¦       ¦   ¦   ¦   ¦   test_clip.py
+¦   ¦       ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   test_core_functionalities.py
+¦   ¦       ¦   ¦   ¦   ¦   test_functions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_internals.py
+¦   ¦       ¦   ¦   ¦   ¦   test_interp_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   test_methods.py
+¦   ¦       ¦   ¦   ¦   ¦   test_replace.py
+¦   ¦       ¦   ¦   ¦   ¦   test_setitem.py
+¦   ¦       ¦   ¦   ¦   ¦   test_util.py
+¦   ¦       ¦   ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_datetimeindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_periodindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timedeltaindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_concat.py
+¦   ¦       ¦   ¦   ¦   ¦   test_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_generic.py
+¦   ¦       ¦   ¦   ¦   ¦   test_inference.py
+¦   ¦       ¦   ¦   ¦   ¦   test_missing.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_can_hold_element.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_construct_from_scalar.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_construct_ndarray.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_construct_object_arr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dict_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_downcast.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_find_common_type.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_infer_datetimelike.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_infer_dtype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_maybe_box_native.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_promote.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arrow.py
+¦   ¦       ¦   ¦   ¦   ¦   test_categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_extension.py
+¦   ¦       ¦   ¦   ¦   ¦   test_interval.py
+¦   ¦       ¦   ¦   ¦   ¦   test_masked.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numpy.py
+¦   ¦       ¦   ¦   ¦   ¦   test_period.py
+¦   ¦       ¦   ¦   ¦   ¦   test_sparse.py
+¦   ¦       ¦   ¦   ¦   ¦   test_string.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_array_with_attr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   accumulate.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   casting.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   dim2.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   dtype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   getitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   interface.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   io.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   methods.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   missing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   printing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   reduce.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   reshaping.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   setitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_decimal.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_json.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_list.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_alter_axes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arrow_interface.py
+¦   ¦       ¦   ¦   ¦   ¦   test_block_internals.py
+¦   ¦       ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cumulative.py
+¦   ¦       ¦   ¦   ¦   ¦   test_iteration.py
+¦   ¦       ¦   ¦   ¦   ¦   test_logical_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   test_nonunique_indexes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_npfuncs.py
+¦   ¦       ¦   ¦   ¦   ¦   test_query_eval.py
+¦   ¦       ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_repr.py
+¦   ¦       ¦   ¦   ¦   ¦   test_stack_unstack.py
+¦   ¦       ¦   ¦   ¦   ¦   test_subclass.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ufunc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_unary.py
+¦   ¦       ¦   ¦   ¦   ¦   test_validate.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_from_dict.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_from_records.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_coercion.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_delitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_get.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_getitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_get_value.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_insert.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_mask.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_set_value.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_take.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_where.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_xs.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_add_prefix_suffix.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_align.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_asfreq.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_asof.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_assign.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_at_time.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_between_time.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_clip.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_combine.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_combine_first.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_compare.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_convert_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_copy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_count.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_cov_corr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_describe.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_diff.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dot.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_drop.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_droplevel.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dropna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_drop_duplicates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_duplicated.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_equals.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_explode.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_filter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_first_and_last.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_first_valid_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_get_numeric_data.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_head_tail.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_infer_objects.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_info.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interpolate.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_isetitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_isin.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_is_homogeneous_dtype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_iterrows.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_map.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_matmul.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_nlargest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pct_change.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pipe.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pop.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_quantile.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_rank.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reindex_like.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_rename.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_rename_axis.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reorder_levels.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_replace.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reset_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_round.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sample.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_select_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_set_axis.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_set_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_shift.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_size.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sort_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sort_values.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_swapaxes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_swaplevel.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_csv.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_dict.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_dict_of_blocks.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_numpy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_period.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_records.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_timestamp.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_transpose.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_truncate.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_tz_convert.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_tz_localize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_update.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_values.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_value_counts.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_duplicate_labels.py
+¦   ¦       ¦   ¦   ¦   ¦   test_finalize.py
+¦   ¦       ¦   ¦   ¦   ¦   test_frame.py
+¦   ¦       ¦   ¦   ¦   ¦   test_generic.py
+¦   ¦       ¦   ¦   ¦   ¦   test_label_or_level_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   test_series.py
+¦   ¦       ¦   ¦   ¦   ¦   test_to_xarray.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_all_methods.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_apply.py
+¦   ¦       ¦   ¦   ¦   ¦   test_apply_mutate.py
+¦   ¦       ¦   ¦   ¦   ¦   test_bin_groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   test_categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   test_counting.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cumulative.py
+¦   ¦       ¦   ¦   ¦   ¦   test_filters.py
+¦   ¦       ¦   ¦   ¦   ¦   test_groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   test_groupby_dropna.py
+¦   ¦       ¦   ¦   ¦   ¦   test_groupby_subclass.py
+¦   ¦       ¦   ¦   ¦   ¦   test_grouping.py
+¦   ¦       ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_index_as_string.py
+¦   ¦       ¦   ¦   ¦   ¦   test_libgroupby.py
+¦   ¦       ¦   ¦   ¦   ¦   test_missing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numba.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numeric_only.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pipe.py
+¦   ¦       ¦   ¦   ¦   ¦   test_raises.py
+¦   ¦       ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_timegrouper.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_aggregate.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_cython.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_numba.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_other.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_corrwith.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_describe.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_groupby_shift_diff.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_is_monotonic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_nlargest_nsmallest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_nth.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_quantile.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_rank.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sample.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_size.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_skew.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_value_counts.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_numba.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_transform.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦           test_apply.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦           test_apply_mutate.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_any_index.py
+¦   ¦       ¦   ¦   ¦   ¦   test_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetimelike.py
+¦   ¦       ¦   ¦   ¦   ¦   test_engines.py
+¦   ¦       ¦   ¦   ¦   ¦   test_frozen.py
+¦   ¦       ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_index_new.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numpy_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   test_old_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   test_subclass.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pickle.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reshape.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_where.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_append.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_category.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_equals.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_map.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦           test_append.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_drop_duplicates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_equals.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_is_monotonic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_nat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sort_values.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_value_counts.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_date_range.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_freq_attr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_iter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_npfuncs.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_partial_slicing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pickle.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_scalar_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timezones.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_asof.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_delete.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_factorize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_insert.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_isocalendar.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_map.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_normalize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_repeat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_resolution.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_round.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_shift.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_snap.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_frame.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_julian_date.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_period.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_pydatetime.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_series.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_tz_convert.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_tz_localize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_unique.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_equals.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval_range.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval_tree.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pickle.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_analytics.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_conversion.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_copy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_drop.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_duplicates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_equivalence.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_get_level_values.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_get_set.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_integrity.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_isin.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_lexsort.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_missing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_monotonic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_names.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_partial_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pickle.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reshape.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sorting.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_take.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_freq_attr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_monotonic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_partial_slicing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_period.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_period_range.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pickle.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_resolution.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_scalar_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_searchsorted.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_tools.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_asfreq.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_factorize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_insert.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_is_full.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_repeat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_shift.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_timestamp.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_range.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_delete.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_freq_attr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pickle.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_scalar_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_searchsorted.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setops.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timedelta.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timedelta_range.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_factorize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_insert.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_repeat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_shift.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_at.py
+¦   ¦       ¦   ¦   ¦   ¦   test_categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   test_chaining_and_caching.py
+¦   ¦       ¦   ¦   ¦   ¦   test_check_indexer.py
+¦   ¦       ¦   ¦   ¦   ¦   test_coercion.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_floats.py
+¦   ¦       ¦   ¦   ¦   ¦   test_iat.py
+¦   ¦       ¦   ¦   ¦   ¦   test_iloc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_indexers.py
+¦   ¦       ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_loc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_na_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_partial.py
+¦   ¦       ¦   ¦   ¦   ¦   test_scalar.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval_new.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_chaining_and_caching.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_getitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_iloc.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing_slow.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_loc.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_multiindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_partial.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_slice.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sorted.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_impl.py
+¦   ¦       ¦   ¦   ¦   ¦   test_spec_conformance.py
+¦   ¦       ¦   ¦   ¦   ¦   test_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_internals.py
+¦   ¦       ¦   ¦   ¦   ¦   test_managers.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   generate_legacy_storage_files.py
+¦   ¦       ¦   ¦   ¦   ¦   test_clipboard.py
+¦   ¦       ¦   ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_compression.py
+¦   ¦       ¦   ¦   ¦   ¦   test_feather.py
+¦   ¦       ¦   ¦   ¦   ¦   test_fsspec.py
+¦   ¦       ¦   ¦   ¦   ¦   test_gbq.py
+¦   ¦       ¦   ¦   ¦   ¦   test_gcs.py
+¦   ¦       ¦   ¦   ¦   ¦   test_html.py
+¦   ¦       ¦   ¦   ¦   ¦   test_http_headers.py
+¦   ¦       ¦   ¦   ¦   ¦   test_orc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_parquet.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pickle.py
+¦   ¦       ¦   ¦   ¦   ¦   test_s3.py
+¦   ¦       ¦   ¦   ¦   ¦   test_spss.py
+¦   ¦       ¦   ¦   ¦   ¦   test_sql.py
+¦   ¦       ¦   ¦   ¦   ¦   test_stata.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_odf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_odswriter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_openpyxl.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_readers.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_style.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_writers.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_xlrd.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_xlsxwriter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_console.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_css.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_eng_formatting.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_format.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_ipython_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_printing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_csv.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_excel.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_html.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_latex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_markdown.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_string.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_bar.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_exceptions.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_format.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_highlight.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_html.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_matplotlib.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_non_unique.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_style.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_tooltip.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_latex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_string.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_compression.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_deprecated_kwargs.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_json_table_schema.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_json_table_schema_ext_dtype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_normalize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pandas.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_readlines.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_ujson.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_comment.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_compression.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_concatenate_chunks.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_converters.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_c_parser_only.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dialect.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_encoding.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_header.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_index_col.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_mangle_dupes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_multi_thread.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_na_values.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_network.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_parse_dates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_python_parser_only.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_quoting.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_read_fwf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_skiprows.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_textreader.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_unsupported.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_upcast.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_chunksize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_common_basic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_data_list.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_decimal.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_file_buffer_url.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_float.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_inf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_ints.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_iterator.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_read_errors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_verbose.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_dtypes_basic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_empty.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_parse_dates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_strings.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_usecols_basic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_append.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_complex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_errors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_file_handling.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_keys.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_put.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pytables_missing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_read.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_retain_attributes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_round_trip.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_select.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_store.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_subclass.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timezones.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_time_series.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦           test_append.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_byteswap.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sas.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sas7bdat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_xport.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_xml.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_xml.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_xml_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_hashtable.py
+¦   ¦       ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   test_lib.py
+¦   ¦       ¦   ¦   ¦   ¦   test_libalgos.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_backend.py
+¦   ¦       ¦   ¦   ¦   ¦   test_boxplot_method.py
+¦   ¦       ¦   ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   ¦   test_converter.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetimelike.py
+¦   ¦       ¦   ¦   ¦   ¦   test_groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   test_hist_method.py
+¦   ¦       ¦   ¦   ¦   ¦   test_misc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_series.py
+¦   ¦       ¦   ¦   ¦   ¦   test_style.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_frame.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_frame_color.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_frame_groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_frame_legend.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_frame_subplots.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_hist_box_by.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_stat_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_base.py
+¦   ¦       ¦   ¦   ¦   ¦   test_datetime_index.py
+¦   ¦       ¦   ¦   ¦   ¦   test_period_index.py
+¦   ¦       ¦   ¦   ¦   ¦   test_resampler_grouper.py
+¦   ¦       ¦   ¦   ¦   ¦   test_resample_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_timedelta.py
+¦   ¦       ¦   ¦   ¦   ¦   test_time_grouper.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_crosstab.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cut.py
+¦   ¦       ¦   ¦   ¦   ¦   test_from_dummies.py
+¦   ¦       ¦   ¦   ¦   ¦   test_get_dummies.py
+¦   ¦       ¦   ¦   ¦   ¦   test_melt.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pivot.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pivot_multilevel.py
+¦   ¦       ¦   ¦   ¦   ¦   test_qcut.py
+¦   ¦       ¦   ¦   ¦   ¦   test_union_categoricals.py
+¦   ¦       ¦   ¦   ¦   ¦   test_util.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_append.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_append_common.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_categorical.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_concat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dataframe.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_datetimes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_empty.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_invalid.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_series.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sort.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦           test_append.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦           test_append_common.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_join.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_merge.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_merge_asof.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_merge_cross.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_merge_index_as_string.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_merge_ordered.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_multi.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_nat.py
+¦   ¦       ¦   ¦   ¦   ¦   test_na_scalar.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_contains.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interval.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_overlaps.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_asfreq.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_period.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timedelta.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_as_unit.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_round.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_comparisons.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timestamp.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_timezones.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_as_unit.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_normalize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_replace.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_round.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_timestamp_method.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_julian_date.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_to_pydatetime.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_tz_convert.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   test_tz_localize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_arithmetic.py
+¦   ¦       ¦   ¦   ¦   ¦   test_constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cumulative.py
+¦   ¦       ¦   ¦   ¦   ¦   test_formats.py
+¦   ¦       ¦   ¦   ¦   ¦   test_iteration.py
+¦   ¦       ¦   ¦   ¦   ¦   test_logical_ops.py
+¦   ¦       ¦   ¦   ¦   ¦   test_missing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_npfuncs.py
+¦   ¦       ¦   ¦   ¦   ¦   test_reductions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_subclass.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ufunc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_unary.py
+¦   ¦       ¦   ¦   ¦   ¦   test_validate.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_cat_accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dt_accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_list_accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sparse_accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_struct_accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_str_accessor.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_delitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_get.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_getitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_indexing.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_mask.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_setitem.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_set_value.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_take.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_where.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_xs.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_add_prefix_suffix.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_align.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_argsort.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_asof.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_astype.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_autocorr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_between.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_case_when.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_clip.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_combine.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_combine_first.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_compare.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_convert_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_copy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_count.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_cov_corr.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_describe.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_diff.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_drop.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dropna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_drop_duplicates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_duplicated.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_equals.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_explode.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_fillna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_get_numeric_data.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_head_tail.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_infer_objects.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_info.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_interpolate.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_isin.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_isna.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_is_monotonic.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_is_unique.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_item.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_map.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_matmul.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_nlargest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_nunique.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pct_change.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_pop.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_quantile.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_rank.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reindex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reindex_like.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_rename.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_rename_axis.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_repeat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_replace.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_reset_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_round.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_searchsorted.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_set_name.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_size.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sort_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_sort_values.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_tolist.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_csv.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_dict.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_frame.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_to_numpy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_truncate.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_tz_localize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_unique.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_unstack.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_update.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_values.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_value_counts.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_view.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_case_justify.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cat.py
+¦   ¦       ¦   ¦   ¦   ¦   test_extract.py
+¦   ¦       ¦   ¦   ¦   ¦   test_find_replace.py
+¦   ¦       ¦   ¦   ¦   ¦   test_get_dummies.py
+¦   ¦       ¦   ¦   ¦   ¦   test_split_partition.py
+¦   ¦       ¦   ¦   ¦   ¦   test_strings.py
+¦   ¦       ¦   ¦   ¦   ¦   test_string_array.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_to_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_to_numeric.py
+¦   ¦       ¦   ¦   ¦   ¦   test_to_time.py
+¦   ¦       ¦   ¦   ¦   ¦   test_to_timedelta.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_frequencies.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_freq_code.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_inference.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_calendar.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_federal.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_holiday.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_observance.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   common.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_business_day.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_business_hour.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_business_month.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_business_quarter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_business_year.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_common.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_custom_business_day.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_custom_business_hour.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_custom_business_month.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_dst.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_easter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_fiscal.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_index.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_month.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_offsets.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_offsets_properties.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_quarter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_ticks.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_week.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_year.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_array_to_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ccalendar.py
+¦   ¦       ¦   ¦   ¦   ¦   test_conversion.py
+¦   ¦       ¦   ¦   ¦   ¦   test_fields.py
+¦   ¦       ¦   ¦   ¦   ¦   test_libfrequencies.py
+¦   ¦       ¦   ¦   ¦   ¦   test_liboffsets.py
+¦   ¦       ¦   ¦   ¦   ¦   test_npy_units.py
+¦   ¦       ¦   ¦   ¦   ¦   test_np_datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_parse_iso8601.py
+¦   ¦       ¦   ¦   ¦   ¦   test_parsing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_period.py
+¦   ¦       ¦   ¦   ¦   ¦   test_resolution.py
+¦   ¦       ¦   ¦   ¦   ¦   test_strptime.py
+¦   ¦       ¦   ¦   ¦   ¦   test_timedeltas.py
+¦   ¦       ¦   ¦   ¦   ¦   test_timezones.py
+¦   ¦       ¦   ¦   ¦   ¦   test_to_offset.py
+¦   ¦       ¦   ¦   ¦   ¦   test_tzconversion.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_almost_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_attr_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_categorical_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_extension_array_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_frame_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_index_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_interval_array_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_numpy_array_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_produces_warning.py
+¦   ¦       ¦   ¦   ¦   ¦   test_assert_series_equal.py
+¦   ¦       ¦   ¦   ¦   ¦   test_deprecate.py
+¦   ¦       ¦   ¦   ¦   ¦   test_deprecate_kwarg.py
+¦   ¦       ¦   ¦   ¦   ¦   test_deprecate_nonkeyword_arguments.py
+¦   ¦       ¦   ¦   ¦   ¦   test_doc.py
+¦   ¦       ¦   ¦   ¦   ¦   test_hashing.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numba.py
+¦   ¦       ¦   ¦   ¦   ¦   test_rewrite_warning.py
+¦   ¦       ¦   ¦   ¦   ¦   test_shares_memory.py
+¦   ¦       ¦   ¦   ¦   ¦   test_show_versions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_util.py
+¦   ¦       ¦   ¦   ¦   ¦   test_validate_args.py
+¦   ¦       ¦   ¦   ¦   ¦   test_validate_args_and_kwargs.py
+¦   ¦       ¦   ¦   ¦   ¦   test_validate_inclusive.py
+¦   ¦       ¦   ¦   ¦   ¦   test_validate_kwargs.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   test_api.py
+¦   ¦       ¦   ¦   ¦   ¦   test_apply.py
+¦   ¦       ¦   ¦   ¦   ¦   test_base_indexer.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cython_aggregations.py
+¦   ¦       ¦   ¦   ¦   ¦   test_dtypes.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ewm.py
+¦   ¦       ¦   ¦   ¦   ¦   test_expanding.py
+¦   ¦       ¦   ¦   ¦   ¦   test_groupby.py
+¦   ¦       ¦   ¦   ¦   ¦   test_numba.py
+¦   ¦       ¦   ¦   ¦   ¦   test_online.py
+¦   ¦       ¦   ¦   ¦   ¦   test_pairwise.py
+¦   ¦       ¦   ¦   ¦   ¦   test_rolling.py
+¦   ¦       ¦   ¦   ¦   ¦   test_rolling_functions.py
+¦   ¦       ¦   ¦   ¦   ¦   test_rolling_quantile.py
+¦   ¦       ¦   ¦   ¦   ¦   test_rolling_skew_kurt.py
+¦   ¦       ¦   ¦   ¦   ¦   test_timeseries_window.py
+¦   ¦       ¦   ¦   ¦   ¦   test_win_type.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   conftest.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_moments_consistency_ewm.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_moments_consistency_expanding.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   test_moments_consistency_rolling.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦           test_apply.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   frequencies.py
+¦   ¦       ¦   ¦   ¦   holiday.py
+¦   ¦       ¦   ¦   ¦   offsets.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _decorators.py
+¦   ¦       ¦   ¦   ¦   _doctools.py
+¦   ¦       ¦   ¦   ¦   _exceptions.py
+¦   ¦       ¦   ¦   ¦   _print_versions.py
+¦   ¦       ¦   ¦   ¦   _tester.py
+¦   ¦       ¦   ¦   ¦   _test_decorators.py
+¦   ¦       ¦   ¦   ¦   _validators.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   config.py
+¦   ¦       ¦   ¦   ¦   dates.py
+¦   ¦       ¦   ¦   ¦   display.py
+¦   ¦       ¦   ¦   ¦   localization.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   asserters.py
+¦   ¦       ¦   ¦   ¦   compat.py
+¦   ¦       ¦   ¦   ¦   contexts.py
+¦   ¦       ¦   ¦   ¦   _hypothesis.py
+¦   ¦       ¦   ¦   ¦   _io.py
+¦   ¦       ¦   ¦   ¦   _warnings.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   __pip-runner__.py
+¦   ¦       ¦   ¦   ¦   build_env.py
+¦   ¦       ¦   ¦   ¦   cache.py
+¦   ¦       ¦   ¦   ¦   configuration.py
+¦   ¦       ¦   ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   ¦   main.py
+¦   ¦       ¦   ¦   ¦   pyproject.py
+¦   ¦       ¦   ¦   ¦   self_outdated_check.py
+¦   ¦       ¦   ¦   ¦   wheel_builder.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   autocompletion.py
+¦   ¦       ¦   ¦   ¦   ¦   base_command.py
+¦   ¦       ¦   ¦   ¦   ¦   cmdoptions.py
+¦   ¦       ¦   ¦   ¦   ¦   command_context.py
+¦   ¦       ¦   ¦   ¦   ¦   index_command.py
+¦   ¦       ¦   ¦   ¦   ¦   main.py
+¦   ¦       ¦   ¦   ¦   ¦   main_parser.py
+¦   ¦       ¦   ¦   ¦   ¦   parser.py
+¦   ¦       ¦   ¦   ¦   ¦   progress_bars.py
+¦   ¦       ¦   ¦   ¦   ¦   req_command.py
+¦   ¦       ¦   ¦   ¦   ¦   spinners.py
+¦   ¦       ¦   ¦   ¦   ¦   status_codes.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   cache.py
+¦   ¦       ¦   ¦   ¦   ¦   check.py
+¦   ¦       ¦   ¦   ¦   ¦   completion.py
+¦   ¦       ¦   ¦   ¦   ¦   configuration.py
+¦   ¦       ¦   ¦   ¦   ¦   debug.py
+¦   ¦       ¦   ¦   ¦   ¦   download.py
+¦   ¦       ¦   ¦   ¦   ¦   freeze.py
+¦   ¦       ¦   ¦   ¦   ¦   hash.py
+¦   ¦       ¦   ¦   ¦   ¦   help.py
+¦   ¦       ¦   ¦   ¦   ¦   index.py
+¦   ¦       ¦   ¦   ¦   ¦   inspect.py
+¦   ¦       ¦   ¦   ¦   ¦   install.py
+¦   ¦       ¦   ¦   ¦   ¦   list.py
+¦   ¦       ¦   ¦   ¦   ¦   search.py
+¦   ¦       ¦   ¦   ¦   ¦   show.py
+¦   ¦       ¦   ¦   ¦   ¦   uninstall.py
+¦   ¦       ¦   ¦   ¦   ¦   wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   installed.py
+¦   ¦       ¦   ¦   ¦   ¦   sdist.py
+¦   ¦       ¦   ¦   ¦   ¦   wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   collector.py
+¦   ¦       ¦   ¦   ¦   ¦   package_finder.py
+¦   ¦       ¦   ¦   ¦   ¦   sources.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   _distutils.py
+¦   ¦       ¦   ¦   ¦   ¦   _sysconfig.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   pkg_resources.py
+¦   ¦       ¦   ¦   ¦   ¦   _json.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _compat.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _dists.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _envs.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   candidate.py
+¦   ¦       ¦   ¦   ¦   ¦   direct_url.py
+¦   ¦       ¦   ¦   ¦   ¦   format_control.py
+¦   ¦       ¦   ¦   ¦   ¦   index.py
+¦   ¦       ¦   ¦   ¦   ¦   installation_report.py
+¦   ¦       ¦   ¦   ¦   ¦   link.py
+¦   ¦       ¦   ¦   ¦   ¦   scheme.py
+¦   ¦       ¦   ¦   ¦   ¦   search_scope.py
+¦   ¦       ¦   ¦   ¦   ¦   selection_prefs.py
+¦   ¦       ¦   ¦   ¦   ¦   target_python.py
+¦   ¦       ¦   ¦   ¦   ¦   wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   auth.py
+¦   ¦       ¦   ¦   ¦   ¦   cache.py
+¦   ¦       ¦   ¦   ¦   ¦   download.py
+¦   ¦       ¦   ¦   ¦   ¦   lazy_wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   session.py
+¦   ¦       ¦   ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   ¦   xmlrpc.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   check.py
+¦   ¦       ¦   ¦   ¦   ¦   freeze.py
+¦   ¦       ¦   ¦   ¦   ¦   prepare.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   build_tracker.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   metadata.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   metadata_editable.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   metadata_legacy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   wheel_editable.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   wheel_legacy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   editable_legacy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   constructors.py
+¦   ¦       ¦   ¦   ¦   ¦   req_file.py
+¦   ¦       ¦   ¦   ¦   ¦   req_install.py
+¦   ¦       ¦   ¦   ¦   ¦   req_set.py
+¦   ¦       ¦   ¦   ¦   ¦   req_uninstall.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   resolver.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   candidates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   factory.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   found_candidates.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   provider.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   reporter.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   requirements.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   resolver.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   appdirs.py
+¦   ¦       ¦   ¦   ¦   ¦   compat.py
+¦   ¦       ¦   ¦   ¦   ¦   compatibility_tags.py
+¦   ¦       ¦   ¦   ¦   ¦   datetime.py
+¦   ¦       ¦   ¦   ¦   ¦   deprecation.py
+¦   ¦       ¦   ¦   ¦   ¦   direct_url_helpers.py
+¦   ¦       ¦   ¦   ¦   ¦   egg_link.py
+¦   ¦       ¦   ¦   ¦   ¦   encoding.py
+¦   ¦       ¦   ¦   ¦   ¦   entrypoints.py
+¦   ¦       ¦   ¦   ¦   ¦   filesystem.py
+¦   ¦       ¦   ¦   ¦   ¦   filetypes.py
+¦   ¦       ¦   ¦   ¦   ¦   glibc.py
+¦   ¦       ¦   ¦   ¦   ¦   hashes.py
+¦   ¦       ¦   ¦   ¦   ¦   logging.py
+¦   ¦       ¦   ¦   ¦   ¦   misc.py
+¦   ¦       ¦   ¦   ¦   ¦   packaging.py
+¦   ¦       ¦   ¦   ¦   ¦   retry.py
+¦   ¦       ¦   ¦   ¦   ¦   setuptools_build.py
+¦   ¦       ¦   ¦   ¦   ¦   subprocess.py
+¦   ¦       ¦   ¦   ¦   ¦   temp_dir.py
+¦   ¦       ¦   ¦   ¦   ¦   unpacking.py
+¦   ¦       ¦   ¦   ¦   ¦   urls.py
+¦   ¦       ¦   ¦   ¦   ¦   virtualenv.py
+¦   ¦       ¦   ¦   ¦   ¦   wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   _jaraco_text.py
+¦   ¦       ¦   ¦   ¦   ¦   _log.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦           appdirs.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   bazaar.py
+¦   ¦       ¦   ¦   ¦   ¦   git.py
+¦   ¦       ¦   ¦   ¦   ¦   mercurial.py
+¦   ¦       ¦   ¦   ¦   ¦   subversion.py
+¦   ¦       ¦   ¦   ¦   ¦   versioncontrol.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   typing_extensions.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   adapter.py
+¦   ¦       ¦   ¦   ¦   ¦   cache.py
+¦   ¦       ¦   ¦   ¦   ¦   controller.py
+¦   ¦       ¦   ¦   ¦   ¦   filewrapper.py
+¦   ¦       ¦   ¦   ¦   ¦   heuristics.py
+¦   ¦       ¦   ¦   ¦   ¦   serialize.py
+¦   ¦       ¦   ¦   ¦   ¦   wrapper.py
+¦   ¦       ¦   ¦   ¦   ¦   _cmd.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   file_cache.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   redis_cache.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦           filewrapper.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦           wrapper.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   core.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   ¦   compat.py
+¦   ¦       ¦   ¦   ¦   ¦   database.py
+¦   ¦       ¦   ¦   ¦   ¦   index.py
+¦   ¦       ¦   ¦   ¦   ¦   locators.py
+¦   ¦       ¦   ¦   ¦   ¦   manifest.py
+¦   ¦       ¦   ¦   ¦   ¦   markers.py
+¦   ¦       ¦   ¦   ¦   ¦   metadata.py
+¦   ¦       ¦   ¦   ¦   ¦   resources.py
+¦   ¦       ¦   ¦   ¦   ¦   scripts.py
+¦   ¦       ¦   ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   ¦   version.py
+¦   ¦       ¦   ¦   ¦   ¦   wheel.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   distro.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   ¦   codec.py
+¦   ¦       ¦   ¦   ¦   ¦   compat.py
+¦   ¦       ¦   ¦   ¦   ¦   core.py
+¦   ¦       ¦   ¦   ¦   ¦   idnadata.py
+¦   ¦       ¦   ¦   ¦   ¦   intranges.py
+¦   ¦       ¦   ¦   ¦   ¦   package_data.py
+¦   ¦       ¦   ¦   ¦   ¦   uts46data.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   ¦   ¦   ext.py
+¦   ¦       ¦   ¦   ¦   ¦   fallback.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   markers.py
+¦   ¦       ¦   ¦   ¦   ¦   metadata.py
+¦   ¦       ¦   ¦   ¦   ¦   requirements.py
+¦   ¦       ¦   ¦   ¦   ¦   specifiers.py
+¦   ¦       ¦   ¦   ¦   ¦   tags.py
+¦   ¦       ¦   ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   ¦   version.py
+¦   ¦       ¦   ¦   ¦   ¦   _elffile.py
+¦   ¦       ¦   ¦   ¦   ¦   _manylinux.py
+¦   ¦       ¦   ¦   ¦   ¦   _musllinux.py
+¦   ¦       ¦   ¦   ¦   ¦   _parser.py
+¦   ¦       ¦   ¦   ¦   ¦   _structures.py
+¦   ¦       ¦   ¦   ¦   ¦   _tokenizer.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   android.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   macos.py
+¦   ¦       ¦   ¦   ¦   ¦   unix.py
+¦   ¦       ¦   ¦   ¦   ¦   version.py
+¦   ¦       ¦   ¦   ¦   ¦   windows.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   ¦   cmdline.py
+¦   ¦       ¦   ¦   ¦   ¦   console.py
+¦   ¦       ¦   ¦   ¦   ¦   filter.py
+¦   ¦       ¦   ¦   ¦   ¦   formatter.py
+¦   ¦       ¦   ¦   ¦   ¦   lexer.py
+¦   ¦       ¦   ¦   ¦   ¦   modeline.py
+¦   ¦       ¦   ¦   ¦   ¦   plugin.py
+¦   ¦       ¦   ¦   ¦   ¦   regexopt.py
+¦   ¦       ¦   ¦   ¦   ¦   scanner.py
+¦   ¦       ¦   ¦   ¦   ¦   sphinxext.py
+¦   ¦       ¦   ¦   ¦   ¦   style.py
+¦   ¦       ¦   ¦   ¦   ¦   token.py
+¦   ¦       ¦   ¦   ¦   ¦   unistring.py
+¦   ¦       ¦   ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   bbcode.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   groff.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   html.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   img.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   irc.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   latex.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   other.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   pangomarkup.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   rtf.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   svg.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   terminal.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   terminal256.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _mapping.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦           _mapping.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   ¦   python.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _mapping.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦           _mapping.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _mapping.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦           _mapping.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   _compat.py
+¦   ¦       ¦   ¦   ¦   ¦   _impl.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _in_process.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   adapters.py
+¦   ¦       ¦   ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   ¦   auth.py
+¦   ¦       ¦   ¦   ¦   ¦   certs.py
+¦   ¦       ¦   ¦   ¦   ¦   compat.py
+¦   ¦       ¦   ¦   ¦   ¦   cookies.py
+¦   ¦       ¦   ¦   ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   ¦   ¦   help.py
+¦   ¦       ¦   ¦   ¦   ¦   hooks.py
+¦   ¦       ¦   ¦   ¦   ¦   models.py
+¦   ¦       ¦   ¦   ¦   ¦   packages.py
+¦   ¦       ¦   ¦   ¦   ¦   sessions.py
+¦   ¦       ¦   ¦   ¦   ¦   status_codes.py
+¦   ¦       ¦   ¦   ¦   ¦   structures.py
+¦   ¦       ¦   ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   ¦   _internal_utils.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __version__.py
+¦   ¦       ¦   ¦   ¦   ¦   providers.py
+¦   ¦       ¦   ¦   ¦   ¦   reporters.py
+¦   ¦       ¦   ¦   ¦   ¦   resolvers.py
+¦   ¦       ¦   ¦   ¦   ¦   structs.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   collections_abc.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   abc.py
+¦   ¦       ¦   ¦   ¦   ¦   align.py
+¦   ¦       ¦   ¦   ¦   ¦   ansi.py
+¦   ¦       ¦   ¦   ¦   ¦   bar.py
+¦   ¦       ¦   ¦   ¦   ¦   box.py
+¦   ¦       ¦   ¦   ¦   ¦   cells.py
+¦   ¦       ¦   ¦   ¦   ¦   color.py
+¦   ¦       ¦   ¦   ¦   ¦   color_triplet.py
+¦   ¦       ¦   ¦   ¦   ¦   columns.py
+¦   ¦       ¦   ¦   ¦   ¦   console.py
+¦   ¦       ¦   ¦   ¦   ¦   constrain.py
+¦   ¦       ¦   ¦   ¦   ¦   containers.py
+¦   ¦       ¦   ¦   ¦   ¦   control.py
+¦   ¦       ¦   ¦   ¦   ¦   default_styles.py
+¦   ¦       ¦   ¦   ¦   ¦   diagnose.py
+¦   ¦       ¦   ¦   ¦   ¦   emoji.py
+¦   ¦       ¦   ¦   ¦   ¦   errors.py
+¦   ¦       ¦   ¦   ¦   ¦   filesize.py
+¦   ¦       ¦   ¦   ¦   ¦   file_proxy.py
+¦   ¦       ¦   ¦   ¦   ¦   highlighter.py
+¦   ¦       ¦   ¦   ¦   ¦   json.py
+¦   ¦       ¦   ¦   ¦   ¦   jupyter.py
+¦   ¦       ¦   ¦   ¦   ¦   layout.py
+¦   ¦       ¦   ¦   ¦   ¦   live.py
+¦   ¦       ¦   ¦   ¦   ¦   live_render.py
+¦   ¦       ¦   ¦   ¦   ¦   logging.py
+¦   ¦       ¦   ¦   ¦   ¦   markup.py
+¦   ¦       ¦   ¦   ¦   ¦   measure.py
+¦   ¦       ¦   ¦   ¦   ¦   padding.py
+¦   ¦       ¦   ¦   ¦   ¦   pager.py
+¦   ¦       ¦   ¦   ¦   ¦   palette.py
+¦   ¦       ¦   ¦   ¦   ¦   panel.py
+¦   ¦       ¦   ¦   ¦   ¦   pretty.py
+¦   ¦       ¦   ¦   ¦   ¦   progress.py
+¦   ¦       ¦   ¦   ¦   ¦   progress_bar.py
+¦   ¦       ¦   ¦   ¦   ¦   prompt.py
+¦   ¦       ¦   ¦   ¦   ¦   protocol.py
+¦   ¦       ¦   ¦   ¦   ¦   region.py
+¦   ¦       ¦   ¦   ¦   ¦   repr.py
+¦   ¦       ¦   ¦   ¦   ¦   rule.py
+¦   ¦       ¦   ¦   ¦   ¦   scope.py
+¦   ¦       ¦   ¦   ¦   ¦   screen.py
+¦   ¦       ¦   ¦   ¦   ¦   segment.py
+¦   ¦       ¦   ¦   ¦   ¦   spinner.py
+¦   ¦       ¦   ¦   ¦   ¦   status.py
+¦   ¦       ¦   ¦   ¦   ¦   style.py
+¦   ¦       ¦   ¦   ¦   ¦   styled.py
+¦   ¦       ¦   ¦   ¦   ¦   syntax.py
+¦   ¦       ¦   ¦   ¦   ¦   table.py
+¦   ¦       ¦   ¦   ¦   ¦   terminal_theme.py
+¦   ¦       ¦   ¦   ¦   ¦   text.py
+¦   ¦       ¦   ¦   ¦   ¦   theme.py
+¦   ¦       ¦   ¦   ¦   ¦   themes.py
+¦   ¦       ¦   ¦   ¦   ¦   traceback.py
+¦   ¦       ¦   ¦   ¦   ¦   tree.py
+¦   ¦       ¦   ¦   ¦   ¦   _cell_widths.py
+¦   ¦       ¦   ¦   ¦   ¦   _emoji_codes.py
+¦   ¦       ¦   ¦   ¦   ¦   _emoji_replace.py
+¦   ¦       ¦   ¦   ¦   ¦   _export_format.py
+¦   ¦       ¦   ¦   ¦   ¦   _extension.py
+¦   ¦       ¦   ¦   ¦   ¦   _fileno.py
+¦   ¦       ¦   ¦   ¦   ¦   _inspect.py
+¦   ¦       ¦   ¦   ¦   ¦   _log_render.py
+¦   ¦       ¦   ¦   ¦   ¦   _loop.py
+¦   ¦       ¦   ¦   ¦   ¦   _null_file.py
+¦   ¦       ¦   ¦   ¦   ¦   _palettes.py
+¦   ¦       ¦   ¦   ¦   ¦   _pick.py
+¦   ¦       ¦   ¦   ¦   ¦   _ratio.py
+¦   ¦       ¦   ¦   ¦   ¦   _spinners.py
+¦   ¦       ¦   ¦   ¦   ¦   _stack.py
+¦   ¦       ¦   ¦   ¦   ¦   _timer.py
+¦   ¦       ¦   ¦   ¦   ¦   _win32_console.py
+¦   ¦       ¦   ¦   ¦   ¦   _windows.py
+¦   ¦       ¦   ¦   ¦   ¦   _windows_renderer.py
+¦   ¦       ¦   ¦   ¦   ¦   _wrap.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __main__.py
+¦   ¦       ¦   ¦   ¦   ¦   _parser.py
+¦   ¦       ¦   ¦   ¦   ¦   _re.py
+¦   ¦       ¦   ¦   ¦   ¦   _types.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   _api.py
+¦   ¦       ¦   ¦   ¦   ¦   _macos.py
+¦   ¦       ¦   ¦   ¦   ¦   _openssl.py
+¦   ¦       ¦   ¦   ¦   ¦   _ssl_constants.py
+¦   ¦       ¦   ¦   ¦   ¦   _windows.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   connection.py
+¦   ¦       ¦   ¦   ¦   ¦   connectionpool.py
+¦   ¦       ¦   ¦   ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   ¦   ¦   fields.py
+¦   ¦       ¦   ¦   ¦   ¦   filepost.py
+¦   ¦       ¦   ¦   ¦   ¦   poolmanager.py
+¦   ¦       ¦   ¦   ¦   ¦   request.py
+¦   ¦       ¦   ¦   ¦   ¦   response.py
+¦   ¦       ¦   ¦   ¦   ¦   _collections.py
+¦   ¦       ¦   ¦   ¦   ¦   _version.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   appengine.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ntlmpool.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   pyopenssl.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   securetransport.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   socks.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   _appengine_environ.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   bindings.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   low_level.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦           appengine.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦           _appengine_environ.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   ¦   ¦   six.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   makefile.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   weakref_finalize.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   connection.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   proxy.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   queue.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   request.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   response.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   retry.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ssltransport.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ssl_.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   ssl_match_hostname.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   timeout.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   url.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   wait.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ast_transforms.py
+¦   ¦       ¦   ¦   c_ast.py
+¦   ¦       ¦   ¦   c_generator.py
+¦   ¦       ¦   ¦   c_lexer.py
+¦   ¦       ¦   ¦   c_parser.py
+¦   ¦       ¦   ¦   lextab.py
+¦   ¦       ¦   ¦   plyparser.py
+¦   ¦       ¦   ¦   yacctab.py
+¦   ¦       ¦   ¦   _ast_gen.py
+¦   ¦       ¦   ¦   _build_tables.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   cpp.py
+¦   ¦       ¦   ¦   ¦   ctokens.py
+¦   ¦       ¦   ¦   ¦   lex.py
+¦   ¦       ¦   ¦   ¦   yacc.py
+¦   ¦       ¦   ¦   ¦   ygen.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   charset.py
+¦   ¦       ¦   ¦   connections.py
+¦   ¦       ¦   ¦   converters.py
+¦   ¦       ¦   ¦   cursors.py
+¦   ¦       ¦   ¦   err.py
+¦   ¦       ¦   ¦   optionfile.py
+¦   ¦       ¦   ¦   protocol.py
+¦   ¦       ¦   ¦   times.py
+¦   ¦       ¦   ¦   _auth.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   CLIENT.py
+¦   ¦       ¦   ¦   ¦   COMMAND.py
+¦   ¦       ¦   ¦   ¦   CR.py
+¦   ¦       ¦   ¦   ¦   ER.py
+¦   ¦       ¦   ¦   ¦   FIELD_TYPE.py
+¦   ¦       ¦   ¦   ¦   FLAG.py
+¦   ¦       ¦   ¦   ¦   SERVER_STATUS.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   lazy.py
+¦   ¦       ¦   ¦   reference.py
+¦   ¦       ¦   ¦   tzfile.py
+¦   ¦       ¦   ¦   tzinfo.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   events.py
+¦   ¦       ¦   ¦   exc.py
+¦   ¦       ¦   ¦   inspection.py
+¦   ¦       ¦   ¦   log.py
+¦   ¦       ¦   ¦   schema.py
+¦   ¦       ¦   ¦   types.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   aioodbc.py
+¦   ¦       ¦   ¦   ¦   asyncio.py
+¦   ¦       ¦   ¦   ¦   pyodbc.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   _typing.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   aioodbc.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   information_schema.py
+¦   ¦       ¦   ¦   ¦   ¦   json.py
+¦   ¦       ¦   ¦   ¦   ¦   provision.py
+¦   ¦       ¦   ¦   ¦   ¦   pymssql.py
+¦   ¦       ¦   ¦   ¦   ¦   pyodbc.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   aiomysql.py
+¦   ¦       ¦   ¦   ¦   ¦   asyncmy.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   cymysql.py
+¦   ¦       ¦   ¦   ¦   ¦   dml.py
+¦   ¦       ¦   ¦   ¦   ¦   enumerated.py
+¦   ¦       ¦   ¦   ¦   ¦   expression.py
+¦   ¦       ¦   ¦   ¦   ¦   json.py
+¦   ¦       ¦   ¦   ¦   ¦   mariadb.py
+¦   ¦       ¦   ¦   ¦   ¦   mariadbconnector.py
+¦   ¦       ¦   ¦   ¦   ¦   mysqlconnector.py
+¦   ¦       ¦   ¦   ¦   ¦   mysqldb.py
+¦   ¦       ¦   ¦   ¦   ¦   provision.py
+¦   ¦       ¦   ¦   ¦   ¦   pymysql.py
+¦   ¦       ¦   ¦   ¦   ¦   pyodbc.py
+¦   ¦       ¦   ¦   ¦   ¦   reflection.py
+¦   ¦       ¦   ¦   ¦   ¦   reserved_words.py
+¦   ¦       ¦   ¦   ¦   ¦   types.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   cx_oracle.py
+¦   ¦       ¦   ¦   ¦   ¦   dictionary.py
+¦   ¦       ¦   ¦   ¦   ¦   oracledb.py
+¦   ¦       ¦   ¦   ¦   ¦   provision.py
+¦   ¦       ¦   ¦   ¦   ¦   types.py
+¦   ¦       ¦   ¦   ¦   ¦   vector.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   array.py
+¦   ¦       ¦   ¦   ¦   ¦   asyncpg.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   dml.py
+¦   ¦       ¦   ¦   ¦   ¦   ext.py
+¦   ¦       ¦   ¦   ¦   ¦   hstore.py
+¦   ¦       ¦   ¦   ¦   ¦   json.py
+¦   ¦       ¦   ¦   ¦   ¦   named_types.py
+¦   ¦       ¦   ¦   ¦   ¦   operators.py
+¦   ¦       ¦   ¦   ¦   ¦   pg8000.py
+¦   ¦       ¦   ¦   ¦   ¦   pg_catalog.py
+¦   ¦       ¦   ¦   ¦   ¦   provision.py
+¦   ¦       ¦   ¦   ¦   ¦   psycopg.py
+¦   ¦       ¦   ¦   ¦   ¦   psycopg2.py
+¦   ¦       ¦   ¦   ¦   ¦   psycopg2cffi.py
+¦   ¦       ¦   ¦   ¦   ¦   ranges.py
+¦   ¦       ¦   ¦   ¦   ¦   types.py
+¦   ¦       ¦   ¦   ¦   ¦   _psycopg_common.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   aiosqlite.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   dml.py
+¦   ¦       ¦   ¦   ¦   ¦   json.py
+¦   ¦       ¦   ¦   ¦   ¦   provision.py
+¦   ¦       ¦   ¦   ¦   ¦   pysqlcipher.py
+¦   ¦       ¦   ¦   ¦   ¦   pysqlite.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   characteristics.py
+¦   ¦       ¦   ¦   ¦   create.py
+¦   ¦       ¦   ¦   ¦   cursor.py
+¦   ¦       ¦   ¦   ¦   default.py
+¦   ¦       ¦   ¦   ¦   events.py
+¦   ¦       ¦   ¦   ¦   interfaces.py
+¦   ¦       ¦   ¦   ¦   mock.py
+¦   ¦       ¦   ¦   ¦   processors.py
+¦   ¦       ¦   ¦   ¦   reflection.py
+¦   ¦       ¦   ¦   ¦   result.py
+¦   ¦       ¦   ¦   ¦   row.py
+¦   ¦       ¦   ¦   ¦   strategies.py
+¦   ¦       ¦   ¦   ¦   url.py
+¦   ¦       ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   _py_processors.py
+¦   ¦       ¦   ¦   ¦   _py_row.py
+¦   ¦       ¦   ¦   ¦   _py_util.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   api.py
+¦   ¦       ¦   ¦   ¦   attr.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   legacy.py
+¦   ¦       ¦   ¦   ¦   registry.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   associationproxy.py
+¦   ¦       ¦   ¦   ¦   automap.py
+¦   ¦       ¦   ¦   ¦   baked.py
+¦   ¦       ¦   ¦   ¦   compiler.py
+¦   ¦       ¦   ¦   ¦   horizontal_shard.py
+¦   ¦       ¦   ¦   ¦   hybrid.py
+¦   ¦       ¦   ¦   ¦   indexable.py
+¦   ¦       ¦   ¦   ¦   instrumentation.py
+¦   ¦       ¦   ¦   ¦   mutable.py
+¦   ¦       ¦   ¦   ¦   orderinglist.py
+¦   ¦       ¦   ¦   ¦   serializer.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   engine.py
+¦   ¦       ¦   ¦   ¦   ¦   exc.py
+¦   ¦       ¦   ¦   ¦   ¦   result.py
+¦   ¦       ¦   ¦   ¦   ¦   scoping.py
+¦   ¦       ¦   ¦   ¦   ¦   session.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   extensions.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   apply.py
+¦   ¦       ¦   ¦   ¦   ¦   decl_class.py
+¦   ¦       ¦   ¦   ¦   ¦   infer.py
+¦   ¦       ¦   ¦   ¦   ¦   names.py
+¦   ¦       ¦   ¦   ¦   ¦   plugin.py
+¦   ¦       ¦   ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦           apply.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   engine.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   attributes.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   bulk_persistence.py
+¦   ¦       ¦   ¦   ¦   clsregistry.py
+¦   ¦       ¦   ¦   ¦   collections.py
+¦   ¦       ¦   ¦   ¦   context.py
+¦   ¦       ¦   ¦   ¦   decl_api.py
+¦   ¦       ¦   ¦   ¦   decl_base.py
+¦   ¦       ¦   ¦   ¦   dependency.py
+¦   ¦       ¦   ¦   ¦   descriptor_props.py
+¦   ¦       ¦   ¦   ¦   dynamic.py
+¦   ¦       ¦   ¦   ¦   evaluator.py
+¦   ¦       ¦   ¦   ¦   events.py
+¦   ¦       ¦   ¦   ¦   exc.py
+¦   ¦       ¦   ¦   ¦   identity.py
+¦   ¦       ¦   ¦   ¦   instrumentation.py
+¦   ¦       ¦   ¦   ¦   interfaces.py
+¦   ¦       ¦   ¦   ¦   loading.py
+¦   ¦       ¦   ¦   ¦   mapped_collection.py
+¦   ¦       ¦   ¦   ¦   mapper.py
+¦   ¦       ¦   ¦   ¦   path_registry.py
+¦   ¦       ¦   ¦   ¦   persistence.py
+¦   ¦       ¦   ¦   ¦   properties.py
+¦   ¦       ¦   ¦   ¦   query.py
+¦   ¦       ¦   ¦   ¦   relationships.py
+¦   ¦       ¦   ¦   ¦   scoping.py
+¦   ¦       ¦   ¦   ¦   session.py
+¦   ¦       ¦   ¦   ¦   state.py
+¦   ¦       ¦   ¦   ¦   state_changes.py
+¦   ¦       ¦   ¦   ¦   strategies.py
+¦   ¦       ¦   ¦   ¦   strategy_options.py
+¦   ¦       ¦   ¦   ¦   sync.py
+¦   ¦       ¦   ¦   ¦   unitofwork.py
+¦   ¦       ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   writeonly.py
+¦   ¦       ¦   ¦   ¦   _orm_constructors.py
+¦   ¦       ¦   ¦   ¦   _typing.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦           mapped_collection.cpython-313.pyc
+¦   ¦       ¦   ¦           mapper.cpython-313.pyc
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   events.py
+¦   ¦       ¦   ¦   ¦   impl.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   annotation.py
+¦   ¦       ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   cache_key.py
+¦   ¦       ¦   ¦   ¦   coercions.py
+¦   ¦       ¦   ¦   ¦   compiler.py
+¦   ¦       ¦   ¦   ¦   crud.py
+¦   ¦       ¦   ¦   ¦   ddl.py
+¦   ¦       ¦   ¦   ¦   default_comparator.py
+¦   ¦       ¦   ¦   ¦   dml.py
+¦   ¦       ¦   ¦   ¦   elements.py
+¦   ¦       ¦   ¦   ¦   events.py
+¦   ¦       ¦   ¦   ¦   expression.py
+¦   ¦       ¦   ¦   ¦   functions.py
+¦   ¦       ¦   ¦   ¦   lambdas.py
+¦   ¦       ¦   ¦   ¦   naming.py
+¦   ¦       ¦   ¦   ¦   operators.py
+¦   ¦       ¦   ¦   ¦   roles.py
+¦   ¦       ¦   ¦   ¦   schema.py
+¦   ¦       ¦   ¦   ¦   selectable.py
+¦   ¦       ¦   ¦   ¦   sqltypes.py
+¦   ¦       ¦   ¦   ¦   traversals.py
+¦   ¦       ¦   ¦   ¦   type_api.py
+¦   ¦       ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   visitors.py
+¦   ¦       ¦   ¦   ¦   _dml_constructors.py
+¦   ¦       ¦   ¦   ¦   _elements_constructors.py
+¦   ¦       ¦   ¦   ¦   _orm_types.py
+¦   ¦       ¦   ¦   ¦   _py_util.py
+¦   ¦       ¦   ¦   ¦   _selectable_constructors.py
+¦   ¦       ¦   ¦   ¦   _typing.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   assertions.py
+¦   ¦       ¦   ¦   ¦   assertsql.py
+¦   ¦       ¦   ¦   ¦   asyncio.py
+¦   ¦       ¦   ¦   ¦   config.py
+¦   ¦       ¦   ¦   ¦   engines.py
+¦   ¦       ¦   ¦   ¦   entities.py
+¦   ¦       ¦   ¦   ¦   exclusions.py
+¦   ¦       ¦   ¦   ¦   pickleable.py
+¦   ¦       ¦   ¦   ¦   profiling.py
+¦   ¦       ¦   ¦   ¦   provision.py
+¦   ¦       ¦   ¦   ¦   requirements.py
+¦   ¦       ¦   ¦   ¦   schema.py
+¦   ¦       ¦   ¦   ¦   util.py
+¦   ¦       ¦   ¦   ¦   warnings.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   base.py
+¦   ¦       ¦   ¦   ¦   ¦   mypy.py
+¦   ¦       ¦   ¦   ¦   ¦   orm.py
+¦   ¦       ¦   ¦   ¦   ¦   sql.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   bootstrap.py
+¦   ¦       ¦   ¦   ¦   ¦   plugin_base.py
+¦   ¦       ¦   ¦   ¦   ¦   pytestplugin.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   test_cte.py
+¦   ¦       ¦   ¦   ¦   ¦   test_ddl.py
+¦   ¦       ¦   ¦   ¦   ¦   test_deprecations.py
+¦   ¦       ¦   ¦   ¦   ¦   test_dialect.py
+¦   ¦       ¦   ¦   ¦   ¦   test_insert.py
+¦   ¦       ¦   ¦   ¦   ¦   test_reflection.py
+¦   ¦       ¦   ¦   ¦   ¦   test_results.py
+¦   ¦       ¦   ¦   ¦   ¦   test_rowcount.py
+¦   ¦       ¦   ¦   ¦   ¦   test_select.py
+¦   ¦       ¦   ¦   ¦   ¦   test_sequence.py
+¦   ¦       ¦   ¦   ¦   ¦   test_types.py
+¦   ¦       ¦   ¦   ¦   ¦   test_unicode_ddl.py
+¦   ¦       ¦   ¦   ¦   ¦   test_update_delete.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   compat.py
+¦   ¦       ¦   ¦   ¦   concurrency.py
+¦   ¦       ¦   ¦   ¦   deprecations.py
+¦   ¦       ¦   ¦   ¦   langhelpers.py
+¦   ¦       ¦   ¦   ¦   preloaded.py
+¦   ¦       ¦   ¦   ¦   queue.py
+¦   ¦       ¦   ¦   ¦   tool_support.py
+¦   ¦       ¦   ¦   ¦   topological.py
+¦   ¦       ¦   ¦   ¦   typing.py
+¦   ¦       ¦   ¦   ¦   _collections.py
+¦   ¦       ¦   ¦   ¦   _concurrency_py3k.py
+¦   ¦       ¦   ¦   ¦   _has_cy.py
+¦   ¦       ¦   ¦   ¦   _py_collections.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   formparser.py
+¦   ¦       ¦   ¦   http.py
+¦   ¦       ¦   ¦   local.py
+¦   ¦       ¦   ¦   security.py
+¦   ¦       ¦   ¦   serving.py
+¦   ¦       ¦   ¦   test.py
+¦   ¦       ¦   ¦   testapp.py
+¦   ¦       ¦   ¦   urls.py
+¦   ¦       ¦   ¦   user_agent.py
+¦   ¦       ¦   ¦   utils.py
+¦   ¦       ¦   ¦   wsgi.py
+¦   ¦       ¦   ¦   _internal.py
+¦   ¦       ¦   ¦   _reloader.py
+¦   ¦       ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   accept.py
+¦   ¦       ¦   ¦   ¦   auth.py
+¦   ¦       ¦   ¦   ¦   cache_control.py
+¦   ¦       ¦   ¦   ¦   csp.py
+¦   ¦       ¦   ¦   ¦   etag.py
+¦   ¦       ¦   ¦   ¦   file_storage.py
+¦   ¦       ¦   ¦   ¦   headers.py
+¦   ¦       ¦   ¦   ¦   mixins.py
+¦   ¦       ¦   ¦   ¦   range.py
+¦   ¦       ¦   ¦   ¦   structures.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   console.py
+¦   ¦       ¦   ¦   ¦   repr.py
+¦   ¦       ¦   ¦   ¦   tbtools.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   dispatcher.py
+¦   ¦       ¦   ¦   ¦   http_proxy.py
+¦   ¦       ¦   ¦   ¦   lint.py
+¦   ¦       ¦   ¦   ¦   profiler.py
+¦   ¦       ¦   ¦   ¦   proxy_fix.py
+¦   ¦       ¦   ¦   ¦   shared_data.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   converters.py
+¦   ¦       ¦   ¦   ¦   exceptions.py
+¦   ¦       ¦   ¦   ¦   map.py
+¦   ¦       ¦   ¦   ¦   matcher.py
+¦   ¦       ¦   ¦   ¦   rules.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   ¦   ¦   http.py
+¦   ¦       ¦   ¦   ¦   multipart.py
+¦   ¦       ¦   ¦   ¦   request.py
+¦   ¦       ¦   ¦   ¦   response.py
+¦   ¦       ¦   ¦   ¦   utils.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦   +---wrappers
+¦   ¦       ¦   ¦   ¦   request.py
+¦   ¦       ¦   ¦   ¦   response.py
+¦   ¦       ¦   ¦   ¦   __init__.py
+¦   ¦       ¦           testapp.cpython-313.pyc
+        app.cpython-313.pyc

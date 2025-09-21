@@ -45,3 +45,16 @@ def download_file(file_id):
         return jsonify({"error": "File missing on disk"}), 404
 
     return send_file(file_path, as_attachment=True, download_name=f.original_file_name)
+
+# --- append to app/files/routes.py ---
+
+from flask import render_template   # add to top of file if not already imported
+
+@files_bp.route('/<int:file_id>/view')
+def file_view(file_id):
+    """
+    Render a lightweight HTML preview page. The page's JS will fetch the
+    existing API endpoint /api/files/<id>/preview and render a table.
+    This keeps parsing logic in the API and avoids duplicating code.
+    """
+    return render_template('file_preview.html', file_id=file_id)
