@@ -57,7 +57,8 @@ def create_app():
     from app.main.routes import main_bp
     from app.results.routes import results_bp
     from app.api.files import files_bp   # ✅ use the new API version only
-
+    from app.uploads import uploads_bp
+    app.register_blueprint(uploads_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(results_bp)

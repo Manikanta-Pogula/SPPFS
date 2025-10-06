@@ -1,7 +1,7 @@
 # seed.py  -- run from project root with venv active
 from app import create_app, db
 from app.models import Student, Subject, Mark
-from app.utils import compute_subject_score, compute_overall_score, map_risk
+from app.utilsss import compute_subject_score, compute_overall_score, map_risk
 
 def main():
     app = create_app()

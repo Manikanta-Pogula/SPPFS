@@ -8,7 +8,7 @@ from typing import Optional, Tuple
 
 from app import db
 from app.models import Student, Mark, Subject
-from app.utils import compute_subject_score, compute_overall_score, map_risk, generate_feedback
+from app.utilsss import compute_subject_score, compute_overall_score, map_risk, generate_feedback
 
 results_bp = Blueprint("results", __name__, url_prefix="/api/results")
 
