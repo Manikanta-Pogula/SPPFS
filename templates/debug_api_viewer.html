@@ -1,0 +1,65 @@
+<!-- templates/debug_api_viewer.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>API Debug Viewer</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 24px; }
+    input, button, textarea { font-size: 14px; }
+    textarea { width: 100%; height: 60vh; margin-top: 12px; white-space: pre; }
+    .note { color: #666; font-size: 13px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <h2>API Debug Viewer</h2>
+  <p class="note">Enter a relative API path (for example: <code>/api/results/search?pin=23189-CS-001&semester=4</code>) and click Fetch. You must be logged in.</p>
+
+  <div>
+    <input id="api-path" type="text" style="width:80%" placeholder="/api/results/search?pin=23189-CS-001&semester=4" />
+    <button id="btn-fetch">Fetch</button>
+    <button id="btn-clear">Clear</button>
+  </div>
+
+  <div style="margin-top:8px;">
+    <label><input id="raw-mode" type="checkbox" checked/> Pretty JSON</label>
+  </div>
+
+  <textarea id="output" placeholder="Response will appear here..."></textarea>
+
+  <script>
+    document.getElementById('btn-fetch').addEventListener('click', () => {
+      const path = document.getElementById('api-path').value.trim();
+      if (!path) return alert('Enter API path');
+      const out = document.getElementById('output');
+      out.value = 'Fetching ' + path + ' ...';
+      fetch(path, { credentials: 'same-origin' })
+        .then(async resp => {
+          const contentType = resp.headers.get('content-type') || '';
+          if (resp.status >= 400) {
+            const text = await resp.text();
+            out.value = `HTTP ${resp.status} ${resp.statusText}\n\n${text}`;
+            return;
+          }
+          if (contentType.indexOf('application/json') !== -1) {
+            const js = await resp.json();
+            if (document.getElementById('raw-mode').checked) {
+              out.value = JSON.stringify(js, null, 2);
+            } else {
+              out.value = JSON.stringify(js);
+            }
+          } else {
+            const txt = await resp.text();
+            out.value = txt;
+          }
+        })
+        .catch(err => {
+          out.value = 'Fetch failed: ' + err;
+        });
+    });
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      document.getElementById('output').value = '';
+    });
+  </script>
+</body>
+</html>

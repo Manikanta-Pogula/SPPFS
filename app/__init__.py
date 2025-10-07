@@ -22,12 +22,13 @@ def create_app():
     )
     app.config.from_object(Config)
 
+    CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
+
     # init extensions
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
 
-    CORS(app)
 
     # import models so db knows them
     from app import models

@@ -93,3 +93,28 @@ def compute_overall_score(subject_scores: List[float]) -> float:
     if not subject_scores:
         return 0.0
     return round(sum(subject_scores) / len(subject_scores), 2)
+
+
+def normalize_absent_marks(components):
+    """
+    Replace None (absent) marks with 0.0 for DB safety,
+    and return a tuple of (normalized_components, flags)
+    flags = {'mid_fail': bool, 'backlog': bool}
+    """
+    normalized = {}
+    flags = {'mid_fail': False, 'backlog': False}
+
+    for key in ['mid1', 'mid2', 'internal', 'end_sem']:
+        val = components.get(key)
+        if val is None:
+            normalized[key] = 0.0
+        else:
+            normalized[key] = float(val)
+
+    # Apply business rules
+    if normalized['mid1'] < 7 or normalized['mid2'] < 7:
+        flags['mid_fail'] = True
+    if normalized['end_sem'] < 14:
+        flags['backlog'] = True
+
+    return normalized, flags
