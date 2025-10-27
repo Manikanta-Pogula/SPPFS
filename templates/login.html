@@ -1,11 +1,33 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>Login</h2>
-<form method="post">
-  <label>Username</label><br>
-  <input type="text" name="username"><br>
-  <label>Password</label><br>
-  <input type="password" name="password"><br><br>
-  <button type="submit">Login</button>
-</form>
-{% endblock %}
+<!-- templates/login.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Login — SPPFS</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/simple.css') }}">
+</head>
+<body>
+  <div style="max-width:420px;margin:48px auto;padding:18px;border:1px solid #eee;border-radius:8px;">
+    <h2 style="margin-top:0;">Faculty Login</h2>
+
+    <form id="loginForm">
+      <div style="margin-bottom:8px;">
+        <label>Username</label><br/>
+        <input id="username" name="username" type="text" style="width:100%;padding:8px" required />
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label>Password</label><br/>
+        <input id="password" name="password" type="password" style="width:100%;padding:8px" required />
+      </div>
+
+      <button id="submitBtn" type="submit" style="padding:10px 14px;">Login</button>
+    </form>
+
+    <div id="message" style="margin-top:12px;color:#b00"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+{# templates/file_preview.html #}
+{% extends "base.html" %}
+{% block title %}File Preview{% endblock %}
+
+{% block content %}
+<!-- Preview container -->
+<div id="previewContainer" style="padding:18px; width:100%; box-sizing:border-box;">
+
+  <!-- Header / meta -->
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+    <div>
+      <h2 style="margin:0 0 6px 0; font-size:1.3rem;">📄 Preview — File #{{ file_id }}</h2>
+      <div id="fileMeta" style="color:#444; font-size:0.95rem; margin-bottom:6px;">Loading file metadata…</div>
+    </div>
+
+    <div style="display:flex; gap:8px; align-items:center;">
+      <a id="downloadLink" class="btn"
+         href="/api/files/{{ file_id }}/download"
+         style="padding:8px 12px; text-decoration:none; border:1px solid #bdbdbd; border-radius:6px; background:#fff; color:#111;">
+         ⬇ Download file
+      </a>
+      <a href="javascript:window.close()"
+         style="padding:8px 12px; border-radius:6px; text-decoration:none; border:1px solid #e6e6e6; background:#fafafa; color:#111;">
+         ✖ Close
+      </a>
+    </div>
+  </div>
+
+  <!-- Status / messages -->
+  <div id="previewStatus" style="margin-top:12px; color:#444; font-size:0.95rem;">Loading preview…</div>
+
+  <!-- Table wrapper: vertical scroll only, no horizontal scrollbar -->
+  <div id="previewWrapper" style="margin-top:12px; border-radius:8px; overflow-y:auto; max-height:calc(100vh - 220px);">
+    <table id="previewTable" border="1" cellpadding="6" cellspacing="0" style="width:100%; border-collapse:collapse; display:none; table-layout:fixed; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-size:12px;">
+      <thead id="previewThead" style="background:#fbfbfd; position:sticky; top:0; z-index:5;"></thead>
+      <tbody id="previewTbody"></tbody>
+    </table>
+  </div>
+
+  <div id="previewNote" style="margin-top:12px; color:#666; font-size:0.9rem;"></div>
+</div>
+
+<!-- Page-scoped styles to keep changes local -->
+<style>
+  /* Keep width usage contained to preview container (avoid affecting other pages) */
+  #previewContainer { max-width: 100%; }
+
+  /* Remove page horizontal scrolling caused by table (fallback) */
+  #previewWrapper { overflow-x: hidden; }
+
+  /* Table visual improvements */
+  #previewTable {
+    border: 1px solid #e6e6e9;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.01);
+  }
+
+  #previewTable th {
+    text-align: left;
+    padding: 10px 8px;
+    font-weight: 600;
+    font-size: 12px;
+    color: #111827;
+    border-bottom: 1px solid #e6e6e9;
+    background: linear-gradient(#ffffff, #fbfdff);
+    vertical-align: bottom;
+  }
+
+  #previewTable td {
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #f4f6f8;
+    color: #111827;
+    line-height: 1.1;
+    white-space: normal;        /* allow wrapping */
+    word-break: break-word;     /* break long tokens */
+  }
+
+  /* zebra rows */
+  #previewTable tbody tr:nth-child(odd) { background: #fff; }
+  #previewTable tbody tr:nth-child(even) { background: #fbfcfd; }
+
+  /* make first two columns slightly wider (PIN / Name) */
+  #previewTable th:nth-child(1), #previewTable td:nth-child(1) { width: 9%; min-width:80px; }
+  #previewTable th:nth-child(2), #previewTable td:nth-child(2) { width: 18%; min-width:160px; }
+
+  /* remaining columns share remaining space (table-layout:fixed handles distribution) */
+  #previewTable th:not(:nth-child(1)):not(:nth-child(2)),
+  #previewTable td:not(:nth-child(1)):not(:nth-child(2)) {
+    /* no explicit width so they share remaining width */
+  }
+
+  /* small responsive adjustments */
+  @media (max-width: 900px) {
+    #previewTable th:nth-child(1), #previewTable td:nth-child(1) { width: 12%; }
+    #previewTable th:nth-child(2), #previewTable td:nth-child(2) { width: 30%; }
+    #previewTable { font-size: 11px; }
+    #previewWrapper { max-height: calc(100vh - 200px); }
+  }
+
+  /* table header label wrap */
+  #previewTable th { white-space:normal; word-break:break-word; }
+
+  /* subtle focus style for download */
+  #downloadLink:focus { outline: 2px solid #c7d2fe; outline-offset:2px; }
+</style>
+
+<script>
+  // safe helper
+  function escapeHtml(s) {
+    if (s === null || s === undefined) return '';
+    return String(s)
+      .replaceAll('&','&amp;')
+      .replaceAll('<','&lt;')
+      .replaceAll('>','&gt;')
+      .replaceAll('"','&quot;');
+  }
+
+  async function loadPreview() {
+    const statusEl = document.getElementById('previewStatus');
+    const fileMetaEl = document.getElementById('fileMeta');
+    const table = document.getElementById('previewTable');
+    const thead = document.getElementById('previewThead');
+    const tbody = document.getElementById('previewTbody');
+    const note = document.getElementById('previewNote');
+
+    try {
+      statusEl.textContent = 'Loading preview from server...';
+      const resp = await fetch(`/api/files/{{ file_id }}/preview`);
+      if (!resp.ok) {
+        // try JSON error
+        let msg = `${resp.status} ${resp.statusText}`;
+        try { const j = await resp.json(); msg = j.error || j.message || msg; } catch(e) {}
+        statusEl.textContent = 'Preview error: ' + msg;
+        return;
+      }
+
+      const data = await resp.json();
+
+      // show metadata
+      const meta = data.meta || {};
+      const metaParts = [];
+      if (meta.file_name) metaParts.push(`<strong>${escapeHtml(meta.file_name)}</strong>`);
+      if (meta.exam_type) metaParts.push(`(${escapeHtml(meta.exam_type)})`);
+      if (meta.uploaded_on) metaParts.push(`uploaded: ${escapeHtml(meta.uploaded_on)}`);
+      fileMetaEl.innerHTML = metaParts.join(' — ') || 'File meta unavailable';
+
+      if (data.error) {
+        // preview not available (e.g. Excel without openpyxl) — still show meta
+        statusEl.textContent = data.error;
+        note.textContent = (data.detail || '');
+        return;
+      }
+
+      const cols = Array.isArray(data.columns) ? data.columns : (data.columns || []);
+      const rows = Array.isArray(data.sample_rows) ? data.sample_rows : (data.sample_rows || []);
+
+      // Build header row
+      if (!cols.length) {
+        thead.innerHTML = '<tr><th>(no columns)</th></tr>';
+      } else {
+        const headHtml = '<tr>' + cols.map(c => `<th>${escapeHtml(c)}</th>`).join('') + '</tr>';
+        thead.innerHTML = headHtml;
+      }
+
+      // Build rows (limit to reasonable number if server returned many)
+      const maxRowsToShow = 500; // safety cap
+      const usedRows = rows.slice(0, maxRowsToShow);
+
+      if (usedRows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="'+Math.max(1, cols.length)+'" style="color:#666;padding:12px;">No sample rows available in preview. Download the file to see all data.</td></tr>';
+      } else {
+        tbody.innerHTML = usedRows.map(row => {
+          if (Array.isArray(row)) {
+            return '<tr>' + row.map(cell => `<td>${escapeHtml(cell)}</td>`).join('') + '</tr>';
+          } else if (typeof row === 'object' && row !== null) {
+            // object -> render values in col order if possible
+            const values = cols.map(k => (row[k] !== undefined ? row[k] : ''));
+            return '<tr>' + values.map(v => `<td>${escapeHtml(v)}</td>`).join('') + '</tr>';
+          } else {
+            return `<tr><td colspan="${Math.max(1, cols.length)}">${escapeHtml(String(row))}</td></tr>`;
+          }
+        }).join('');
+      }
+
+      // show table
+      table.style.display = '';
+      statusEl.textContent = '';
+      note.textContent = `Showing ${usedRows.length} preview row${usedRows.length===1 ? '' : 's'}. Download file for full dataset.`;
+
+      // If columns are very many, reduce font slightly (user-friendly)
+      if (cols.length > 20) {
+        table.style.fontSize = '11px';
+      }
+      if (cols.length > 40) {
+        table.style.fontSize = '10px';
+      }
+
+      // Ensure wrapper uses full available width (avoid page horizontal bar)
+      document.getElementById('previewWrapper').style.overflowX = 'hidden';
+
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = 'Preview failed: ' + (err.message || err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadPreview);
+</script>
+{% endblock %}
+  

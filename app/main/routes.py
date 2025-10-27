@@ -1,26 +1,37 @@
 # app/main/routes.py
 
-from flask import Blueprint, render_template, jsonify
-from app.models import db  # Import your database and models here when needed
+from flask import Blueprint, render_template, jsonify, current_app, send_from_directory
+import os
 
-# -----------------------------
-# Blueprint Setup
-# -----------------------------
 main_bp = Blueprint("main", __name__)
 
 # -----------------------------
-# Web Pages
+# SPA entry (serve built React app)
 # -----------------------------
+@main_bp.route("/", defaults={"path": ""})
+@main_bp.route("/<path:path>")
+def spa(path):
+    """
+    Serve the Single Page Application built files (from static/spa).
+    If a static file exists (js/css), serve it. Otherwise render spa_index.html
+    so the client-side router can handle the path.
+    """
+    static_spa_folder = os.path.join(current_app.root_path, "static", "spa")
 
-@main_bp.route("/")
-def index():
-    """Homepage route."""
-    return render_template("index.html")
+    # If path is a file that exists in static/spa, send it directly:
+    if path and os.path.exists(os.path.join(static_spa_folder, path)):
+        return send_from_directory(static_spa_folder, path)
+
+    # Otherwise, render the SPA template entry (index)
+    return render_template("spa_index.html")
 
 
+# -----------------------------
+# Existing UI pages (kept for compatibility)
+# -----------------------------
 @main_bp.route("/dashboard")
 def dashboard():
-    """Faculty dashboard route."""
+    """Faculty dashboard route (kept for compatibility)."""
     return render_template("dashboard.html")
 
 
@@ -37,16 +48,11 @@ def student_results_page():
 
 
 # -----------------------------
-# API Routes
+# API Routes (dummy example)
 # -----------------------------
-
 @main_bp.route("/api/graph-analysis")
 def graph_analysis():
-    """
-    API endpoint for Graph Analysis.
-    Currently returns dummy data.
-    Later: Replace with real SQLAlchemy queries from Student, Mark, Subject tables.
-    """
+    # This is a simple example; your real API endpoints are elsewhere
     response = {
         "subjects": [
             {"name": "Theory of Computation", "code": "CS-406", "avg": 90, "pass": "100%", "students": 120},
@@ -65,8 +71,4 @@ def graph_analysis():
 
 @main_bp.route("/files/<int:file_id>/view")
 def file_view_page(file_id):
-    """
-    UI preview page — opens in new tab and fetches JSON from
-    /api/files/<file_id>/preview to display a friendly table.
-    """
     return render_template("file_view.html", file_id=file_id)
