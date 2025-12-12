@@ -1,14 +1,32 @@
 # app/main/routes.py
 
 from flask import Blueprint, render_template, jsonify, current_app, send_from_directory
+from jinja2 import TemplateNotFound
 import os
 
 main_bp = Blueprint("main", __name__)
 
 # -----------------------------
-# SPA entry (serve built React app)
+# Home (server-rendered)
 # -----------------------------
-@main_bp.route("/", defaults={"path": ""})
+@main_bp.route("/")
+def home():
+    """
+    Render the server-side Home page at "/".
+    Falls back to index.html if home.html is not present.
+    """
+    try:
+        return render_template("home.html")
+    except TemplateNotFound:
+        # Safe fallback in case you haven't created home.html yet
+        return render_template("index.html")
+
+
+# -----------------------------
+# SPA entry (serve built React app)
+# NOTE: We no longer claim "/" here; this prevents the SPA
+# from taking over the root path.
+# -----------------------------
 @main_bp.route("/<path:path>")
 def spa(path):
     """

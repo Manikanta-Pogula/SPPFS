@@ -44,6 +44,7 @@ export default function ResultsSearch() {
   const [pin, setPin] = useState("");
   const [recent, setRecent] = useState([]);
   const [student, setStudent] = useState(null);
+  const [loggedUser, setLoggedUser] = useState(null);
   const [semesters, setSemesters] = useState([]); // [{semester, subjects:[], overall_score, risk}, ...]
   const [trend, setTrend] = useState([]); // [{semester, overall_score}, ...]
   const [selectedSem, setSelectedSem] = useState(null);
@@ -52,6 +53,7 @@ export default function ResultsSearch() {
   const [showClassAvg, setShowClassAvg] = useState(false);
   const [classAverages, setClassAverages] = useState([]); // per-sem class average
   const [fetchingClassAvg, setFetchingClassAvg] = useState(false);
+
 
   // load recent searches from localStorage
   useEffect(() => {
@@ -62,6 +64,26 @@ export default function ResultsSearch() {
       setRecent([]);
     }
   }, []);
+
+  // fetch logged-in faculty info for header
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const res = await fetch("/api/results/me", {
+          credentials: "include",
+          headers: { "Accept": "application/json" },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setLoggedUser(data);
+        }
+      } catch (e) {
+        console.warn("Failed to load current user", e);
+      }
+    }
+    fetchUser();
+  }, []);
+
 
   // save recent
   function pushRecent(pinVal) {
@@ -240,7 +262,7 @@ async function doSearch(pinValue) {
         for (let sem = 1; sem <= 6; sem++) {
           promises.push(fetch(`/api/results/overview?branch=${encodeURIComponent(branch)}&year=${encodeURIComponent(year)}&semester=${sem}`, {
             credentials: "include"
-          }).then(r => r.ok ? r.json() : null));
+          }).then(r => r.ok ? r.json() : null));  
         }
         const results = await Promise.all(promises);
         const avgs = results.map((res, idx) => {
@@ -349,20 +371,16 @@ async function doSearch(pinValue) {
   return (
     <div className="rs-page">
       <header className="rs-topbar">
-        <div className="rs-top-left">👋 Welcome, {student?.name || "Faculty"}</div>
+        <div className="rs-top-left">
+          👋 Welcome, {loggedUser?.username || "Faculty"}
+        </div>
         <div className="rs-top-right">
           <span className="rs-email">{/* optionally show user email */}</span>
           <a className="btn-logout" href="/logout">Logout</a>
         </div>
       </header>
 
-      <nav className="rs-nav">
-        <a href="/data-upload">Data Upload</a>
-        <a href="/student-report">Student Report</a>
-        <a href="/results-search" className="active">Results Search</a>
-        <a href="/graph-analysis">Graph Analysis</a>
-        <a href="/data-files">Data Files</a>
-      </nav>
+
 
       <main className="rs-container">
         <section className="rs-search">
@@ -422,7 +440,7 @@ async function doSearch(pinValue) {
             <div className="rs-results-header">
               <h3>Semester {selectedSem || "-"}</h3>
               <div className="rs-actions">
-                <button onClick={() => { setSelectedSem(1); }} title="Go to Sem 1">Sem1</button>
+                
                 <label className="rs-toggle">
                   <input type="checkbox" checked={showClassAvg} onChange={toggleClassAvg} />
                   Show Class Avg (dashed)

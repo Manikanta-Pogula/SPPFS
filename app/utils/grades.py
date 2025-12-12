@@ -118,3 +118,23 @@ def normalize_absent_marks(components):
         flags['backlog'] = True
 
     return normalized, flags
+
+
+# add to app/utils/grades.py
+
+def map_risk(overall: Optional[float]) -> Optional[str]:
+    """
+    Map overall score (0-100) to risk string.
+    Keep same thresholds used elsewhere: <40 => 'high', <60 => 'medium', else 'low'
+    """
+    if overall is None:
+        return None
+    try:
+        o = float(overall)
+    except Exception:
+        return None
+    if o < 40.0:
+        return "high"
+    if o < 60.0:
+        return "medium"
+    return "low"

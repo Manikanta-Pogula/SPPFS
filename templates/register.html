@@ -1,16 +1,56 @@
 {% extends "base.html" %}
+{% block title %}Register — SPPFS{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+{% endblock %}
+
 {% block content %}
-<h2>Register</h2>
-<form method="post">
-  <label>Username</label><br>
-  <input type="text" name="username"><br>
-  <label>Password</label><br>
-  <input type="password" name="password"><br>
-  <label>Role</label><br>
-  <select name="role">
-    <option value="faculty">Faculty</option>
-    <option value="admin">Admin</option>
-  </select><br><br>
-  <button type="submit">Register</button>
-</form>
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <h2 class="auth-title">Create your account</h2>
+    <p class="auth-subtitle">
+      Complete the form below to get started.
+    </p>
+
+    <form method="post" action="{{ url_for('auth.register') }}" class="auth-form">
+      
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="full_name" required placeholder="Enter your name" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required placeholder="Enter your email" autocomplete="email" />
+      </div>
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" required placeholder="Choose a username" autocomplete="username" />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" required placeholder="Enter password" autocomplete="new-password" />
+      </div>
+
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" required placeholder="Confirm password" autocomplete="new-password" />
+      </div>
+
+      <button type="submit" class="btn-primary auth-submit">
+        Register
+      </button>
+
+      <p style="margin-top:12px; font-size:13px;">
+        Already have an account?
+        <a href="/login">Login here</a>
+      </p>
+    </form>
+
+  </div>
+</div>
 {% endblock %}

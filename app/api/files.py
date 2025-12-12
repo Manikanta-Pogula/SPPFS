@@ -2,70 +2,130 @@
 import os
 import csv
 import traceback
-from flask import Blueprint, request, jsonify, current_app, send_file
-from app.models import UploadedFile, db
+from typing import Optional, List
+
+from flask import (
+    Blueprint, request, jsonify, current_app, send_file, render_template
+)
+from app import db
+from app.models import UploadedFile
+from sqlalchemy import text, or_
 
 # optional Excel preview dependency
 try:
-    import openpyxl
+    import openpyxl  # type: ignore
     HAVE_OPENPYXL = True
 except Exception:
     HAVE_OPENPYXL = False
 
+
 files_bp = Blueprint("files_api", __name__, url_prefix="/api/files")
 
 
-def get_uploads_dir():
-    """Return absolute path to uploads directory (configurable via UPLOAD_FOLDER)."""
+def get_uploads_dir() -> str:
+    """
+    Return absolute path to uploads directory (configurable via UPLOAD_FOLDER).
+    Fallback: project_root/uploads
+    """
     cfg = current_app.config.get("UPLOAD_FOLDER")
     if cfg:
         return os.path.abspath(cfg)
-    # fallback: project_root/uploads
     project_root = os.path.abspath(os.path.join(current_app.root_path, ".."))
     return os.path.join(project_root, "uploads")
 
 
-def find_file_on_disk(uploaded: UploadedFile):
+def _normalize_name(name: str) -> str:
+    """Return a normalized filename for matching (lower/underscores)."""
+    return name.replace(" ", "_").lower()
+
+
+def find_file_on_disk(uploaded: UploadedFile) -> Optional[str]:
     """
-    Try multiple heuristics to find the physical file:
-    - original_file_name
-    - file_name
-    - "<id>_original_file_name"
-    - "<id>_file_name"
-    - fallback: any file in uploads dir that endswith original_file_name or startswith id
+    Heuristic search for the real file on disk for an UploadedFile row.
+
+    Tries:
+      - exact file_name or original_file_name
+      - "<id>_file_name" and "<id>_original_file_name"
+      - normalized variants (spaces->underscores)
+      - check "in", endswith, startswith on filenames in uploads dir
+    Returns absolute path or None.
     """
     uploads_dir = get_uploads_dir()
     if not os.path.isdir(uploads_dir):
+        current_app.logger.debug("Uploads dir does not exist: %s", uploads_dir)
         return None
 
-    candidates = []
-    if uploaded.original_file_name:
-        candidates.append(uploaded.original_file_name)
-    if uploaded.file_name:
+    candidates: List[str] = []
+    # gather possible stored/original names
+    if getattr(uploaded, "file_name", None):
         candidates.append(uploaded.file_name)
-    if uploaded.original_file_name:
-        candidates.append(f"{uploaded.id}_{uploaded.original_file_name}")
-    if uploaded.file_name:
+    if getattr(uploaded, "original_file_name", None):
+        candidates.append(uploaded.original_file_name)
+    # id prefixed variants
+    if getattr(uploaded, "file_name", None):
         candidates.append(f"{uploaded.id}_{uploaded.file_name}")
-    candidates = [c for c in candidates if c]
+    if getattr(uploaded, "original_file_name", None):
+        candidates.append(f"{uploaded.id}_{uploaded.original_file_name}")
 
-    # check exact names
+    # normalized variants
+    norm_candidates = []
+    for c in candidates:
+        if not c:
+            continue
+        norm_candidates.append(c)
+        norm_candidates.append(_normalize_name(c))
+        # also try with spaces removed
+        norm_candidates.append(c.replace(" ", ""))
+        norm_candidates.append(_normalize_name(c).replace("_", ""))
+
+    # keep unique
+    candidates = []
+    seen = set()
+    for c in norm_candidates:
+        if not c:
+            continue
+        key = c.lower()
+        if key not in seen:
+            seen.add(key)
+            candidates.append(c)
+
+    # 1) exact path checks
     for cand in candidates:
         p = os.path.join(uploads_dir, cand)
         if os.path.exists(p):
+            current_app.logger.debug("find_file_on_disk: found exact path %s", p)
             return p
 
-    # fallback: search directory
+    # 2) scan directory and try robust matching
     try:
         for fname in os.listdir(uploads_dir):
+            fname_lower = fname.lower()
             for cand in candidates:
-                if fname == cand or fname.endswith(cand) or fname.startswith(str(uploaded.id)):
+                cand_lower = cand.lower()
+                # exact name match
+                if fname_lower == cand_lower:
                     p = os.path.join(uploads_dir, fname)
-                    if os.path.exists(p):
-                        return p
+                    current_app.logger.debug("find_file_on_disk: matched exact filename %s", p)
+                    return p
+                # endswith match (original file may be prefixed)
+                if fname_lower.endswith(cand_lower):
+                    p = os.path.join(uploads_dir, fname)
+                    current_app.logger.debug("find_file_on_disk: matched endswith %s -> %s", fname, p)
+                    return p
+                # contains match (less strict)
+                if cand_lower in fname_lower:
+                    p = os.path.join(uploads_dir, fname)
+                    current_app.logger.debug("find_file_on_disk: matched contains %s -> %s", fname, p)
+                    return p
+                # startswith id (uploaded id prefix)
+                if fname_lower.startswith(str(uploaded.id)):
+                    p = os.path.join(uploads_dir, fname)
+                    current_app.logger.debug("find_file_on_disk: matched startswith id %s -> %s", fname, p)
+                    return p
     except Exception:
-        current_app.logger.exception("Error listing uploads dir")
+        current_app.logger.exception("Error listing uploads dir while searching for file")
 
+    current_app.logger.debug("find_file_on_disk: no candidate matched for uploaded id=%s", getattr(uploaded, "id", None))
     return None
 
 
@@ -82,11 +142,12 @@ def list_files():
         if q:
             like = f"%{q}%"
             query = query.filter(
-                db.or_(
+                or_(
                     UploadedFile.file_name.ilike(like),
                     UploadedFile.original_file_name.ilike(like)
                 )
             )
+
         items = []
         for f in query.order_by(UploadedFile.uploaded_on.desc()).all():
             items.append({
@@ -107,7 +168,7 @@ def list_files():
 def preview_file(file_id):
     """
     Preview file: returns { meta, columns, sample_rows } (best-effort).
-    Supports CSV natively, XLSX/XLS if openpyxl available.
+    Supports CSV and xlsx/xls (if openpyxl installed).
     """
     f = UploadedFile.query.get(file_id)
     if not f:
@@ -129,7 +190,6 @@ def preview_file(file_id):
     try:
         if ext == ".csv":
             with open(path, newline="", encoding="utf-8", errors="replace") as fh:
-                # sniff (best-effort)
                 sample = fh.read(4096)
                 fh.seek(0)
                 try:
@@ -148,7 +208,10 @@ def preview_file(file_id):
 
         elif ext in (".xls", ".xlsx"):
             if not HAVE_OPENPYXL:
-                return jsonify({"meta": meta, "error": "Excel preview requires 'openpyxl' package. Install with: pip install openpyxl"}), 200
+                return jsonify({
+                    "meta": meta,
+                    "error": "Excel preview requires 'openpyxl' package. Install with: pip install openpyxl"
+                }), 200
             wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
             ws = wb.active
             rows = []
@@ -161,7 +224,6 @@ def preview_file(file_id):
             return jsonify({"meta": meta, "columns": columns, "sample_rows": sample_rows})
 
         else:
-            # unsupported type — return meta only
             return jsonify({"meta": meta, "error": f"Preview not supported for '{ext}'"}), 200
 
     except Exception as e:
@@ -177,10 +239,13 @@ def download_file(file_id):
 
     path = find_file_on_disk(f)
     if not path:
-        return jsonify({"error": "file not found on disk"}), 404
+        return jsonify({"error": "file not found on disk", "checked_dir": get_uploads_dir()}), 404
 
     try:
-        return send_file(path, as_attachment=True, download_name=(f.original_file_name or f.file_name))
+        # send_file handles file streaming and attachments.
+        # download_name used when available (Flask >= 2.0)
+        download_name = f.original_file_name or f.file_name or os.path.basename(path)
+        return send_file(path, as_attachment=True, download_name=download_name)
     except Exception as e:
         current_app.logger.exception("download failed")
         return jsonify({"error": "download failed", "detail": str(e)}), 500
@@ -188,16 +253,38 @@ def download_file(file_id):
 
 @files_bp.route("/<int:file_id>", methods=["DELETE"])
 def delete_file(file_id):
+    """
+    Delete an uploaded_files row safely.
+
+    Steps:
+      1) Set marks.uploaded_file_id = NULL for any marks referencing this file (prevents FK constraint).
+      2) Optionally remove physical file on disk (if ?remove_file=true).
+      3) Delete the uploaded_files DB row.
+    """
     f = UploadedFile.query.get(file_id)
     if not f:
         return jsonify({"error": "not found"}), 404
 
     remove_file = str(request.args.get("remove_file", "false")).lower() in ("1", "true", "yes")
+
     try:
+        # 1) Disassociate marks that reference this file
+        db.session.execute(
+            text("UPDATE marks SET uploaded_file_id = NULL WHERE uploaded_file_id = :fid"),
+            {"fid": f.id}
+        )
+
+        # 2) Optionally remove the physical file
         if remove_file:
-            path = find_file_on_disk(f)
-            if path and os.path.exists(path):
-                os.remove(path)
+            try:
+                file_on_disk = find_file_on_disk(f)
+                if file_on_disk and os.path.exists(file_on_disk):
+                    os.remove(file_on_disk)
+            except Exception as ex:
+                # warn but continue - don't block DB deletion if filesystem removal fails
+                current_app.logger.warning("Could not remove physical file for uploaded id %s: %s", f.id, ex)
+
+        # 3) Delete DB row
         db.session.delete(f)
         db.session.commit()
         return jsonify({"success": True, "deleted_id": file_id})
@@ -206,8 +293,6 @@ def delete_file(file_id):
         current_app.logger.exception("delete failed")
         return jsonify({"error": "delete failed", "detail": str(e)}), 500
 
-
-from flask import render_template
 
 @files_bp.route("/<int:file_id>/view", methods=["GET"])
 def view_file(file_id):
@@ -228,7 +313,7 @@ def view_file(file_id):
                 reader = csv.reader(fh)
                 for i, row in enumerate(reader):
                     rows.append([("" if v is None else str(v)) for v in row])
-                    if i > 50:  # limit for preview
+                    if i > 50:
                         break
         elif ext in (".xls", ".xlsx"):
             if not HAVE_OPENPYXL:
@@ -250,10 +335,19 @@ def view_file(file_id):
 
     columns = rows[0]
     sample_rows = rows[1:]
+    return render_template("file_view.html", file=f, columns=columns, rows=sample_rows)
 
-    return render_template(
-        "file_view.html",
-        file=f,
-        columns=columns,
-        rows=sample_rows
-    )
+
+# DEBUG helper (only when app.debug=True) to list disk files to help troubleshooting
+@files_bp.route("/_debug/list_disk", methods=["GET"])
+def debug_list_disk():
+    if not current_app.debug:
+        return jsonify({"error": "disabled"}), 403
+    uploads_dir = get_uploads_dir()
+    out = {"uploads_dir": uploads_dir, "exists": os.path.isdir(uploads_dir), "files": []}
+    if os.path.isdir(uploads_dir):
+        try:
+            out["files"] = sorted(os.listdir(uploads_dir))
+        except Exception as e:
+            out["err"] = str(e)
+    return jsonify(out)

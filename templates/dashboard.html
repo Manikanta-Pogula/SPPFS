@@ -1,213 +1,84 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Faculty Dashboard — SPPFS</title>
+<!-- SPPFS\templates\dashboard.html -->
 
-  <style>
-    :root {
-      --accent: #1e66d6;
-      --muted: #666;
-      --card-bg: #fff;
-      --page-bg: #f6f8fb;
-    }
+{% extends "base.html" %}
+{% block title %}Faculty Dashboard — SPPFS{% endblock %}
 
-    body {
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      margin: 0;
-      background: var(--page-bg);
-      color: #111;
-    }
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
 
-    header {
-      background: #fff;
-      padding: 18px 28px;
-      border-bottom: 1px solid #e6e9ee;
-    }
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
 
-    header .sub {
-      color: var(--muted);
-      margin-top: 6px;
-      font-size: 14px;
-    }
+{% block subheader %}
+<div class="hero-bar">
+  <div>
+    <div class="hero-title">Welcome back, {{ current_user.username if current_user else 'faculty' }}</div>
+    <div class="hero-sub">Quick links to your modules</div>
+  </div>
+  <div class="hero-right">
+    {{ current_user.username }} · <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </div>
+</div>
+{% endblock %}
 
-    .top-links {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
+{% block content %}
 
-    .top-links a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 14px;
-    }
+<h1 style="margin:0;">Faculty Dashboard</h1>
+<p style="color:#6b7280;margin-top:4px;">Welcome back, {{ current_user.username if current_user else 'faculty' }}</p>
 
-    .container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+<div class="cards-row" style="margin-top:16px;">
+  <!-- Data Upload -->
+  <div class="card">
+    <div class="card-title">Data Upload</div>
+    <div class="card-body">Upload CSV files or enter marks manually for a batch.</div>
+    <div class="card-actions">
+      <a class="btn-primary" href="/data-upload">Open</a>
 
-    /* Single row layout without scroll */
-    .row-wrap {
-      display: flex;
-      justify-content: space-between; /* evenly spread across row */
-      align-items: stretch;
-      flex-wrap: nowrap; /* disable wrapping */
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 10px;
-      padding: 18px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      border: 1px solid #eef2f7;
-      flex: 1; /* auto adjust width equally for all */
-      min-width: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .card h3 {
-      margin: 0 0 6px 0;
-      font-size: 18px;
-      color: #0f1724;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .actions {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 0;
-      cursor: pointer;
-      color: #fff;
-      background: var(--accent);
-    }
-
-    .small {
-      font-size: 12px;
-      color: #666;
-      margin-left: 8px;
-    }
-
-    footer {
-      text-align: center;
-      color: #666;
-      font-size: 13px;
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div style="display:flex;justify-content:space-between;align-items:baseline;">
-      <div>
-        <h1>Faculty Dashboard</h1>
-        <div class="sub">
-          Welcome back, <strong>{{ current_user.username if current_user.is_authenticated else "Faculty" }}</strong>
-        </div>
-      </div>
-      <div class="top-links">
-        <a href="{{ url_for('main.spa') }}">Home</a>
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
-      </div>
+      <span class="route-hint">Route: /data-upload</span>
     </div>
-  </header>
+  </div>
 
-  <main class="container">
-    <div class="row-wrap">
-      <!-- Data Upload -->
-      <div class="card">
-        <div>
-          <h3>Data Upload</h3>
-          <p>Upload CSV files or enter marks manually for a batch.</p>
-        </div>
-        <div class="actions">
-          <a class="btn" href="{{ url_for('uploads.data_upload_page') }}">Open</a>
-          <div class="small">/data-upload</div>
-        </div>
-      </div>
-
-      <!-- Student Report -->
-      <div class="card">
-        <div>
-          <h3>Student Report</h3>
-          <p>View and analyze individual student reports.</p>
-        </div>
-        <div class="actions">
-          <a class="btn" href="{{ url_for('main.student_results_page') }}">Open</a>
-          <div class="small">/student-results</div>
-        </div>
-      </div>
-
-      <!-- Results Search -->
-      <div class="card">
-        <div>
-          <h3>Results Search</h3>
-          <p>Search results by PIN or batch (SPA).</p>
-        </div>
-        <div class="actions">
-          <a class="btn" href="{{ url_for('main.spa', path='results') }}">Open</a>
-          <div class="small">/results</div>
-        </div>
-      </div>
-
-      <!-- Graph Analysis -->
-      <div class="card">
-        <div>
-          <h3>Graph Analysis</h3>
-          <p>Subject-wise performance, risk distribution, and charts (SPA).</p>
-        </div>
-        <div class="actions">
-          <a class="btn" href="{{ url_for('main.spa', path='graph') }}">Open</a>
-          <div class="small">/graph</div>
-        </div>
-      </div>
-
-      <!-- Uploaded Files -->
-      <div class="card">
-        <div>
-          <h3>Uploaded Files</h3>
-          <p>Manage and preview uploaded files.</p>
-        </div>
-        <div class="actions">
-          <a class="btn" href="{{ url_for('main.uploaded_files_page') }}">Open</a>
-          <div class="small">/uploaded-files</div>
-        </div>
-      </div>
+  <!-- Student Report -->
+  <div class="card">
+    <div class="card-title">Student Report</div>
+    <div class="card-body">View, search and analyze individual student reports.</div>
+    <div class="card-actions">
+      <a class="btn-primary" href="{{ url_for('main.student_results_page') }}">Open</a>
+      <span class="route-hint">Route: /student-results</span>
     </div>
-  </main>
+  </div>
 
-  <footer>All sections linked and aligned in one single row — SPPFS Project.</footer>
-</body>
-</html>
+  <!-- Results Search -->
+  <div class="card">
+    <div class="card-title">Results Search</div>
+    <div class="card-body">Search results by PIN or batch (SPA).</div>
+    <div class="card-actions">
+      <a class="btn-primary" href="/results">Open</a>
+      <span class="route-hint">Route: /results</span>
+    </div>
+  </div>
+
+  <!-- Graph Analysis -->
+  <div class="card">
+    <div class="card-title">Graph Analysis</div>
+    <div class="card-body">Subject-wise performance, risk distribution, and charts (SPA).</div>
+    <div class="card-actions">
+      <a class="btn-primary" href="/graph">Open</a>
+      <span class="route-hint">Route: /graph</span>
+    </div>
+  </div>
+
+  <!-- Uploaded Files -->
+  <div class="card">
+    <div class="card-title">Uploaded Files</div>
+    <div class="card-body">Manage and preview uploaded files and parsed data.</div>
+    <div class="card-actions">
+      <a class="btn-primary" href="{{ url_for('main.uploaded_files_page') }}">Open</a>
+      <span class="route-hint">Route: /uploaded-files</span>
+    </div>
+  </div>
+</div>
+
+<p style="color:#6b7280;margin-top:20px;">Tip: use the Open buttons to jump into each module.</p>
+
+{% endblock %}

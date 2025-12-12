@@ -1,0 +1,201 @@
+/* ================ Uploaded Files Page ================ */
+
+#uploaded-files-page {
+  padding: 20px;
+  background: #f5f7fb;
+}
+
+/* Title */
+#uploaded-files-page h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Table base */
+.uf-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* table head */
+.uf-table thead {
+  background: #e8eefc;
+}
+
+.uf-table th {
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+  color: #333;
+}
+
+/* Body */
+.uf-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.uf-table tbody tr:hover {
+  background: #f7faff;
+}
+
+/* Buttons */
+.uf-btn {
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid #007bff;
+  border-radius: 6px;
+  margin-right: 4px;
+  cursor: pointer;
+  background: #fff;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.uf-btn:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.uf-btn-danger {
+  background: #ffdddd;
+  border-color: #e00;
+  color: #b00;
+}
+
+.uf-btn-danger:hover {
+  background: #e00;
+  color: #fff;
+}
+
+
+
+
+/* ================ Hero Header (same style used in Student Report) ================ */
+
+.hero-bar {
+  background: #0d6efd;           /* bright blue */
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  margin: 16px auto 20px;
+  max-width: 1200px;             /* align with inner container width */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.hero-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.hero-sub {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.hero-right {
+  font-size: 14px;
+}
+
+.hero-right a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ================ Uploaded Files Page ================ */
+
+#uploaded-files-page {
+  padding: 20px;
+  background: #f5f7fb;
+}
+
+/* Title */
+#uploaded-files-page h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Table base */
+.uf-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* table head */
+.uf-table thead {
+  background: #e8eefc;
+}
+
+.uf-table th {
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+  color: #333;
+}
+
+/* Body */
+.uf-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.uf-table tbody tr:hover {
+  background: #f7faff;
+}
+
+/* Buttons */
+.uf-btn {
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid #007bff;
+  border-radius: 6px;
+  margin-right: 4px;
+  cursor: pointer;
+  background: #fff;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.uf-btn:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.uf-btn-light {
+  border-color: #ddd;
+  color: #333;
+  background: #fff;
+}
+
+.uf-btn-light:hover {
+  background: #f3f3f3;
+}
+
+.uf-btn-danger {
+  background: #ffdddd;
+  border-color: #e00;
+  color: #b00;
+}
+
+.uf-btn-danger:hover {
+  background: #e00;
+  color: #fff;
+}

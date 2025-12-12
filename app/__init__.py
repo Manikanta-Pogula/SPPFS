@@ -123,7 +123,9 @@ def create_app():
     from app.results.routes import results_bp
     from app.api.files import files_bp
     from app.uploads import uploads_bp
-
+    from app.api.upload import upload_bp
+    
+    app.register_blueprint(upload_bp)
     app.register_blueprint(uploads_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)

@@ -1,66 +1,84 @@
-<!-- C:\student-performance-system\templates\uploaded_files.html -->
-
+<!-- templates/uploaded_files.html -->
 {% extends "base.html" %}
 {% block title %}Uploaded Files{% endblock %}
 
-{% block content %}
-<div class="container" style="padding: 18px; max-width:1200px;">
-  <h2>Uploaded Files</h2>
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/uploaded_files.css') }}">
+{% endblock %}
 
-  <div style="display:flex; gap:8px; margin-bottom:12px; align-items:center;">
-    <input id="searchBox" placeholder="Search file name..." style="padding:8px; width:320px;" />
-    <select id="filterExam" style="padding:8px;">
-      <option value="">All Exams</option>
-      <option value="mid1">Mid-1</option>
-      <option value="mid2">Mid-2</option>
-      <option value="semester">Semester</option>
-    </select>
-    <button id="btnRefresh" style="padding:8px;">Refresh</button>
-    <span id="status" style="margin-left:12px;"></span>
+{% block subheader %}
+<div class="hero-bar">
+  <div>
+    <div class="hero-title">Welcome back, {{ current_user.username if current_user else 'faculty' }}</div>
+    <div class="hero-sub">Uploaded Files</div>
   </div>
-
-  <table id="filesTable" border="1" cellpadding="6" cellspacing="0" style="width:100%; border-collapse:collapse;">
-    <thead style="background:#f2f2f2;">
-      <tr>
-        <th>#</th>
-        <th>File Name</th>
-        <th>Original Name</th>
-        <th>Exam Type</th>
-        <th>Uploaded On</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="filesTbody">
-      <!-- populated by JS -->
-    </tbody>
-  </table>
-
-  <!-- Preview modal -->
-  <div id="previewModal" style="display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
-    <div style="background:#fff; width:90%; max-width:900px; margin:60px auto; padding:16px; border-radius:6px; position:relative;">
-      <button id="closePreview" style="position:absolute; right:10px; top:10px;">Close</button>
-      <h3 id="previewTitle">Preview</h3>
-      <div id="previewMeta" style="font-size:13px; color:#444; margin-bottom:8px;"></div>
-      <div id="previewCols" style="font-family:monospace; white-space:pre-wrap;"></div>
-      <div id="previewRows" style="margin-top:8px; font-size:13px;"></div>
-      <div style="margin-top:12px;">
-        <a id="downloadLink" href="#" style="margin-right:8px;">Download File</a>
-        <button id="deleteFileFromModal" style="background:#c33;color:#fff;padding:6px;">Delete (DB + file)</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Confirm delete modal -->
-  <div id="confirmModal" style="display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
-    <div style="background:#fff; width:420px; margin:120px auto; padding:16px; border-radius:6px;">
-      <p id="confirmText">Are you sure?</p>
-      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
-        <button id="confirmNo">No</button>
-        <button id="confirmYes" style="background:#c33; color:#fff; padding:6px;">Yes, delete</button>
-      </div>
-    </div>
+  <div class="hero-right">
+    {{ current_user.username }} · <a href="{{ url_for('auth.logout') }}">Logout</a>
   </div>
 </div>
+{% endblock %}
+
+{% block content %}
+<div id="uploaded-files-page">
+  <div class="container" style="padding: 18px; max-width:1200px;">
+    <h2>Uploaded Files</h2>
+
+    <div style="display:flex; gap:8px; margin-bottom:12px; align-items:center;">
+      <input id="searchBox" placeholder="Search file name..." style="padding:8px; width:320px;" />
+      <select id="filterExam" style="padding:8px;">
+        <option value="">All Exams</option>
+        <option value="mid1">Mid-1</option>
+        <option value="mid2">Mid-2</option>
+        <option value="semester">Semester</option>
+      </select>
+      <button id="btnRefresh" class="uf-btn">Refresh</button>
+      <span id="status" style="margin-left:12px;"></span>
+    </div>
+
+    <table class="uf-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>File Name</th>
+          <th>Original Name</th>
+          <th>Exam Type</th>
+          <th>Uploaded On</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="filesTbody">
+        <!-- populated by JS -->
+      </tbody>
+    </table>
+
+    <!-- Preview modal (kept for optional use later) -->
+    <div id="previewModal" style="display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
+      <div style="background:#fff; width:90%; max-width:900px; margin:60px auto; padding:16px; border-radius:6px; position:relative;">
+        <button id="closePreview" class="uf-btn uf-btn-light" style="position:absolute; right:10px; top:10px;">Close</button>
+        <h3 id="previewTitle">Preview</h3>
+        <div id="previewMeta" style="font-size:13px; color:#444; margin-bottom:8px;"></div>
+        <div id="previewCols" style="font-family:monospace; white-space:pre-wrap;"></div>
+        <div id="previewRows" style="margin-top:8px; font-size:13px;"></div>
+        <div style="margin-top:12px;">
+          <!-- download kept for preview modal only (not shown in main table) -->
+          <a id="downloadLink" href="#" class="uf-btn" style="display:none;">Download File</a>
+          <button id="deleteFileFromModal" class="uf-btn uf-btn-danger">Delete (DB + file)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm delete modal -->
+    <div id="confirmModal" style="display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
+      <div style="background:#fff; width:420px; margin:120px auto; padding:16px; border-radius:6px;">
+        <p id="confirmText">Are you sure?</p>
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+          <button id="confirmNo" class="uf-btn uf-btn-light">No</button>
+          <button id="confirmYes" class="uf-btn uf-btn-danger">Yes, delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- CLOSE uploaded-files-page -->
 
 <script>
 const apiBase = "/api";
@@ -72,7 +90,7 @@ const statusSpan = document.getElementById("status");
 
 async function loadFiles() {
   statusSpan.textContent = "Loading...";
-  const q = encodeURIComponent(searchBox.value || '');
+  const q  = encodeURIComponent(searchBox.value || '');
   const et = encodeURIComponent(filterExam.value || '');
   const resp = await fetch(`${apiBase}/files?q=${q}&exam_type=${et}`);
   if (!resp.ok) {
@@ -92,11 +110,8 @@ async function loadFiles() {
       <td>${escapeHtml(item.original_file_name)}</td>
       <td>${escapeHtml(item.exam_type)}</td>
       <td>${escapeHtml(uploadedOn)}</td>
-      <td>
-        <a href="/api/files/${item.id}/view" target="_blank">View</a>
-
-        <a href="${apiBase}/files/${item.id}/download" style="margin-left:6px;">Download</a>
-        <button class="delBtn" data-id="${item.id}" style="margin-left:6px;">Delete</button>
+      <td style="text-align:center;">
+        <button class="uf-btn uf-btn-danger delBtn" data-id="${item.id}">Delete</button>
       </td>
     `;
     tbody.appendChild(tr);
@@ -106,23 +121,20 @@ async function loadFiles() {
 }
 
 function attachHandlers() {
-  document.querySelectorAll(".viewBtn").forEach(btn => {
-    // open preview page in new tab
-    btn.onclick = () => { window.open(`/files/${btn.dataset.id}/view`, '_blank'); };
-  });
   document.querySelectorAll(".delBtn").forEach(btn => {
     btn.onclick = () => askDelete(btn.dataset.id);
   });
 }
 
-
 function escapeHtml(s) {
   if (!s && s !== 0) return '';
-  return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+  return String(s)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;');
 }
 
-/* Preview modal logic stays in file (we keep it for backward compatibility),
-   but view now opens new tab so users see a nice table. */
+/* Preview modal helpers (optional, not used by main table delete) */
 const previewModal = document.getElementById("previewModal");
 const previewCols = document.getElementById("previewCols");
 const previewRows = document.getElementById("previewRows");
@@ -134,7 +146,6 @@ const deleteFileFromModal = document.getElementById("deleteFileFromModal");
 document.getElementById("closePreview").onclick = () => previewModal.style.display = "none";
 
 async function openPreview(id) {
-  // kept if you still want modal preview (not used by View button now)
   previewTitle.textContent = "Preview: " + id;
   previewMeta.textContent = "Loading...";
   previewCols.textContent = "";
@@ -159,6 +170,7 @@ async function openPreview(id) {
     previewRows.innerHTML += `<div style="font-family:monospace; margin-bottom:6px;"><strong>#${idx+1}</strong> ${escapeHtml(JSON.stringify(r))}</div>`;
   });
   downloadLink.href = `${apiBase}/files/${id}/download`;
+  downloadLink.style.display = "inline-block";
   deleteFileFromModal.onclick = () => askDelete(id, true);
 }
 
@@ -203,6 +215,4 @@ filterExam.onchange = loadFiles;
 /* initial load */
 loadFiles();
 </script>
-
-
 {% endblock %}

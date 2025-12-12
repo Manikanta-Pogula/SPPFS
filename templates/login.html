@@ -1,33 +1,37 @@
 <!-- templates/login.html -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Login — SPPFS</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/simple.css') }}">
-</head>
-<body>
-  <div style="max-width:420px;margin:48px auto;padding:18px;border:1px solid #eee;border-radius:8px;">
-    <h2 style="margin-top:0;">Faculty Login</h2>
+{% extends "base.html" %}
+{% block title %}Login — SPPFS{% endblock %}
 
-    <form id="loginForm">
-      <div style="margin-bottom:8px;">
-        <label>Username</label><br/>
-        <input id="username" name="username" type="text" style="width:100%;padding:8px" required />
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2 class="auth-title">Welcome back 👋</h2>
+    <p class="auth-subtitle">Login to continue.</p>
+
+    <form class="auth-form" method="post" action="{{ url_for('auth.login') }}">
+      <div class="form-group">
+        <label>Username</label>
+        <input name="username" type="text" required />
       </div>
 
-      <div style="margin-bottom:12px;">
-        <label>Password</label><br/>
-        <input id="password" name="password" type="password" style="width:100%;padding:8px" required />
+      <div class="form-group">
+        <label>Password</label>
+        <input name="password" type="password" required />
       </div>
 
-      <button id="submitBtn" type="submit" style="padding:10px 14px;">Login</button>
+      <div class="auth-submit">
+        <button type="submit" class="btn-primary">Login</button>
+      </div>
+
+      <p class="auth-footer-text">
+        Don't have an account?
+        <a href="{{ url_for('auth.register') }}">Register here</a>
+      </p>
     </form>
-
-    <div id="message" style="margin-top:12px;color:#b00"></div>
   </div>
-
-  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-</body>
-</html>
+</div>
+{% endblock %}

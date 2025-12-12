@@ -1,34 +1,53 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+
+
+
+{% block subheader %}
+<div class="hero-bar">
+  <div>
+    <div class="hero-title">Welcome back, {{ current_user.username if current_user else 'faculty' }}</div>
+    <div class="hero-sub">Student Report</div>
+  </div>
+  <div class="hero-right">
+    {{ current_user.username }} · <a href="{{ url_for('auth.logout') }}">Logout</a>
+  </div>
+</div>
+{% endblock %}
+
+
+
 
 {% block content %}
-<div style="padding:20px;">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/student_report.css') }}">
+
+<div id="student-report-page">
 
   <h2>📘 Student Report</h2>
   <h3 id="collegeName" style="color:#333; margin-bottom:10px;"></h3>
 
   <!-- Top Controls -->
-  <div style="margin-bottom:15px;">
-    <select id="branchSel" style="padding:6px;">
+<div id="sr-controls">
+    <select id="branchSel" >
       <option value="CS">CS</option>
       <option value="ECE">ECE</option>
       <option value="ME">ME</option>
     </select>
 
-    <select id="yearSel" style="padding:6px;">
-      <option value="2024">2024</option>
-      <option value="2023">2023</option>
-      <option value="2022">2022</option>
+    <select id="yearSel" >
+      <!-- value = exam_year in DB, label = diploma year -->
+      <option value="2022">1st Year </option>
+      <option value="2023">2nd Year </option>
+      <option value="2024" selected>3rd Year </option>
     </select>
+ 
+    <select id="semSel" ></select>
 
-    <select id="semSel" style="padding:6px;">
-      <option value="4">4</option>
-      <option value="3">3</option>
-      <option value="2">2</option>
-    </select>
 
-    <input type="text" id="searchBox" placeholder="Search by PIN or Name" style="padding:6px; width:320px;"/>
 
-    <select id="sortSel" style="padding:6px;">
+
+    <input type="text" id="searchBox" placeholder="Search by PIN or Name"/>
+
+    <select id="sortSel" >
       <option value="pin">Sort: PIN</option>
       <option value="name">Sort: Name</option>
       <option value="attendance">Sort: Attendance</option>
@@ -36,20 +55,20 @@
       <option value="class_avg">Sort: Performance</option>
     </select>
 
-    <button id="btnExport" style="padding:6px;">Export CSV</button>
-    <button id="btnLoad" style="padding:6px;">Load</button>
+    <button id="btnExport" >Export File</button>
+    <button id="btnLoad" >Load</button>
 
-    <span id="countInfo" style="margin-left:18px; font-weight:bold;"></span>
+    <span id="countInfo" ></span>
   </div>
 
   <!-- Overview -->
-  <div id="overviewBox" style="background:#f9f9f9; padding:10px; margin-bottom:15px; border-radius:8px; border:1px solid #ddd;">
+  <div id="overviewBox" >
     <b>📊 Batch Overview</b>
     <div id="overviewContent">Loading...</div>
   </div>
 
   <!-- Student Table -->
-  <table border="1" width="100%" style="border-collapse:collapse;">
+  <table id="studentTable" border="1" width="100%" >
     <thead style="background:#eee;">
       <tr>
         <th>#</th>
@@ -69,13 +88,15 @@
 <!-- View Details Modal -->
 <div id="detailModal" style="display:none; position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
   <div style="background:#fff; width:92%; max-width:1000px; margin:40px auto; padding:16px; border-radius:6px; position:relative;">
-    <button id="closeDetail" style="position:absolute; right:10px; top:10px;">Close</button>
+    <button id="closeDetail" class="sr-btn sr-btn-light" style="position:absolute; right:10px; top:10px;">
+      Close
+    </button>
     <h3 id="detailTitle">Student Details</h3>
     <div id="studentInfo" style="margin-bottom:8px; font-size:14px;"></div>
 
     <div id="riskSummary" style="margin-bottom:10px;"></div>
 
-    <table id="detailTable" border="1" width="100%" style="border-collapse:collapse; margin-bottom:10px;">
+    <table id="detailTable" class="sr-table" border="1" width="100%" style="border-collapse:collapse; margin-bottom:10px;">
       <thead style="background:#f6f6f6;">
         <tr><th>Sub Code</th><th>Sub Name</th><th>Mid1</th><th>Mid2</th><th>Internal</th><th>End Sem</th><th>Attendance</th><th>Score</th><th>Risk</th></tr>
       </thead>
@@ -92,79 +113,157 @@
 
 <script>
 const apiBase = "/api";
+
+
+// Dynamic semester population based on diploma year
+function updateSemesters() {
+  const year = document.getElementById("yearSel").value;
+  const semSel = document.getElementById("semSel");
+  semSel.innerHTML = "";
+
+  let semesters = [];
+  if (year === "2022") semesters = [1,2];     // 1st year
+  else if (year === "2023") semesters = [3,4]; // 2nd year
+  else if (year === "2024") semesters = [5,6]; // 3rd year
+
+  semesters.forEach(s => {
+    const opt = document.createElement("option");
+    opt.value = String(s);
+    opt.textContent = "Sem " + s;
+    semSel.appendChild(opt);
+  });
+}
+
+// Run once at start
+updateSemesters();
+
+// Update on year change
+document.getElementById("yearSel").addEventListener("change", () => {
+  updateSemesters();
+  loadData(); // refresh automatically
+});
+
+
+
+
 fetch("/api/results/institution").then(r=>r.json()).then(d=>{
   document.getElementById("collegeName").textContent = d.name || "";
 });
 
 async function loadData() {
   const branch = document.getElementById("branchSel").value;
-  const year = document.getElementById("yearSel").value;
-  const sem = document.getElementById("semSel").value;
-  const q = encodeURIComponent(document.getElementById("searchBox").value || '');
-  const sort = document.getElementById("sortSel").value;
+  const year   = document.getElementById("yearSel").value;
+  const sem    = document.getElementById("semSel").value;
+  const q      = encodeURIComponent(document.getElementById("searchBox").value || "");
+  const sort   = document.getElementById("sortSel").value;
 
-  const url = `/api/results/search?branch=${branch}&year=${year}&semester=${sem}&q=${q}&sort=${sort}`;
-  const res = await fetch(url);
-  const data = await res.json();
+  const resultsUrl  = `/api/results/search?branch=${branch}&year=${year}&semester=${sem}&q=${q}&sort=${sort}`;
+  const overviewUrl = `/api/results/overview?branch=${branch}&year=${year}&semester=${sem}`;
 
-  // Overview
-  const overRes = await fetch(`/api/results/overview?branch=${branch}&year=${year}&semester=${sem}`);
-  const overview = await overRes.json();
-  document.getElementById("overviewContent").innerHTML =
-    `Total Students: <b>${overview.total_students}</b> |
-     High Risk: <span style="color:red;">${overview.risk_counts.high}</span> |
-     Medium Risk: <span style="color:orange;">${overview.risk_counts.medium}</span> |
-     Low Risk: <span style="color:green;">${overview.risk_counts.low}</span> |
-     Avg Attendance: ${overview.avg_attendance ? overview.avg_attendance.toFixed(1) + "%" : "NA"} |
-     Avg Performance: ${overview.avg_class_performance ? overview.avg_class_performance.toFixed(1) : "NA"}`;
+  try {
+    // 🔹 fetch both in parallel instead of one-by-one
+    const [res, overRes] = await Promise.all([
+      fetch(resultsUrl),
+      fetch(overviewUrl),
+    ]);
 
-  document.getElementById("countInfo").textContent = `${data.total || 0} students`;
+    const data      = res.ok     ? await res.json()     : { items: [], total: 0 };
+    const overview  = overRes.ok ? await overRes.json() : {};
 
-  const tbody = document.getElementById("studentRows");
-  tbody.innerHTML = "";
-  let idx = 1;
-  (data.items || []).forEach(st => {
-    // defensive: ensure pin present and looks valid
-    if (!st.pin || st.pin.length < 6) return;
-    // skip if name contains college header
-    if (st.name && st.name.toLowerCase().includes("polytechnic")) return;
+    // ---- Safe defaults so it never crashes ----
+    const riskCounts = overview.risk_counts || { high: 0, medium: 0, low: 0 };
+    const totalStudents = overview.total_students ?? 0;
+    const avgAtt = overview.avg_attendance;
+    const avgScore = overview.avg_class_performance;
 
-    const tr = document.createElement("tr");
-    const attendanceText = st.attendance ? (Number(st.attendance).toFixed(1) + "%") : "-";
-    const riskColor = st.risk === "high" ? "red" : (st.risk === "medium" ? "orange" : (st.risk === "low" ? "green" : "black"));
-
-    tr.innerHTML = `
-      <td>${idx++}</td>
-      <td>${st.pin}</td>
-      <td>${st.name || "-"}</td>
-      <td>${attendanceText}</td>
-      <td style="color:${riskColor};">${st.risk || "-"}</td>
-      <td>${st.overall_score !== null && st.overall_score !== undefined ? st.overall_score : "-"}</td>
-      <td><button class="viewBtn" data-pin="${st.pin}">View</button></td>
+    // Overview pills
+    document.getElementById("overviewContent").innerHTML = `
+      <span class="kpi-pill kpi-blue">Total Students: <b>${totalStudents}</b></span>
+      <span class="kpi-pill kpi-red">High: <b>${riskCounts.high ?? 0}</b></span>
+      <span class="kpi-pill kpi-orange">Medium: <b>${riskCounts.medium ?? 0}</b></span>
+      <span class="kpi-pill kpi-green">Low: <b>${riskCounts.low ?? 0}</b></span>
+      <span class="kpi-pill kpi-blue">Avg Attendance: <b>${typeof avgAtt === "number" ? avgAtt.toFixed(1) + "%" : "NA"}</b></span>
+      <span class="kpi-pill kpi-blue">Avg Score: <b>${typeof avgScore === "number" ? avgScore.toFixed(1) : "NA"}</b></span>
     `;
-    tbody.appendChild(tr);
-  });
 
-  // attach handlers
-  document.querySelectorAll(".viewBtn").forEach(b => {
-    b.addEventListener("click", (e) => {
-      const pin = e.currentTarget.dataset.pin;
-      openDetailModal(pin, document.getElementById("semSel").value);
+    // Count label
+    document.getElementById("countInfo").textContent = `${data.total || 0} students`;
+
+    // Table
+    const tbody = document.getElementById("studentRows");
+    tbody.innerHTML = "";
+    let idx = 1;
+
+    (data.items || []).forEach((st) => {
+      if (!st.pin || st.pin.length < 6) return;
+      if (st.name && st.name.toLowerCase().includes("polytechnic")) return;
+
+      const tr = document.createElement("tr");
+      const attendanceText = st.attendance ? Number(st.attendance).toFixed(1) + "%" : "-";
+      const riskColor =
+        st.risk === "high"
+          ? "red"
+          : st.risk === "medium"
+          ? "orange"
+          : st.risk === "low"
+          ? "green"
+          : "black";
+
+      tr.innerHTML = `
+        <td>${idx++}</td>
+        <td>${st.pin}</td>
+        <td>${st.name || "-"}</td>
+        <td>${attendanceText}</td>
+        <td style="color:${riskColor};">${st.risk || "-"}</td>
+        <td>${st.overall_score !== null && st.overall_score !== undefined ? st.overall_score : "-"}</td>
+        <td><button class="viewBtn sr-btn sr-btn-primary" data-pin="${st.pin}">View</button></td>
+      `;
+      tbody.appendChild(tr);
     });
-  });
+
+    // Attach handlers
+    document.querySelectorAll(".viewBtn").forEach((b) => {
+      b.onclick = (e) => {
+        const pin = e.currentTarget.dataset.pin;
+        openDetailModal(pin);
+      };
+    });
+  } catch (err) {
+    console.error("loadData failed:", err);
+    document.getElementById("overviewContent").innerHTML =
+      "<span style='color:#c00;'>Failed to load batch overview.</span>";
+  }
 }
 
-async function openDetailModal(pin, sem) {
-  const url = `/api/results/search?pin=${encodeURIComponent(pin)}&semester=${encodeURIComponent(sem)}`;
+async function openDetailModal(pin) {
+  const branch = document.getElementById("branchSel").value;
+  const year   = document.getElementById("yearSel").value;
+  const sem    = document.getElementById("semSel").value;
+
+  const url = `/api/results/search?branch=${encodeURIComponent(branch)}&year=${encodeURIComponent(year)}&semester=${encodeURIComponent(sem)}&pin=${encodeURIComponent(pin)}&detail=1`;
   const res = await fetch(url);
   if (!res.ok) {
     alert("Student data not found.");
     return;
   }
   const data = await res.json();
-  const student = data.student;
+  const student = data.student || {};
   document.getElementById("detailTitle").textContent = `Student Details — ${student.name || ""}`;
-  document.getElementById("studentInfo").innerHTML = `<b>PIN:</b> ${student.pin} &nbsp; <b>Name:</b> ${student.name} &nbsp; <b>Branch:</b> ${student.branch} &nbsp; <b>Year:</b> ${student.year}`;
+  // Year may be returned as student.exam_year OR as top-level data.year depending on API shape.
+  // Use the currently selected dropdown year instead of DB exam_year
+  const rawYear = document.getElementById("yearSel").value;
+
+// Convert DB year → Diploma year label
+let displayYear = "N/A";
+if (rawYear == "2022") displayYear = "1st Year";
+else if (rawYear == "2023") displayYear = "2nd Year";
+else if (rawYear == "2024") displayYear = "3rd Year";
+
+document.getElementById("studentInfo").innerHTML =
+  `<b>PIN:</b> ${student.pin} &nbsp; 
+   <b>Name:</b> ${student.name} &nbsp; 
+   <b>Branch:</b> ${student.branch} &nbsp; 
+   <b>Year:</b> ${displayYear}`;
 
   // populate subjects table
   const rows = document.getElementById("detailRows");
@@ -216,7 +315,24 @@ async function openDetailModal(pin, sem) {
   document.getElementById("feedbackText").innerHTML = generateFeedback(data);
 
   // More details link
-  document.getElementById("moreDetailsLink").href = `/student-history?pin=${encodeURIComponent(student.pin)}`;
+  // More details link – go to React results page with PIN in query
+  const moreLink = document.getElementById("moreDetailsLink");
+  if (student.pin) {
+    const targetUrl = `/results?pin=${encodeURIComponent(student.pin)}`;
+    moreLink.href = targetUrl;
+
+    // force navigation with query intact
+    moreLink.onclick = (ev) => {
+      ev.preventDefault();
+      window.location.href = targetUrl;
+    };
+  } else {
+    moreLink.removeAttribute("href");
+    moreLink.onclick = null;
+  }
+
+
+
 
   // show modal
   document.getElementById("detailModal").style.display = "block";
@@ -273,7 +389,17 @@ document.getElementById("btnExport").onclick = () => {
   window.location = `/api/results/export?branch=${branch}&year=${year}&semester=${sem}`;
 };
 document.getElementById("btnLoad").onclick = loadData;
-document.getElementById("searchBox").oninput = () => setTimeout(loadData, 250);
+
+let searchTimer = null;
+
+document.getElementById("searchBox").addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(loadData, 300); // only fire 300ms *after* user stops typing
+});
+
+document.getElementById("sortSel").onchange = loadData;
+document.getElementById("btnLoad").onclick = loadData;
+
 document.getElementById("sortSel").onchange = loadData;
 
 // initial load

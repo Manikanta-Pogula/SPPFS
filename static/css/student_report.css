@@ -1,0 +1,383 @@
+/* ===== Student Report page ===== */
+
+body {
+  background: linear-gradient(180deg, #e9f4ff 0%, #f7fbff 40%, #ffffff 100%);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Main white card */
+#student-report-page {
+  max-width: 1200px;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Top title bar (📘 Student Report) */
+#student-report-page h2 {
+  margin: 0 0 4px;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, #3498db, #6ab7ff);
+  color: #ffffff;
+  font-size: 18px;
+  border-radius: 8px 8px 0 0;
+}
+
+#student-report-page h3#collegeName {
+  margin: 0 0 12px 16px;
+  font-size: 14px;
+  color: #555555;
+}
+
+/* -------- Controls bar ---------- */
+
+#sr-controls {
+  padding: 10px 16px;
+  margin-bottom: 12px !important;
+  background: #eef5ff;
+  border-radius: 6px;
+  border: 1px solid #d2e2ff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+#sr-controls select,
+#sr-controls input[type="text"] {
+  border: 1px solid #c4d8ff;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 13px;
+  outline: none;
+  min-height: 30px;
+}
+
+#sr-controls select:focus,
+#sr-controls input[type="text"]:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.25);
+}
+
+#sr-controls button {
+  border: none;
+  border-radius: 16px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #2f80ed, #1366d6);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+#sr-controls button:hover {
+  filter: brightness(1.06);
+}
+
+#countInfo {
+  font-size: 13px;
+  color: #444444;
+}
+
+/* -------- Batch overview card ---------- */
+
+#overviewBox {
+  margin: 0 16px 16px !important;
+  padding: 10px 12px !important;
+  border-radius: 6px !important;
+  border: 1px solid #d1e3ff !important;
+  background: #f4f8ff !important;
+  font-size: 13px;
+}
+
+#overviewBox b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* -------- Student table ---------- */
+
+#studentTable {
+  width: calc(100% - 32px);
+  margin: 0 16px 20px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+#studentTable thead {
+  background: linear-gradient(180deg, #e2f0ff, #c9ddff);
+}
+
+#studentTable th,
+#studentTable td {
+  padding: 6px 8px;
+  border: 1px solid #d7e2f5;
+}
+
+#studentTable th {
+  text-align: left;
+  font-weight: 600;
+  color: #333333;
+}
+
+#studentTable tbody tr:nth-child(even) {
+  background: #f9fbff;
+}
+
+#studentTable tbody tr:hover {
+  background: #eef5ff;
+}
+
+/* Attendance + risk columns */
+#studentTable td:nth-child(4),
+#studentTable td:nth-child(5),
+#studentTable td:nth-child(6),
+#studentTable td:nth-child(7) {
+  text-align: center;
+}
+
+#studentTable td:nth-child(5) {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+/* "View" button in table */
+#studentTable .viewBtn {
+  border: none;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 12px;
+  background: linear-gradient(180deg, #24a0ed, #4caff2);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#studentTable .viewBtn:hover {
+  filter: brightness(1.08);
+}
+
+/* -------- Detail modal ---------- */
+
+#detailModal {
+  /* JS controls display; this styles it when visible */
+  font-size: 13px;
+}
+
+#detailModal > div {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+#detailTitle {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+#studentInfo {
+  margin-bottom: 8px;
+}
+
+/* Detail table */
+#detailTable {
+  font-size: 12px;
+}
+
+#detailTable th {
+  background: #f0f4ff;
+}
+
+#feedbackBox h4 {
+  margin-top: 0;
+}
+
+
+/* widen main area */
+#student-report-page {
+    max-width: 1500px;   /* increase this */
+    width: 95%;          /* stretch nearly full */
+    margin: 20px auto;
+}
+
+/* widen table */
+#studentTable {
+    width: 100%;
+    min-width: 1200px;   /* prevent compressed cells */
+}
+
+/* nicer wide look */
+#studentTable th,
+#studentTable td {
+    padding: 8px 14px;
+}
+
+
+/* ===== Top hero bar (page header) just for Student Report page ===== */
+
+.hero-bar {
+  width: 100%;
+  max-width: 1500px;          /* bigger */
+  margin: 16px auto 8px;
+  background: #007bff;
+  color: #ffffff;
+  border-radius: 8px;         /* match the card style */
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+
+.hero-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.hero-sub {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.hero-right {
+  font-size: 13px;
+}
+
+.hero-right a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.hero-right a:hover {
+  text-decoration: none;
+}
+
+
+#overviewBox {
+  background: #ffffff;
+  padding: 14px 18px;
+  border-radius: 6px;
+  border: 1px solid #e6e6e6;
+  margin-top: 12px;
+}
+
+#overviewBox b {
+  font-size: 15px;
+  color: #222;
+}
+
+#overviewContent {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.7em;
+}
+
+.kpi-pill{
+  width:110px;              /* fixed equal width */
+  height:70px;              /* fixed equal height */
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  
+  border-radius:10px;
+  background:#f8f8f8;
+  margin-right:10px;
+  text-align:center;
+  font-weight:600;
+
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.05);
+}
+
+.kpi-pill span{
+  display:block;
+  font-size:13px;
+}
+.kpi-pill b{
+  font-size:18px;
+}
+
+#overviewContent{
+  display:flex;
+  gap:12px;
+  margin-top:10px;
+}
+
+
+.kpi-blue   { background:#e8f0ff; color:#0059ff; }
+.kpi-red    { background:#ffe8e8; color:#d40000; }
+.kpi-orange { background:#fff2e5; color:#c55f00; }
+.kpi-green  { background:#e5ffe7; color:#009600; }
+
+
+
+
+/* ========= Shared table style for main + modal ========= */
+.sr-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.sr-table thead {
+  background: #f2f5f9;
+}
+
+.sr-table th,
+.sr-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e5ecf4;
+}
+
+.sr-table th {
+  font-weight: 600;
+  color: #555;
+  text-align: left;
+}
+
+.sr-table tr:nth-child(even) {
+  background: #fafbff;
+}
+
+.sr-table tr:hover {
+  background: #edf4ff;
+}
+
+/* ========= Small pill buttons (View, Close, etc.) ========= */
+.sr-btn {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* blue actions (View, Export, Load if you want) */
+.sr-btn-primary {
+  background: #1084ff;
+  color: #ffffff;
+}
+
+.sr-btn-primary:hover {
+  background: #0a6bd1;
+}
+
+/* light actions (Close button) */
+.sr-btn-light {
+  background: #f3f6fb;
+  color: #333333;
+  border: 1px solid #ced6e5;
+}
+
+.sr-btn-light:hover {
+  background: #e4ebf7;
+}

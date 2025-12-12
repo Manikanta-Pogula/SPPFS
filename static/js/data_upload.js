@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fd.append('semester', document.getElementById('semester').value);
     fd.append('year', document.getElementById('year').value);
     fd.append('file_label', document.getElementById('file_label').value);
+    fd.append('branch', document.getElementById('branch').value);
 
     status.textContent = 'Parsing file...';
     fetch('/api/uploads/preview', { method: 'POST', body: fd })
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
       exam_type: previewJSON.exam_type,
       semester: previewJSON.semester,
       year: previewJSON.class_year || previewJSON.year || 0,
+      branch: document.getElementById('branch').value || null,
       rows: previewJSON.preview_rows.map(r => ({
         pin: r.pin,
         name: r.name,
@@ -257,12 +259,40 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.error) {
         alert('Commit failed: ' + data.error);
       } else {
-        alert('Committed ' + data.committed + ' records.');
+        let msg = 'Committed ' + data.committed + ' records.';
+        if (data.errors && data.errors.length) {
+          msg += '\n\nWarnings:\n' + data.errors.slice(0, 10).join('\n');
+        }
+        alert(msg);
         location.reload();
       }
-    }).catch(err => {
+    })
+.catch(err => {
       alert('Commit request failed: ' + err);
     });
   });
 
 });
+
+
+  function updateUploadSemesters() {
+    const year = document.getElementById("year").value;
+    const semSel = document.getElementById("semester");
+    semSel.innerHTML = "";
+    let semesters = [];
+    if (year === "2022") semesters = [1,2];
+    else if (year === "2023") semesters = [3,4];
+    else if (year === "2024") semesters = [5,6];
+    // if you add later years, expand mapping
+
+    semesters.forEach(s => {
+      const opt = document.createElement("option");
+      opt.value = String(s);
+      opt.textContent = "Sem " + s;
+      semSel.appendChild(opt);
+    });
+  }
+
+  // init
+  updateUploadSemesters();
+  document.getElementById("year").addEventListener("change", updateUploadSemesters);

@@ -1,0 +1,146 @@
+{# templates/home.html #}
+{% extends "base.html" %}
+
+{% block title %}Home — SPPFS{% endblock %}
+
+{% block content %}
+<!-- HERO / HOME SECTION -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <h1 class="display-5 fw-bold">Student Performance Prediction &amp; Feedback System</h1>
+        <p class="lead">Empowering polytechnic faculty with AI-driven academic insights.</p>
+        <p class="mb-4">
+          Analyze student performance, detect risk levels, and generate personalized feedback —
+          all through a single faculty dashboard.
+        </p>
+
+        <div class="mt-4">
+          <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg">
+            Get Started
+          </a>
+        </div>
+
+        <!-- feature cards -->
+        <div class="row mt-5 g-3 justify-content-center">
+          <div class="col-md-4">
+            <div class="card card-feature p-3 h-100 text-center">
+              <img src="{{ url_for('static', filename='img/bar-placeholder.svg') }}" width="60" class="mb-3" alt="Bar graph icon">
+              <h6 class="mb-1">Identify Risk Students</h6>
+              <small class="text-muted">Classify students as High / Medium / Low risk.</small>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card card-feature p-3 h-100 text-center">
+              <img src="{{ url_for('static', filename='img/pie-placeholder.svg') }}" width="60" class="mb-3" alt="Pie chart icon">
+              <h6 class="mb-1">Subject-wise Analytics</h6>
+              <small class="text-muted">Compare performance across subjects and terms.</small>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card card-feature p-3 h-100 text-center">
+              <img src="{{ url_for('static', filename='img/progress-placeholder.svg') }}" width="60" class="mb-3" alt="Progress bar icon">
+              <h6 class="mb-1">Personalized Feedback</h6>
+              <small class="text-muted">Actionable suggestions tailored for each student.</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="about bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h2 class="fw-bold">Student Performance Prediction and Feedback System</h2>
+        <p class="text-muted fst-italic">empowering students &amp; faculty with AI-Driven insights</p>
+
+        <p class="mt-3">
+          Our Student Performance Prediction and Feedback System is designed to support polytechnic faculty
+          in understanding student progress more accurately. By analyzing internal or semester marks, the system
+          predicts academic risk levels and generates personalized improvement suggestions that help students
+          stay on track.
+        </p>
+
+        <div class="row mt-4 g-4">
+          <div class="col-md-6 text-start">
+            <h5 class="mb-2">Why this system?</h5>
+            <p class="text-muted">
+              Polytechnic students often struggle to understand where they stand academically, and faculty spend
+              a large amount of time manually reviewing individual results. This system bridges that gap by
+              providing AI-powered analytics that highlight performance issues early and enable better academic
+              planning.
+            </p>
+          </div>
+          <div class="col-md-6 text-start">
+            <h5 class="mb-2">What problem does it solve?</h5>
+            <ul class="list-unstyled text-muted mb-0">
+              <li>• Students don’t know which subjects need more attention</li>
+              <li>• Faculty require quick insights at class-level</li>
+              <li>• Tracking progress becomes difficult over multiple exams</li>
+              <li>• Feedback is often generalized rather than personalized</li>
+            </ul>
+          </div>
+
+          <div class="col-12 mt-3 text-center">
+            <h5 class="mb-3">Core Features</h5>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+              <span class="badge bg-light text-dark p-3 shadow-sm">🎯 Student Risk Prediction</span>
+              <span class="badge bg-light text-dark p-3 shadow-sm">📊 Faculty Dashboards</span>
+              <span class="badge bg-light text-dark p-3 shadow-sm">🧠 Personalized Feedback</span>
+              <span class="badge bg-light text-dark p-3 shadow-sm">📂 Bulk File Upload</span>
+            </div>
+          </div>
+
+          <div class="col-12 mt-4 text-center">
+            <h6>Who benefits?</h6>
+            <p class="text-muted mb-0">
+              Faculty, students, and institutions — all gain from faster evaluation, targeted suggestions, and an
+              organized academic monitoring method.
+            </p>
+            <p class="mt-2">
+              <strong>SPPFS brings clarity, prediction, and decision-making power into the academic process.</strong>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card p-4">
+          <h5>Contact Us</h5>
+          <p class="text-muted">
+            Have questions, need support, or want to request changes? Reach out to the developer.
+          </p>
+
+          <ul class="list-unstyled mb-0">
+            <li>👨‍💻 <strong>Developer:</strong> Your Name</li>
+            <li>💼 <strong>Role:</strong> Full Stack Developer / Project Owner</li>
+            <li>📧 <strong>Email:</strong> <a href="mailto:dev@example.com">dev@example.com</a></li>
+            <li>🔗 <strong>GitHub:</strong> <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></li>
+            <li>📞 <strong>Phone:</strong> +91-XXXXXXXXXX</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{# We let base.html's default footer render, so no footer block override needed #}

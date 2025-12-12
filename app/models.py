@@ -6,10 +6,18 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
+
+    # NEW FIELDS
+    full_name = db.Column(db.String(150), nullable=True)
+    email     = db.Column(db.String(150), unique=True, nullable=True)
+
     password_hash = db.Column(db.String(256), nullable=False)
-    role = db.Column(db.String(20), nullable=False)  # 'admin' or 'faculty'
+
+    # role is no longer used in the form; keep it for compatibility but not required
+    role = db.Column(db.String(20), nullable=True, default='faculty')
 
     uploaded_files = db.relationship('UploadedFile', backref='uploader', lazy=True)
 
@@ -18,6 +26,7 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
 
 
 class Subject(db.Model):
@@ -100,3 +109,19 @@ class Institution(db.Model):
 
     def __repr__(self):
         return f"<Institution {self.name}>"
+
+
+
+class StudentSemesterStat(db.Model):
+    __tablename__ = "student_semester_stats"
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
+    semester = db.Column(db.Integer, nullable=False)
+    exam_year = db.Column(db.Integer, nullable=True)
+    overall_score = db.Column(db.Float, nullable=True)
+    risk = db.Column(db.String(16), nullable=True)
+    computed_on = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    __table_args__ = (db.UniqueConstraint('student_id', 'semester', name='uix_student_sem'),)
+
+    student = db.relationship('Student', backref=db.backref('semester_stats', lazy='dynamic'))

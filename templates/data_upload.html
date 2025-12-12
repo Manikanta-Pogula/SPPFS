@@ -1,22 +1,33 @@
 <!-- templates/data_upload.html -->
 {% extends "base.html" %}
-{% block title %}Data Upload{% endblock %}
+{% block title %}Data Upload — SPPFS{% endblock %}
 
-{% block content %}
-<div style="background:#0b6cf6;color:#fff;padding:18px;">
-  <div style="display:flex;justify-content:space-between;align-items:center;">
-    <div><h3>Welcome back, {{ current_user.username if current_user else 'Faculty' }}</h3></div>
-    <div style="text-align:right;">
-      <div>{{ current_user.username if current_user else '' }}</div>
-      <a href="{{ url_for('auth.logout') }}" class="btn btn-light">Logout</a>
-    </div>
+{% block extra_head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+
+{% block subheader %}
+<div class="hero-bar">
+  <div>
+    <div class="hero-title">Welcome back, {{ current_user.username if current_user else 'faculty' }}</div>
+    <div class="hero-sub">Data Upload</div>
+  </div>
+  <div class="hero-right">
+    {{ current_user.username }} · <a href="{{ url_for('auth.logout') }}">Logout</a>
   </div>
 </div>
+{% endblock %}
 
-<div class="container" style="padding:16px;">
+{% block content %}
+
+
+<div class="container data-upload-page" style="margin-left:20px;">
   <h4>Data Upload</h4>
-  <form id="upload-form" enctype="multipart/form-data">
-    <label>Exam Type:
+
+  <form id="upload-form" enctype="multipart/form-data" class="upload-form-row">
+    <label class="upload-field">
+      Exam Type:
       <select id="exam_type" name="exam_type">
         <option value="mid1">Mid-1</option>
         <option value="mid2">Mid-2</option>
@@ -24,34 +35,55 @@
       </select>
     </label>
 
-    <label>Semester:
-      <select id="semester" name="semester">
-        {% for s in range(1,9) %}
-        <option value="{{ s }}">{{ s }}</option>
-        {% endfor %}
+    <label class="upload-field">
+      Branch:
+      <select id="branch" name="branch">
+        {% if branches is defined %}
+          <option value="">-- Select branch --</option>
+          {% for b in branches %}
+            <option value="{{ b }}">{{ b }}</option>
+          {% endfor %}
+        {% else %}
+          <option value="">-- Select branch --</option>
+          <option value="CS">CS</option>
+          <option value="EC">EC</option>
+          <option value="ME">ME</option>
+          <option value="EE">EE</option>
+          <option value="IT">IT</option>
+        {% endif %}
       </select>
     </label>
 
-    <label>Class Year:
+    <label class="upload-field">
+      Exam Year:
       <select id="year" name="year">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+        <option value="2022">1st Year (2022)</option>
+        <option value="2023">2nd Year (2023)</option>
+        <option value="2024" selected>3rd Year (2024)</option>
       </select>
     </label>
 
-    <label>File Label:
+    <label class="upload-field">
+      Semester:
+      <select id="semester" name="semester"></select>
+    </label>
+
+    <label class="upload-field">
+      File Label:
       <input type="text" id="file_label" name="file_label" placeholder="e.g., 4th Sem - Mid-1">
     </label>
 
-    <label>Choose file:
+    <label class="upload-field">
+      Choose file:
       <input type="file" id="file" name="file" accept=".csv,.xlsx">
     </label>
 
-    <button id="btn-preview" class="btn btn-primary" type="submit">Preview</button>
-    <a class="btn" href="{{ url_for('static', filename='sample_csv/sample_mid1.csv') }}" download>Download sample CSV</a>
+    <button id="btn-preview" class="btn btn-primary" type="submit">
+      Preview
+    </button>
   </form>
+
+
 
   <div id="status" style="margin-top:12px;font-weight:600;"></div>
 
@@ -64,5 +96,7 @@
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='js/data_upload.js') }}"></script>
+<script src="{{ url_for('static', filename='js/data_upload.js') }}">
+
+</script>
 {% endblock %}

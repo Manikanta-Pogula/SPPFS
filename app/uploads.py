@@ -21,10 +21,14 @@ from app import db
 from app.models import Student, Subject, Mark, UploadedFile
 from app.utils.excel_parser import parse_uploaded_workbook
 from app.utils.grades import compute_subject_score, compute_flags, compute_eligibility
+from app.results.routes import map_risk
+
 from datetime import datetime
 import io
 import logging
 from typing import Dict, Any, Optional
+from app.models import StudentSemesterStat  # (or import inside the block as I did above)
+from app.results.routes import map_risk
 
 logger = logging.getLogger(__name__)
 
@@ -119,7 +123,18 @@ def _build_absent_map_from_payload(parsed_components: Optional[Dict[str, Any]], 
 @login_required
 def data_upload_page():
     """Render upload page (Jinja template). UI calls preview and commit APIs."""
-    return render_template('data_upload.html')
+    try:
+        branches_q = Subject.query.with_entities(Subject.branch).distinct().all()
+        db_branches = [b[0] for b in branches_q if b and b[0]]
+    except Exception:
+        db_branches = []
+
+    # default branches you always want to see
+    fallback_branches = ["CS", "EC", "ME", "EE", "IT"]
+
+    branches = sorted(set(db_branches + fallback_branches))
+    return render_template('data_upload.html', branches=branches)
+
 
 
 @uploads_bp.route('/api/uploads/preview', methods=['POST'])
@@ -138,7 +153,8 @@ def api_uploads_preview():
     f = request.files.get('file')
     exam_type = (request.form.get('exam_type') or '').strip().lower()
     semester = int(request.form.get('semester') or 0)
-    class_year = request.form.get('year') or None
+    exam_year = int(request.form.get('year'))  # now year == exam year
+    branch = (request.form.get('branch') or '').strip()  # <- new: branch selected by uploader
     file_label = request.form.get('file_label') or (f.filename if f else 'upload')
 
     if not f:
@@ -309,8 +325,9 @@ def api_uploads_preview():
     return jsonify({
         "file_label": file_label,
         "exam_type": exam_type,
+        "branch": branch,
         "semester": semester,
-        "class_year": class_year,
+        "year": exam_year,  
         "subject_cols": subject_cols,
         "meta_cols": meta_cols,
         "preview_rows": preview_rows,
@@ -349,8 +366,15 @@ def api_uploads_commit():
     file_label = data.get('file_label') or 'uploaded_file'
     exam_type = (data.get('exam_type') or '').strip().lower()
     semester = int(data.get('semester') or 0)
-    year = data.get('year') or None
+    # treat 'year' as exam_year (calendar year) and coerce to int if possible
+    year_raw = data.get('year')
+    try:
+        exam_year = int(year_raw) if year_raw is not None else None
+    except Exception:
+        exam_year = None
+
     rows = data.get('rows') or []
+    branch_from_form = (data.get('branch') or '').strip() or None
 
     # create UploadedFile record
     uploaded = UploadedFile(
@@ -378,8 +402,9 @@ def api_uploads_commit():
         # find or create student
         student = Student.query.filter_by(pin=pin).first()
         if not student:
-            branch_guess = _infer_branch_from_pin(pin) or 'UNKNOWN'
-            student = Student(pin=pin, name=name or 'Unknown', branch=branch_guess, exam_year=year)
+            # Prefer the branch selected in the upload form; fallback to PIN inference; else UNKNOWN
+            branch_guess = branch_from_form or _infer_branch_from_pin(pin) or 'UNKNOWN'
+            student = Student(pin=pin, name=name or 'Unknown', branch=branch_guess, exam_year=exam_year)
             db.session.add(student)
             db.session.flush()
 
@@ -432,11 +457,18 @@ def api_uploads_commit():
                 continue
 
             # If not present create new record
+            # If not present create new record
             if not existing_mark:
-                mark_row = Mark(student_id=student.id, sub_code=sub_code, semester=semester, year=year)
+                mark_row = Mark(
+                    student_id=student.id,
+                    sub_code=sub_code,
+                    semester=semester,
+                    year=exam_year  # ✅ use 'year' here
+                )
                 db.session.add(mark_row)
             else:
                 mark_row = existing_mark
+
 
             # Decide per-component updates depending on action
             # If action == 'keep_old' and the stored value is not None, we keep it.
@@ -524,7 +556,14 @@ def api_uploads_commit():
             try:
                 # compute subject score according to upload's intended interpretation (use absent_map_now)
                 computed_score = compute_subject_score(comps_for_flags, absent_map_now)
-                mark_row.subject_score = computed_score
+                try:
+                    mark_row.subject_score = computed_score
+                    # map_risk imported from app.utils.grades (after you add map_risk there)
+                    from app.utils.grades import map_risk
+                    mark_row.risk = map_risk(computed_score) if computed_score is not None else None
+                except Exception:
+                    pass
+
             except Exception:
                 # ignore if column not present
                 pass
@@ -534,6 +573,77 @@ def api_uploads_commit():
             mark_row.updated_on = datetime.utcnow()
 
             committed += 1
+
+        # ---------- compute & store overall and risk for this student+semester ----------
+        try:
+            # gather marks for this student+semester (now saved/updated in DB session)
+            stored_marks = Mark.query.filter_by(student_id=student.id, semester=semester).all()
+            scores = []
+            for mm in stored_marks:
+                comps = {
+                    "mid1": mm.mid1,
+                    "mid2": mm.mid2,
+                    "internal": mm.internal,
+                    "end_sem": mm.end_sem
+                }
+                absent_map_now = {
+                    "mid1": (comps["mid1"] is not None and float(comps["mid1"]) == 0.0),
+                    "mid2": (comps["mid2"] is not None and float(comps["mid2"]) == 0.0),
+                    "internal": (comps["internal"] is not None and float(comps["internal"]) == 0.0),
+                    "end_sem": (comps["end_sem"] is not None and float(comps["end_sem"]) == 0.0)
+                }
+                try:
+                    ss = compute_subject_score(comps, absent_map_now)
+                except TypeError:
+                    # fall back if compute_subject_score signature is compute_subject_score(comps)
+                    ss = compute_subject_score(comps)
+                except Exception:
+                    ss = None
+                if ss is not None:
+                    try:
+                        scores.append(float(ss))
+                    except Exception:
+                        pass
+
+            # compute overall (use utils' compute_overall_score if available)
+            try:
+                # app.utils.grades has compute_overall_score semantics
+                from app.utils.grades import compute_overall_score as _co
+                overall_score_val = _co(scores) if scores else None
+            except Exception:
+                overall_score_val = round(sum(scores) / len(scores), 2) if scores else None
+
+            risk_val = map_risk(overall_score_val) if overall_score_val is not None else None
+
+            # upsert into student_semester_stats
+            try:
+                from app.models import StudentSemesterStat
+                stat = StudentSemesterStat.query.filter_by(student_id=student.id, semester=semester).first()
+                if stat:
+                    stat.overall_score = overall_score_val
+                    stat.risk = risk_val
+                    stat.exam_year = student.exam_year
+                    stat.computed_on = datetime.utcnow()
+                else:
+                    stat = StudentSemesterStat(
+                        student_id=student.id,
+                        semester=semester,
+                        exam_year=student.exam_year,
+                        overall_score=overall_score_val,
+                        risk=risk_val,
+                        computed_on=datetime.utcnow()
+                    )
+                    db.session.add(stat)
+                # do not commit here independently (we commit once after processing all rows)
+            except Exception:
+                current_app.logger.exception(
+                    "Failed to prepare student_semester_stat for %s sem %s", student.pin, semester
+                )
+        except Exception:
+            current_app.logger.exception(
+                "Failed to compute overall for %s sem %s", student.pin, semester
+            )
+        # -------------------------------------------------------------------------------
 
     # commit transaction
     try:

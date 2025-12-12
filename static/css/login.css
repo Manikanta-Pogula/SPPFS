@@ -1,0 +1,121 @@
+/* ===== Login Page Styles ===== */
+
+/* background container */
+.auth-wrapper {
+  min-height: calc(100vh - 140px); /* space for navbar + footer */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+  background: #f5f7fb;
+}
+
+/* card */
+.auth-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 460px;                 /* a bit wider than register */
+  padding: 30px 34px;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+/* titles */
+.auth-title {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.auth-subtitle {
+  margin: 0 0 22px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* form layout */
+.auth-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 9px 11px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  box-sizing: border-box;
+  background: #f9fafb;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+  background: #ffffff;
+}
+
+/* submit button container */
+.auth-submit {
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* primary button – reuse global .btn-primary styles if you have them */
+.btn-primary {
+  display: inline-block;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2563eb;
+  color: #ffffff;
+  transition: background 0.15s ease, box-shadow 0.15s ease,
+    transform 0.05s ease;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
+/* footer text under button */
+.auth-footer-text {
+  margin-top: 14px;
+  font-size: 13px;
+  text-align: center;
+  color: #4b5563;
+}
+
+.auth-footer-text a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.auth-footer-text a:hover {
+  text-decoration: underline;
+}
